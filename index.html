@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riyaz Sharief | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+  .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0d0d0d;
+      padding: 10px 20px;
+    }
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .hamburger {
+      display: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-links li a:hover {
+      color: #00ccff;
+      transform: scale(1.1);
+    }
+    .ABOUT, .SKILLS, .RESUME, .CONTACT {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      color: blue;
+    }
+    .ABOUT p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .SKILLS span {
+      display: inline-block;
+      background-color: #e0e0e0;
+      padding: 8px 12px;
+      margin: 6px;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .SKILLS span:hover {
+      background-color: #00ccff;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .RESUME embed {
+      width: 90%;
+      height: 300px;
+      max-width: 700px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background-color: #00ccff;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px auto;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #0099cc;
+      transform: scale(1.1);
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .contact-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #00ccff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-buttons a:hover {
+      background-color: #0099cc;
+      transform: scale(1.1);
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      font-size: 30px;
+      color: #333;
+      margin: 10px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+      color: #00ccff;
+    }
+
+    hr {
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #0d0d0d;
+        width: 200px;
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .banner-text h1, .banner-text2 h1 {
+        font-size: 1.2rem;
+      }
+
+      .SKILLS span {
+        font-size: 0.9rem;
+      }
+
+      .download-btn {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">RIYAZ SHARIEF S</div>
+      <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#ABOUT">ABOUT</a></li>
+        <li><a href="#SKILLS">SKILLS</a></li>
+        <li><a href="#RESUME">RESUME</a></li>
+        <li><a href="#CONTACT">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="ABOUT" id="ABOUT" data-aos="fade-up">
+    <h1>ABOUT ME</h1>
+    <img src="WhatsApp Image 2025-03-09 at 12.30.47_e6c50b24.jpg" alt="" width="25%" height="35%">
+    <br> </br>
+    <p>Hi, I’m Riyaz Sharief S, a passionate web developer and entrepreneur currently pursuing BCA (2nd Year) at Islamiah College (Autonomous), Vaniyambadi. I'm focused on <b>creating modern, responsive websites</b> and <b>running my own brands—LookStylo Fashion</b></p>
+    <hr>
+  </div>
+
+  <div class="SKILLS" id="SKILLS" data-aos="fade-right">
+    <h1>SKILLS</h1>
+    <span>HTML5</span> <span>CSS</span> <span>JAVASCRIPT</span>
+    <span>PYTHON</span> <span>SEO</span> <span>PROBLEM SOLVING</span>
+    <span>COMMUNICATION</span> <span>BUSINESS ETIQUETTE</span> <span>ANALYTICAL SKILLS</span>
+    <hr>
+  </div>
+
+  <div class="RESUME" id="RESUME" data-aos="zoom-in">
+    <h1>RESUME</h1>
+    <embed src="RESUME 2025.pdf" type="application/pdf">
+    <a href="RESUME 2025.pdf" class="download-btn" download>Download Resume</a>
+    <hr>
+  </div>
+
+  <div class="CONTACT" id="CONTACT" data-aos="flip-up">
+    <h1>CONTACT</h1>
+    <p>Feel free to reach out via any of the following channels:</p>
+    <div class="contact-buttons">
+      <a href="tel:+8680857511"><i class="fa-solid fa-phone"></i> Call Me</a>
+      <a href="mailto:riyazshariefsbca@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
+      <a href="https://maps.app.goo.gl/QAa1wHhnsjoDG2em8" target="_blank"><i class="fa-solid fa-map-marker-alt"></i> My Location</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/lookstlyo_fashion" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1HDUz468xz/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://wa.me/8680857511" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+ 
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>
