@@ -20,7 +20,7 @@
       top: 0;
       z-index: 999;
     }
-  .nav-container {
+    .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -53,7 +53,7 @@
       color: #00ccff;
       transform: scale(1.1);
     }
-    .ABOUT, .SKILLS, .RESUME, .CONTACT {
+    .ABOUT, .SERVICES, .SKILLS, .RESUME, .CONTACT {
       padding: 40px 20px;
       text-align: center;
     }
@@ -66,34 +66,49 @@
       max-width: 700px;
       margin: auto;
     }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+    .ABOUT img{
+      border-radius: 50%;
     }
-
+    .SERVICES .service-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .service-box div {
+      flex: 1 1 250px;
+      max-width: 300px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+    }
+    .service-box i {
+      font-size: 40px;
+      color: #00ccff;
+      margin-bottom: 10px;
+    }
+    .service-box h3 {
+      margin: 10px 0;
+    }
     p {
       margin-bottom: 2rem;
       font-size: 1.1rem;
     }
-
     .skill {
       margin-bottom: 1.5rem;
     }
-
     .skill label {
       display: block;
       font-weight: bold;
       margin-bottom: 0.3rem;
     }
-
     .progress {
       background-color: #e0e0e0;
       border-radius: 8px;
       overflow: hidden;
       height: 20px;
     }
-
     .progress-bar {
       background-color: #0099dd;
       height: 100%;
@@ -103,23 +118,6 @@
       font-weight: bold;
       transition: width 1s ease-in-out;
     }
-
-    }
-
-    .SKILLS span:hover {
-      background-color: #00ccff;
-      color: white;
-      transform: scale(1.1);
-    }
-
-    .RESUME embed {
-      width: 90%;
-      height: 300px;
-      max-width: 700px;
-      margin: 20px auto;
-      display: block;
-    }
-
     .download-btn {
       display: inline-block;
       background-color: #00ccff;
@@ -130,12 +128,10 @@
       text-decoration: none;
       transition: all 0.3s ease;
     }
-
     .download-btn:hover {
       background-color: #0099cc;
       transform: scale(1.1);
     }
-
     .contact-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -143,7 +139,6 @@
       gap: 10px;
       margin-top: 20px;
     }
-
     .contact-buttons a {
       display: flex;
       align-items: center;
@@ -155,38 +150,31 @@
       text-decoration: none;
       transition: all 0.3s ease;
     }
-
     .contact-buttons a:hover {
       background-color: #0099cc;
       transform: scale(1.1);
     }
-
     .social-icons {
       margin-top: 20px;
     }
-
     .social-icons a {
       font-size: 30px;
       color: #333;
       margin: 10px;
       transition: transform 0.3s ease, color 0.3s ease;
     }
-
     .social-icons a:hover {
       transform: scale(1.2);
       color: #00ccff;
     }
-
     hr {
       margin: 20px auto;
       width: 80%;
     }
-
     @media screen and (max-width: 768px) {
       .hamburger {
         display: block;
       }
-
       .nav-links {
         display: none;
         flex-direction: column;
@@ -198,21 +186,8 @@
         border-radius: 8px;
         padding: 10px;
       }
-
       .nav-links.show {
         display: flex;
-      }
-
-      .banner-text h1, .banner-text2 h1 {
-        font-size: 1.2rem;
-      }
-
-      .SKILLS span {
-        font-size: 0.9rem;
-      }
-
-      .download-btn {
-        width: 80%;
       }
     }
   </style>
@@ -220,99 +195,99 @@
 <body>
   <nav>
     <div class="nav-container">
-      <div class="logo">RIYAZ SHARIEF S</div>
+      <div class="logo">RS</div>
       <div class="hamburger" id="hamburger">
         <i class="fa-solid fa-bars"></i>
       </div>
       <ul class="nav-links" id="nav-links">
         <li><a href="#ABOUT">ABOUT</a></li>
+        <li><a href="#SERVICES">SERVICES</a></li>
         <li><a href="#SKILLS">SKILLS</a></li>
         <li><a href="#RESUME">RESUME</a></li>
         <li><a href="#CONTACT">CONTACT</a></li>
       </ul>
     </div>
   </nav>
+
   <div class="ABOUT" id="ABOUT" data-aos="fade-up">
     <h1>ABOUT ME</h1>
-    <img src="WhatsApp Image 2025-03-09 at 12.30.47_e6c50b24.jpg" alt="" width="75%" height="65%">
-    <br> </br>
+    <img src="WhatsApp Image 2025-03-09 at 12.30.47_e6c50b24.jpg" alt="Riyaz Photo" width="75%" height="65%" >
     <p>Hi, I’m Riyaz Sharief S, a passionate web developer and entrepreneur currently pursuing BCA (2nd Year) at Islamiah College (Autonomous), Vaniyambadi. I'm focused on <b>creating modern, responsive websites</b> and <b>running my own brands—LookStylo Fashion</b></p>
     <hr>
   </div>
-
-    <section id="skills">
-    <h2>Skills</h2>
-    <p>Skills I'm focused on the following Technologies</p>
-
+  <div class="SKILLS" id="SKILLS" data-aos="fade-up">
+    <h1>SKILLS</h1>
+    <p>Technologies I work with</p>
     <div class="skill">
       <label>HTML</label>
-      <div class="progress"><div class="progress-bar" style="width: 80%;">80%</div></div>
+      <div class="progress"><div class="progress-bar" style="width: 45%;">55%</div></div>
     </div>
-
     <div class="skill">
       <label>CSS</label>
-      <div class="progress"><div class="progress-bar" style="width: 75%;">75%</div></div>
+      <div class="progress"><div class="progress-bar" style="width: 35%;">45%</div></div>
     </div>
-
     <div class="skill">
       <label>JavaScript</label>
-      <div class="progress"><div class="progress-bar" style="width: 75%;">75%</div></div>
+      <div class="progress"><div class="progress-bar" style="width: 20%;">35%</div></div>
     </div>
-
-    <div class="skill">
-      <label>PHP</label>
-      <div class="progress"><div class="progress-bar" style="width: 80%;">80%</div></div>
-    </div>
-
-    <div class="skill">
-      <label>Python</label>
-      <div class="progress"><div class="progress-bar" style="width: 90%;">90%</div></div>
-    </div>
-
     <div class="skill">
       <label>Canva</label>
-      <div class="progress"><div class="progress-bar" style="width: 90%;">90%</div></div>
-    </div>
-  </section>
+      <div class="progress"><div class="progress-bar" style="width: 60%;">60%</div></div>
 
-  <div class="RESUME" id="RESUME" data-aos="zoom-in">
-    <h1>RESUME</h1>
-    <embed src="RESUME 2025.pdf" type="application/pdf">
-    <a href="RESUME 2025.pdf" class="download-btn" download>Download Resume</a>
+    <hr>
+  </div>
+  <div class="SERVICES" id="SERVICES" data-aos="fade-up">
+    <h1>SERVICES</h1>
+    <p>Here's what I offer to help businesses grow online</p>
+    <div class="service-box">
+      <div>
+        <i class="fas fa-code"></i>
+        <h3>Web Developing</h3>
+        <p>Modern, responsive websites using HTML, CSS, JS, and frameworks.</p>
+      </div>
+      <div>
+        <i class="fas fa-pen-nib"></i>
+        <h3>Logo Design</h3>
+        <p>Unique logo designs to define your brand identity.</p>
+      </div>
+      <div>
+        <i class="fas fa-lightbulb"></i>
+        <h3>Business Setup Ideas</h3>
+        <p>Creative digital startup ideas and guidance to help you get started.</p>
+      </div>
+    </div>
     <hr>
   </div>
 
-  <div class="CONTACT" id="CONTACT" data-aos="flip-up">
+
+  <div class="RESUME" id="RESUME" data-aos="fade-up">
+    <h1>RESUME</h1>
+    <a href="your-resume.pdf" class="download-btn" download>Download Resume</a>
+    <hr>
+  </div>
+
+  <div class="CONTACT" id="CONTACT" data-aos="fade-up">
     <h1>CONTACT</h1>
-    <p>Feel free to reach out via any of the following channels:</p>
     <div class="contact-buttons">
-      <a href="tel:+91 86808 57511"><i class="fa-solid fa-phone"></i> Call Me</a>
-      <a href="mailto:riyazshariefsbca@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-      <a href="https://maps.app.goo.gl/QAa1wHhnsjoDG2em8" target="_blank"><i class="fa-solid fa-map-marker-alt"></i> My Location</a>
+      <a href="mailto:riyazshariefsbca@gmail.com"><i class="fas fa-envelope"></i>Email</a>
+      <a href="https://wa.me/918680857511" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+      <a href="tel:8680857511"><i class="fas fa-phone"></i>Call</a>
     </div>
     <div class="social-icons">
       <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/lookstlyo_fashion" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/1HDUz468xz/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://wa.me/+91 86808 57511" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://instagram.com/lookstylo" target="_blank"><i class="fab fa-instagram"></i></a>
+      
     </div>
   </div>
 
-  
+  <script>
+    document.getElementById("hamburger").addEventListener("click", function() {
+      document.getElementById("nav-links").classList.toggle("show");
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init();
   </script>
-
- 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  </script>
-
 </body>
 </html>
