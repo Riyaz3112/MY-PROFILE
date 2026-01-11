@@ -1,303 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Riyaz Sharief | Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #0d0d0d;
-      padding: 10px 20px;
-    }
-    .logo {
-      color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .hamburger {
-      display: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    .nav-links li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .nav-links li a:hover {
-      color: #00ccff;
-      transform: scale(1.1);
-    }
-    .ABOUT, .SERVICES, .SKILLS, .RESUME, .CONTACT {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2rem;
-      color: blue;
-    }
-    .ABOUT p {
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: auto;
-    }
-    .ABOUT img{
-      border-radius: 50%;
-    }
-    .SERVICES .service-box {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 30px;
-    }
-    .service-box div {
-      flex: 1 1 250px;
-      max-width: 300px;
-      padding: 20px;
-      background-color: #f0f0f0;
-      border-radius: 10px;
-    }
-    .service-box i {
-      font-size: 40px;
-      color: #00ccff;
-      margin-bottom: 10px;
-    }
-    .service-box h3 {
-      margin: 10px 0;
-    }
-    p {
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-    }
-    .skill {
-      margin-bottom: 1.5rem;
-    }
-    .skill label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.3rem;
-    }
-    .progress {
-      background-color: #e0e0e0;
-      border-radius: 8px;
-      overflow: hidden;
-      height: 20px;
-    }
-    .progress-bar {
-      background-color: #0099dd;
-      height: 100%;
-      text-align: right;
-      padding-right: 5px;
-      color: #fff;
-      font-weight: bold;
-      transition: width 1s ease-in-out;
-    }
-    .download-btn {
-      display: inline-block;
-      background-color: #00ccff;
-      color: white;
-      padding: 10px 20px;
-      margin: 10px auto;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .download-btn:hover {
-      background-color: #0099cc;
-      transform: scale(1.1);
-    }
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .contact-buttons a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #00ccff;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .contact-buttons a:hover {
-      background-color: #0099cc;
-      transform: scale(1.1);
-    }
-    .social-icons {
-      margin-top: 20px;
-    }
-    .social-icons a {
-      font-size: 30px;
-      color: #333;
-      margin: 10px;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-    .social-icons a:hover {
-      transform: scale(1.2);
-      color: #00ccff;
-    }
-    hr {
-      margin: 20px auto;
-      width: 80%;
-    }
-    footer{
-      text-align: center;
-      padding: 20px;
-      font-family: Arial,sans-serif;
-      font-size:14px;
-      color:#555;
-    }
-    @media screen and (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: #0d0d0d;
-        width: 200px;
-        border-radius: 8px;
-        padding: 10px;
-      }
-      .nav-links.show {
-        display: flex;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LookStylo Fashion | Shariff Enterprise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #e0f2fe; /* Light blue */
+            color: #0a2540; /* Deep blue */
+            scroll-behavior: smooth;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Hero Image Section (Upper Image) */
+        .hero-section {
+            background-image: linear-gradient(rgba(56, 189, 248, 0.7), rgba(59, 130, 246, 0.7)), url('1000521495.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #bae6fd; /* Light blue border */
+        }
+
+        .section-content {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card {
+            background: #f0f9ff; /* Very light blue */
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid #bae6fd; /* Light blue border */
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15); /* Blue shadow */
+        }
+
+        .whatsapp-btn {
+            background-color: #2563eb; /* Blue */
+            color: white;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .whatsapp-btn:hover {
+            background-color: #0ea5e9; /* Light blue */
+            transform: scale(1.02);
+        }
+        
+        .logo-nav {
+            background: #f0f9ff;
+            padding: 4px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(59,130,246,0.08);
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-container">
-      <div class="logo">RS</div>
-      <div class="hamburger" id="hamburger">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#ABOUT">ABOUT</a></li>
-        <li><a href="#SERVICES">SERVICES</a></li>
-        <li><a href="#SKILLS">SKILLS</a></li>
-        <li><a href="#RESUME">RESUME</a></li>
-        <li><a href="#CONTACT">CONTACT</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <div class="ABOUT" id="ABOUT" data-aos="fade-up">
-    <h1>ABOUT ME</h1>
-    <img src="DSC_8589.JPG" alt="Riyaz Photo" width="65%" height="55%" border-radius="40%">
-    <p>I'm Riyaz Sharief S, a <b>final-year BCA student</b>, Web Developer, and <b>Founder of LookStylo Fashion</b>. I specialize in creating clean, responsive websites and love blending design with functionality to build smart digital solutions and stylish brand experiences.</p>
-    <hr>
-  </div>
-  <div class="SKILLS" id="SKILLS" data-aos="fade-up">
-    <h1>SKILLS</h1>
-    <p>Technologies I work with</p>
-    <div class="skill">
-      <label>HTML</label>
-      <div class="progress"><div class="progress-bar" style="width: 45%;">55%</div></div>
-    </div>
-    <div class="skill">
-      <label>CSS</label>
-      <div class="progress"><div class="progress-bar" style="width: 35%;">45%</div></div>
-    </div>
-    <div class="skill">
-      <label>JavaScript</label>
-      <div class="progress"><div class="progress-bar" style="width: 20%;">35%</div></div>
-    </div>
-    <div class="skill">
-      <label>Canva</label>
-      <div class="progress"><div class="progress-bar" style="width: 60%;">60%</div></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
+                    <div class="logo-nav">
+                        <img src="1000378316.webp" alt="LookStylo Logo" class="h-10 w-auto" onerror="this.src='https://via.placeholder.com/100x40?text=Logo'">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="serif text-xl font-bold text-blue-900 leading-none">LookStylo</span>
+                        <span class="text-[9px] uppercase tracking-[0.2em] text-sky-500 font-bold">Fashion</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-blue-700">
+                    <a onclick="showSection('home')" class="hover:text-sky-600 cursor-pointer">Home</a>
+                    <a onclick="showSection('about')" class="hover:text-sky-600 cursor-pointer">About</a>
+                    <a onclick="showSection('order')" class="hover:text-sky-600 cursor-pointer">Shop</a>
+                    <a onclick="showSection('support')" class="hover:text-sky-600 cursor-pointer">Support</a>
+                </div>
 
-    <hr>
-  </div>
-  <div class="SERVICES" id="SERVICES" data-aos="fade-up">
-    <h1>SERVICES</h1>
-    <p>Here's what I offer to help businesses grow online</p>
-    <div class="service-box">
-      <div>
-        <i class="fas fa-code"></i>
-        <h3>Web Developing</h3>
-        <p>Modern, responsive websites using HTML, CSS, JS, and frameworks.</p>
-      </div>
-      <div>
-        <i class="fas fa-pen-nib"></i>
-        <h3>Logo Design</h3>
-        <p>Unique logo designs to define your brand identity.</p>
-      </div>
-      <div>
-        <i class="fas fa-lightbulb"></i>
-        <h3>Business Setup Ideas</h3>
-        <p>Creative digital startup ideas and guidance to help you get started.</p>
-      </div>
-    </div>
-    <hr>
-  </div>
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/918680857511" target="_blank" class="hidden sm:flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase shadow-sm">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-blue-900">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-blue-100 px-6 py-8 space-y-4 shadow-xl">
+            <a onclick="showSection('home')" class="block text-lg font-bold">Home</a>
+            <a onclick="showSection('about')" class="block text-lg font-bold">About Us</a>
+            <a onclick="showSection('order')" class="block text-lg font-bold">Shop Collection</a>
+            <a onclick="showSection('support')" class="block text-lg font-bold">Customer Care</a>
+        </div>
+    </nav>
 
+    <main class="pt-20">
+        
+        <!-- HOME SECTION -->
+        <section id="home-section" class="section-content">
+            <div class="hero-section">
+                <div class="max-w-3xl">
+                    <img src="1000378316.webp" alt="LookStylo" class="h-20 mx-auto mb-6 bg-white p-2 rounded-xl shadow-2xl" onerror="this.style.display='none'">
+                    <span class="uppercase tracking-[0.4em] text-xs font-bold text-blue-100 mb-4 block">Shariff Enterprise Presents</span>
+                    <h1 class="serif text-5xl md:text-7xl text-white mb-6">Exquisite Style</h1>
+                    <p class="text-white text-lg mb-10 opacity-90 font-light max-w-xl mx-auto">Discover a new standard of elegance in Jolarpattai. Quality fabrics meet modern design.</p>
+                    <button onclick="window.open('https://wa.me/c/918680857511','_blank')" class="bg-white text-blue-900 px-12 py-4 rounded-xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-blue-50 transition-all">
+                        View Shop Collection
+                    </button>
+                </div>
+            </div>
 
-  <div class="RESUME" id="RESUME" data-aos="fade-up">
-    <h1>RESUME</h1>
-    <a href="RIYAZ CV.pdf" class="download-btn" download>Download Resume</a>
-    <hr>
-  </div>
+            <div class="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-[2rem] text-center border border-blue-100">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin"></i></div>
+                    <h3 class="font-bold text-blue-950 mb-2">Our Store</h3>
+                    <p class="text-sm text-blue-500">Shop No 2, Opposite Post Office, Pakkirthaka, Jolarpattai.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2rem] text-center border border-blue-100">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="truck"></i></div>
+                    <h3 class="font-bold text-blue-950 mb-2">Home Delivery</h3>
+                    <p class="text-sm text-blue-500">We deliver across India.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2rem] text-center border border-blue-100">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="smartphone"></i></div>
+                    <h3 class="font-bold text-blue-950 mb-2">Direct Support</h3>
+                    <p class="text-sm text-blue-500">WhatsApp 8680857511 or 6380818578 for inquiries.</p>
+                </div>
+            </div>
+        </section>
 
-  <div class="CONTACT" id="CONTACT" data-aos="fade-up">
-    <h1>CONTACT</h1>
-    <div class="contact-buttons">
-      <a href="mailto:riyazshariefsbca@gmail.com"><i class="fas fa-envelope"></i>Email</a>
-      <a href="https://wa.me/918680857511" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-      <a href="tel:8680857511"><i class="fas fa-phone"></i>Call</a>
-    </div>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://instagram.com/lookstylo" target="_blank"><i class="fab fa-instagram"></i></a>
-      
-    </div>
-  </div>
-    <footer>
-      &copy; copyright Riyaz. All Rights Reserved.
+        <!-- ABOUT SECTION -->
+        <section id="about-section" class="section-content hidden py-20 px-6">
+            <div class="max-w-5xl mx-auto bg-white rounded-[2.5rem] p-10 md:p-16 border border-blue-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-sky-500 font-bold text-xs uppercase tracking-widest mb-4 block">Our Story</span>
+                        <h2 class="serif text-4xl text-blue-950 mb-6">Shariff Enterprise</h2>
+                        <p class="text-blue-600 leading-relaxed mb-6 font-light text-lg">
+                            <b>LookStylo Fashion</b>, managed by Shariff Enterprise, is Jolarpattai's dedicated hub for premium apparel. We focus on bringing high-quality fashion that resonates with comfort and confidence.
+                        </p>
+                        <p class="text-blue-500 text-sm mb-4">Visit us at Pakkirthaka to experience our collection in person.</p>
+                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                            <p class="text-xs font-bold text-blue-800 uppercase tracking-widest mb-1">Store Address:</p>
+                            <p class="text-blue-900 text-sm">Shop no 2 opposite post office pakkirthaka jolarpattai Tirupattur Dist</p>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                        <img src="1000521494.jpg" alt="Shariff Enterprise Story" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/600x800?text=About+Our+Story'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHOP SECTION -->
+        <section id="order-section" class="section-content hidden py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="serif text-4xl text-blue-950 mb-4">Shop Collection</h2>
+                    <p class="text-blue-500">Choose an item to order directly via WhatsApp.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product 1 -->
+                    <div class="product-card flex flex-col">
+                        <div class="h-80 bg-blue-50">
+                            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=600" id="img-1" class="w-full h-full object-cover" alt="Formal Shirt">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-bold text-lg mb-1">Premium Formal Shirt</h4>
+                            <p class="text-sky-600 font-bold text-xl mb-4">₹1,299</p>
+                            <button onclick="sendOrder('Premium Formal Shirt', '₹1,299', 'img-1')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card flex flex-col">
+                        <div class="h-80 bg-blue-50">
+                            <img src="https://images.unsplash.com/photo-1542272230-7f393625650d?auto=format&fit=crop&q=80&w=600" id="img-2" class="w-full h-full object-cover" alt="Denim Jeans">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-bold text-lg mb-1">LookStylo Signature Denim</h4>
+                            <p class="text-sky-600 font-bold text-xl mb-4">₹1,850</p>
+                            <button onclick="sendOrder('LookStylo Signature Denim', '₹1,850', 'img-2')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card flex flex-col">
+                        <div class="h-80 bg-blue-50">
+                            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=600" id="img-3" class="w-full h-full object-cover" alt="Polo Tee">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-bold text-lg mb-1">Classic Cotton Polo</h4>
+                            <p class="text-sky-600 font-bold text-xl mb-4">₹899</p>
+                            <button onclick="sendOrder('Classic Cotton Polo', '₹899', 'img-3')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card flex flex-col">
+                        <div class="h-80 bg-blue-50">
+                            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=600" id="img-4" class="w-full h-full object-cover" alt="Accessories">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-bold text-lg mb-1">Designer Accessories</h4>
+                            <p class="text-sky-600 font-bold text-xl mb-4">₹450</p>
+                            <button onclick="sendOrder('Designer Accessories', '₹450', 'img-4')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOMER SERVICE SECTION -->
+        <section id="support-section" class="section-content hidden py-20 px-6">
+            <div class="max-w-6xl mx-auto bg-blue-900 rounded-[3rem] p-10 md:p-20 text-white flex flex-col md:flex-row gap-16">
+                <div class="md:w-1/2">
+                    <h2 class="serif text-4xl mb-6">Customer Care</h2>
+                    <p class="text-blue-200 mb-10 text-lg">We're here to help you with your order or any questions about our Jolarpattai boutique.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-5">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-blue-400"><i data-lucide="phone"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-sky-400 uppercase tracking-widest">WhatsApp</p>
+                                <p class="text-lg font-bold">8680857511 / 6380818578</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-5">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-blue-400"><i data-lucide="mail"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-sky-400 uppercase tracking-widest">Email Address</p>
+                                <p class="text-lg break-all">shariffenterprise.0115@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-5">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-blue-400"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-sky-400 uppercase tracking-widest">Location</p>
+                                <p class="text-sm">Shop No 2, Opposite Post Office, Jolarpattai.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-white rounded-3xl p-8 text-blue-900">
+                    <h3 class="font-bold text-xl mb-6 text-blue-950">Direct Inquiry</h3>
+                    <form onsubmit="event.preventDefault(); window.location.href='https://wa.me/918680857511?text=Hello LookStylo, I have an inquiry!';" class="space-y-4">
+                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl bg-blue-50 border-none outline-none focus:ring-2 focus:ring-blue-500">
+                        <textarea placeholder="How can we help?" rows="3" required class="w-full px-4 py-3 rounded-xl bg-blue-50 border-none outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-blue-700 transition-all">Submit via WhatsApp</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-blue-100 py-20 mt-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-block bg-white p-2 rounded-lg border border-blue-100 mb-6 shadow-sm">
+                <img src="1000378316.webp" alt="LookStylo Footer" class="h-12 mx-auto" onerror="this.style.display='none'">
+            </div>
+            <h3 class="serif text-2xl text-blue-950 mb-2">LookStylo Fashion</h3>
+            <p class="text-blue-400 text-sm mb-12 max-w-sm mx-auto">Premium apparel by Shariff Enterprise. Serving Jolarpattai since 2024.</p>
+            
+            <div class="flex justify-center gap-8 mb-12 text-[10px] font-bold uppercase tracking-widest text-blue-500">
+                <a onclick="showSection('home')" class="hover:text-blue-600 cursor-pointer">Home</a>
+                <a onclick="showSection('about')" class="hover:text-blue-600 cursor-pointer">About</a>
+                <a onclick="showSection('order')" class="hover:text-blue-600 cursor-pointer">Shop</a>
+                <a onclick="showSection('support')" class="hover:text-blue-600 cursor-pointer">Help</a>
+            </div>
+
+            <p class="text-blue-300 text-[8px] uppercase tracking-[0.5em]">&copy; 2024 LookStylo. All Rights Reserved.</p>
+        </div>
     </footer>
 
-  <script>
-    document.getElementById("hamburger").addEventListener("click", function() {
-      document.getElementById("nav-links").classList.toggle("show");
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+    <script>
+        lucide.createIcons();
+
+        // Updated WhatsApp Ordering Logic
+        function sendOrder(name, price, imgId) {
+            const phone = "918680857511";
+            const imgElement = document.getElementById(imgId);
+            const imgUrl = imgElement ? imgElement.src : "Image link not found";
+            
+            const messageText = "*LookStylo Fashion Order Inquiry*\n\n" +
+                                "Hello Shariff Enterprise! I want to order this item:\n\n" +
+                                "*Product:* " + name + "\n" +
+                                "*Price:* " + price + "\n" +
+                                "*Image Reference:* " + imgUrl + "\n\n" +
+                                "Please confirm if available. Thank you!";
+            
+            const encodedMessage = encodeURIComponent(messageText);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Navigation
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id + '-section').classList.remove('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
