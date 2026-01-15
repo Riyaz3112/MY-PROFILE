@@ -86,6 +86,25 @@
         .flip-card-back { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 1rem; background: #ffffff; }
         .swatch { width: 40px; height: 40px; border-radius: 9999px; border: 2px solid rgba(0,0,0,0.06); box-shadow: 0 2px 6px rgba(2,6,23,0.08); cursor: pointer; }
         .swatch-label { font-size: 12px; color: #0f172a; margin-top: 6px; text-align: center; }
+        /* Color palette overrides: remap Tailwind 'sky' utilities to an emerald/green theme */
+        :root{
+            --primary-600: #059669; /* emerald-600 */
+            --primary-500: #10b981; /* emerald-500 */
+            --primary-900: #064e3b; /* emerald-900 */
+            --primary-50:  #ecfdf5; /* emerald-50 */
+            --primary-200: #bbf7d0; /* emerald-200 */
+            --primary-100: #d1fae5; /* emerald-100 */
+            --primary-950: #053d2f; /* deep emerald */
+        }
+
+        .bg-sky-600{ background-color: var(--primary-600) !important; }
+        .text-sky-900, .text-sky-950{ color: var(--primary-900) !important; }
+        .text-sky-200{ color: var(--primary-200) !important; }
+        .bg-sky-50{ background-color: var(--primary-50) !important; }
+        .text-sky-500{ color: var(--primary-500) !important; }
+        .border-sky-100{ border-color: var(--primary-100) !important; }
+        .bg-sky-950{ background-color: var(--primary-950) !important; color: #fff !important; }
+        .hover\:bg-sky-50:hover{ background-color: var(--primary-50) !important; }
     </style>
 </head>
 <body>
@@ -140,9 +159,9 @@
                     <span class="uppercase tracking-[0.4em] text-xs font-bold text-sky-200 mb-4 block">Shariff Enterprise</span>
                     <h1 class="serif text-5xl md:text-7xl text-white mb-6">Exquisite Style</h1>
                     <p class="text-white text-lg mb-10 opacity-90 font-light max-w-xl mx-auto">Discover a new standard of elegance in Jolarpattai. Quality fabrics meet modern design.</p>
-                    <button onclick="showSection('order')" class="bg-white text-sky-900 px-12 py-4 rounded-xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-sky-50 transition-all">
+                    <a href="https://wa.me/918680857511" target="_blank" rel="noopener" class="bg-white text-sky-900 px-12 py-4 rounded-xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-sky-50 transition-all inline-block">
                         View Shop Collection
-                    </button>
+                    </a>
                 </div>
             </div>
 
