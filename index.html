@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LookStylo Fashion | Shariff Enterprise</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -11,8 +11,8 @@
         
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #e0f2fe; /* Light blue */
-            color: #0a2540; /* Deep blue */
+            background-color: #f8fafc;
+            color: #1e293b;
             scroll-behavior: smooth;
         }
 
@@ -20,7 +20,7 @@
 
         /* Hero Image Section (Upper Image) */
         .hero-section {
-            background-image: linear-gradient(rgba(56, 189, 248, 0.7), rgba(59, 130, 246, 0.7)), url('1000521495.jpg');
+            background-image: linear-gradient(rgba(12, 74, 110, 0.5), rgba(12, 74, 110, 0.5)), url('1000521495.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -33,9 +33,9 @@
         }
 
         .nav-glass {
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid #bae6fd; /* Light blue border */
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .section-content {
@@ -48,35 +48,44 @@
         }
 
         .product-card {
-            background: #f0f9ff; /* Very light blue */
+            background: white;
             border-radius: 1.5rem;
             overflow: hidden;
-            border: 1px solid #bae6fd; /* Light blue border */
+            border: 1px solid #f1f5f9;
             transition: all 0.3s ease;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15); /* Blue shadow */
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.1);
         }
 
         .whatsapp-btn {
-            background-color: #2563eb; /* Blue */
+            background-color: #25D366;
             color: white;
             font-weight: 700;
             transition: all 0.2s;
         }
         .whatsapp-btn:hover {
-            background-color: #0ea5e9; /* Light blue */
+            background-color: #128C7E;
             transform: scale(1.02);
         }
         
         .logo-nav {
-            background: #f0f9ff;
+            background: white;
             padding: 4px;
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(59,130,246,0.08);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+        /* Flip card for product image with color swatches on back */
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; top: 0; left: 0; backface-visibility: hidden; }
+        .flip-card-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .flip-card-back { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 1rem; background: #ffffff; }
+        .swatch { width: 40px; height: 40px; border-radius: 9999px; border: 2px solid rgba(0,0,0,0.06); box-shadow: 0 2px 6px rgba(2,6,23,0.08); cursor: pointer; }
+        .swatch-label { font-size: 12px; color: #0f172a; margin-top: 6px; text-align: center; }
     </style>
 </head>
 <body>
@@ -87,33 +96,33 @@
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
                     <div class="logo-nav">
-                        <img src="1000378316.webp" alt="LookStylo Logo" class="h-10 w-auto" onerror="this.src='https://via.placeholder.com/100x40?text=Logo'">
+                        <img src="WhatsApp Image 2025-01-24 at 9.35.35 PM.jpeg" alt="LookStylo Logo" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e2e8f0%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
                     </div>
-                    <div class="flex flex-col">
-                        <span class="serif text-xl font-bold text-blue-900 leading-none">LookStylo</span>
-                        <span class="text-[9px] uppercase tracking-[0.2em] text-sky-500 font-bold">Fashion</span>
-                    </div>
+                        <div class="flex flex-col">
+                            <span class="serif text-xl font-bold text-sky-900 leading-none">LookStylo</span>
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-sky-500 font-bold">Fashion</span>
+                            <span class="text-[10px] text-slate-500 mt-1">GSTIN: <strong>33NEYPS4388G1ZC</strong></span>
+                        </div>
                 </div>
                 
-                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-blue-700">
+                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-500">
                     <a onclick="showSection('home')" class="hover:text-sky-600 cursor-pointer">Home</a>
                     <a onclick="showSection('about')" class="hover:text-sky-600 cursor-pointer">About</a>
-                    <a onclick="showSection('order')" class="hover:text-sky-600 cursor-pointer">Shop</a>
                     <a onclick="showSection('support')" class="hover:text-sky-600 cursor-pointer">Support</a>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <a href="https://wa.me/918680857511" target="_blank" class="hidden sm:flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase shadow-sm">
+                    <a href="https://wa.me/918680857511" target="_blank" class="hidden sm:flex items-center gap-2 bg-sky-600 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase shadow-sm">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
                     </a>
-                    <button onclick="toggleMobileMenu()" class="md:hidden text-blue-900">
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-sky-900">
                         <i data-lucide="menu"></i>
                     </button>
                 </div>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-blue-100 px-6 py-8 space-y-4 shadow-xl">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-8 space-y-4 shadow-xl">
             <a onclick="showSection('home')" class="block text-lg font-bold">Home</a>
             <a onclick="showSection('about')" class="block text-lg font-bold">About Us</a>
             <a onclick="showSection('order')" class="block text-lg font-bold">Shop Collection</a>
@@ -128,120 +137,53 @@
             <div class="hero-section">
                 <div class="max-w-3xl">
                     <img src="1000378316.webp" alt="LookStylo" class="h-20 mx-auto mb-6 bg-white p-2 rounded-xl shadow-2xl" onerror="this.style.display='none'">
-                    <span class="uppercase tracking-[0.4em] text-xs font-bold text-blue-100 mb-4 block">Shariff Enterprise Presents</span>
+                    <span class="uppercase tracking-[0.4em] text-xs font-bold text-sky-200 mb-4 block">Shariff Enterprise</span>
                     <h1 class="serif text-5xl md:text-7xl text-white mb-6">Exquisite Style</h1>
                     <p class="text-white text-lg mb-10 opacity-90 font-light max-w-xl mx-auto">Discover a new standard of elegance in Jolarpattai. Quality fabrics meet modern design.</p>
-                    <button onclick="window.open('https://wa.me/c/918680857511','_blank')" class="bg-white text-blue-900 px-12 py-4 rounded-xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-blue-50 transition-all">
+                    <button onclick="showSection('order')" class="bg-white text-sky-900 px-12 py-4 rounded-xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-sky-50 transition-all">
                         View Shop Collection
                     </button>
                 </div>
             </div>
 
             <div class="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-10 rounded-[2rem] text-center border border-blue-100">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin"></i></div>
-                    <h3 class="font-bold text-blue-950 mb-2">Our Store</h3>
-                    <p class="text-sm text-blue-500">Shop No 2, Opposite Post Office, Pakkirthaka, Jolarpattai.</p>
+                <div class="bg-white p-10 rounded-[2rem] text-center border border-slate-100">
+                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin"></i></div>
+                    <h3 class="font-bold text-sky-950 mb-2">Our Store</h3>
+                    <p class="text-sm text-slate-500">Shop No 2, Opposite Post Office, Pakkirthaka, Jolarpattai.</p>
                 </div>
-                <div class="bg-white p-10 rounded-[2rem] text-center border border-blue-100">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="truck"></i></div>
-                    <h3 class="font-bold text-blue-950 mb-2">Home Delivery</h3>
-                    <p class="text-sm text-blue-500">We deliver across India.</p>
+                <div class="bg-white p-10 rounded-[2rem] text-center border border-slate-100">
+                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="truck"></i></div>
+                    <h3 class="font-bold text-sky-950 mb-2">Home Delivery</h3>
+                    <p class="text-sm text-slate-500">We deliver across Tirupattur District And Allover Indian.</p>
                 </div>
-                <div class="bg-white p-10 rounded-[2rem] text-center border border-blue-100">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="smartphone"></i></div>
-                    <h3 class="font-bold text-blue-950 mb-2">Direct Support</h3>
-                    <p class="text-sm text-blue-500">WhatsApp 8680857511 or 6380818578 for inquiries.</p>
+                <div class="bg-white p-10 rounded-[2rem] text-center border border-slate-100">
+                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="smartphone"></i></div>
+                    <h3 class="font-bold text-sky-950 mb-2">Direct Support</h3>
+                    <p class="text-sm text-slate-500">WhatsApp 8680857511 or 6380818578 for inquiries.</p>
                 </div>
             </div>
         </section>
 
         <!-- ABOUT SECTION -->
         <section id="about-section" class="section-content hidden py-20 px-6">
-            <div class="max-w-5xl mx-auto bg-white rounded-[2.5rem] p-10 md:p-16 border border-blue-100">
+            <div class="max-w-5xl mx-auto bg-white rounded-[2.5rem] p-10 md:p-16 border border-slate-100">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
                         <span class="text-sky-500 font-bold text-xs uppercase tracking-widest mb-4 block">Our Story</span>
-                        <h2 class="serif text-4xl text-blue-950 mb-6">Shariff Enterprise</h2>
-                        <p class="text-blue-600 leading-relaxed mb-6 font-light text-lg">
-                            <b>LookStylo Fashion</b>, managed by Shariff Enterprise, is Jolarpattai's dedicated hub for premium apparel. We focus on bringing high-quality fashion that resonates with comfort and confidence.
+                        <h2 class="serif text-4xl text-sky-950 mb-6">Shariff Enterprise</h2>
+                        <p class="text-slate-600 leading-relaxed mb-6 font-light text-lg">
+                            *LookStylo Fashion*, managed by Shariff Enterprise, is Jolarpattai's dedicated hub for premium apparel. We focus on bringing high-quality fashion that resonates with comfort and confidence.
                         </p>
-                        <p class="text-blue-500 text-sm mb-4">Visit us at Pakkirthaka to experience our collection in person.</p>
-                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                            <p class="text-xs font-bold text-blue-800 uppercase tracking-widest mb-1">Store Address:</p>
-                            <p class="text-blue-900 text-sm">Shop no 2 opposite post office pakkirthaka jolarpattai Tirupattur Dist</p>
+                        <p class="text-slate-500 text-sm mb-4">Visit us at Pakkirthaka to experience our collection in person.</p>
+                        <div class="bg-sky-50 p-4 rounded-xl border border-sky-100">
+                            <p class="text-xs font-bold text-sky-800 uppercase tracking-widest mb-1">Store Address:</p>
+                            <p class="text-sky-900 text-sm">Shop no 2 opposite post office pakkirthaka jolarpattai Tirupattur Dist</p>
                         </div>
                     </div>
                     <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                        <!-- Updated About Image -->
                         <img src="1000521494.jpg" alt="Shariff Enterprise Story" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/600x800?text=About+Our+Story'">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SHOP SECTION -->
-        <section id="order-section" class="section-content hidden py-20 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="serif text-4xl text-blue-950 mb-4">Shop Collection</h2>
-                    <p class="text-blue-500">Choose an item to order directly via WhatsApp.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Product 1 -->
-                    <div class="product-card flex flex-col">
-                        <div class="h-80 bg-blue-50">
-                            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=600" id="img-1" class="w-full h-full object-cover" alt="Formal Shirt">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <h4 class="font-bold text-lg mb-1">Premium Formal Shirt</h4>
-                            <p class="text-sky-600 font-bold text-xl mb-4">₹1,299</p>
-                            <button onclick="sendOrder('Premium Formal Shirt', '₹1,299', 'img-1')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
-                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="product-card flex flex-col">
-                        <div class="h-80 bg-blue-50">
-                            <img src="https://images.unsplash.com/photo-1542272230-7f393625650d?auto=format&fit=crop&q=80&w=600" id="img-2" class="w-full h-full object-cover" alt="Denim Jeans">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <h4 class="font-bold text-lg mb-1">LookStylo Signature Denim</h4>
-                            <p class="text-sky-600 font-bold text-xl mb-4">₹1,850</p>
-                            <button onclick="sendOrder('LookStylo Signature Denim', '₹1,850', 'img-2')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
-                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 3 -->
-                    <div class="product-card flex flex-col">
-                        <div class="h-80 bg-blue-50">
-                            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=600" id="img-3" class="w-full h-full object-cover" alt="Polo Tee">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <h4 class="font-bold text-lg mb-1">Classic Cotton Polo</h4>
-                            <p class="text-sky-600 font-bold text-xl mb-4">₹899</p>
-                            <button onclick="sendOrder('Classic Cotton Polo', '₹899', 'img-3')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
-                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 4 -->
-                    <div class="product-card flex flex-col">
-                        <div class="h-80 bg-blue-50">
-                            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=600" id="img-4" class="w-full h-full object-cover" alt="Accessories">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <h4 class="font-bold text-lg mb-1">Designer Accessories</h4>
-                            <p class="text-sky-600 font-bold text-xl mb-4">₹450</p>
-                            <button onclick="sendOrder('Designer Accessories', '₹450', 'img-4')" class="whatsapp-btn mt-auto w-full py-3 rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
-                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Order Now
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -249,41 +191,41 @@
 
         <!-- CUSTOMER SERVICE SECTION -->
         <section id="support-section" class="section-content hidden py-20 px-6">
-            <div class="max-w-6xl mx-auto bg-blue-900 rounded-[3rem] p-10 md:p-20 text-white flex flex-col md:flex-row gap-16">
+            <div class="max-w-6xl mx-auto bg-sky-950 rounded-[3rem] p-10 md:p-20 text-white flex flex-col md:flex-row gap-16">
                 <div class="md:w-1/2">
                     <h2 class="serif text-4xl mb-6">Customer Care</h2>
-                    <p class="text-blue-200 mb-10 text-lg">We're here to help you with your order or any questions about our Jolarpattai boutique.</p>
+                    <p class="text-sky-200 mb-10 text-lg">We're here to help you with your order or any questions about our Jolarpattai boutique.</p>
                     
                     <div class="space-y-8">
                         <div class="flex items-center gap-5">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-blue-400"><i data-lucide="phone"></i></div>
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400"><i data-lucide="phone"></i></div>
                             <div>
-                                <p class="text-[10px] font-bold text-sky-400 uppercase tracking-widest">WhatsApp</p>
+                                <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest">WhatsApp</p>
                                 <p class="text-lg font-bold">8680857511 / 6380818578</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-5">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-blue-400"><i data-lucide="mail"></i></div>
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400"><i data-lucide="mail"></i></div>
                             <div>
-                                <p class="text-[10px] font-bold text-sky-400 uppercase tracking-widest">Email Address</p>
+                                <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest">Email Address</p>
                                 <p class="text-lg break-all">shariffenterprise.0115@gmail.com</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-5">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-blue-400"><i data-lucide="map-pin"></i></div>
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400"><i data-lucide="map-pin"></i></div>
                             <div>
-                                <p class="text-[10px] font-bold text-sky-400 uppercase tracking-widest">Location</p>
+                                <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest">Location</p>
                                 <p class="text-sm">Shop No 2, Opposite Post Office, Jolarpattai.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 bg-white rounded-3xl p-8 text-blue-900">
-                    <h3 class="font-bold text-xl mb-6 text-blue-950">Direct Inquiry</h3>
+                <div class="md:w-1/2 bg-white rounded-3xl p-8 text-slate-900">
+                    <h3 class="font-bold text-xl mb-6 text-sky-950">Direct Inquiry</h3>
                     <form onsubmit="event.preventDefault(); window.location.href='https://wa.me/918680857511?text=Hello LookStylo, I have an inquiry!';" class="space-y-4">
-                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl bg-blue-50 border-none outline-none focus:ring-2 focus:ring-blue-500">
-                        <textarea placeholder="How can we help?" rows="3" required class="w-full px-4 py-3 rounded-xl bg-blue-50 border-none outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-blue-700 transition-all">Submit via WhatsApp</button>
+                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border-none outline-none focus:ring-2 focus:ring-sky-500">
+                        <textarea placeholder="How can we help?" rows="3" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border-none outline-none focus:ring-2 focus:ring-sky-500"></textarea>
+                        <button class="w-full bg-sky-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-sky-700 transition-all">Submit via WhatsApp</button>
                     </form>
                 </div>
             </div>
@@ -292,57 +234,74 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-blue-100 py-20 mt-20">
+    <footer class="bg-white border-t border-slate-100 py-20 mt-20">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="inline-block bg-white p-2 rounded-lg border border-blue-100 mb-6 shadow-sm">
+            <div class="inline-block bg-white p-2 rounded-lg border border-slate-100 mb-6 shadow-sm">
                 <img src="1000378316.webp" alt="LookStylo Footer" class="h-12 mx-auto" onerror="this.style.display='none'">
             </div>
-            <h3 class="serif text-2xl text-blue-950 mb-2">LookStylo Fashion</h3>
-            <p class="text-blue-400 text-sm mb-12 max-w-sm mx-auto">Premium apparel by Shariff Enterprise. Serving Jolarpattai since 2024.</p>
+            <h3 class="serif text-2xl text-sky-950 mb-2">LookStylo Fashion</h3>
+            <p class="text-slate-400 text-sm mb-12 max-w-sm mx-auto">Premium apparel by Shariff Enterprise. Serving Jolarpattai since 2024.</p>
             
-            <div class="flex justify-center gap-8 mb-12 text-[10px] font-bold uppercase tracking-widest text-blue-500">
-                <a onclick="showSection('home')" class="hover:text-blue-600 cursor-pointer">Home</a>
-                <a onclick="showSection('about')" class="hover:text-blue-600 cursor-pointer">About</a>
-                <a onclick="showSection('order')" class="hover:text-blue-600 cursor-pointer">Shop</a>
-                <a onclick="showSection('support')" class="hover:text-blue-600 cursor-pointer">Help</a>
+            <div class="flex justify-center gap-8 mb-12 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                <a onclick="showSection('home')" class="hover:text-sky-600 cursor-pointer">Home</a>
+                <a onclick="showSection('about')" class="hover:text-sky-600 cursor-pointer">About</a>
+                <a onclick="showSection('order')" class="hover:text-sky-600 cursor-pointer">Shop</a>
+                <a onclick="showSection('support')" class="hover:text-sky-600 cursor-pointer">Help</a>
             </div>
 
-            <p class="text-blue-300 text-[8px] uppercase tracking-[0.5em]">&copy; 2024 LookStylo. All Rights Reserved.</p>
+            <p class="text-slate-300 text-[8px] uppercase tracking-[0.5em]">&copy; 2024 LookStylo. All Rights Reserved.</p>
+            <p class="text-slate-400 text-[10px] mt-4">Udyam Registration: <strong>UDYAM-TN-36-0045645</strong></p>
+            <p class="text-slate-400 text-[10px] mt-1">GST Number: <strong>33NEYPS4388G1ZC</strong></p>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // Updated WhatsApp Ordering Logic
+        // WhatsApp Ordering Logic
         function sendOrder(name, price, imgId) {
-            const phone = "918680857511";
+            const phone = '918680857511';
             const imgElement = document.getElementById(imgId);
-            const imgUrl = imgElement ? imgElement.src : "Image link not found";
-            
-            const messageText = "*LookStylo Fashion Order Inquiry*\n\n" +
-                                "Hello Shariff Enterprise! I want to order this item:\n\n" +
-                                "*Product:* " + name + "\n" +
-                                "*Price:* " + price + "\n" +
-                                "*Image Reference:* " + imgUrl + "\n\n" +
-                                "Please confirm if available. Thank you!";
-            
+            const imgUrl = imgElement ? imgElement.src : 'Image link not found';
+
+            const messageText = `*LookStylo Fashion Order Inquiry*\n\nHello Shariff Enterprise! I want to order this item:\n\n*Product:* ${name}\n*Price:* ${price}\n*Image Reference:* ${imgUrl}\n\nPlease confirm if available. Thank you!`;
+
             const encodedMessage = encodeURIComponent(messageText);
             const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
-            
+
             window.open(whatsappUrl, '_blank');
         }
 
-        // Navigation
+        // Navigation and mobile menu controls
         function showSection(id) {
             document.querySelectorAll('.section-content').forEach(s => s.classList.add('hidden'));
-            document.getElementById(id + '-section').classList.remove('hidden');
+            const section = document.getElementById(id + '-section');
+            if (section) section.classList.remove('hidden');
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
+            if (!menu) return;
             menu.classList.toggle('hidden');
         }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.querySelector('button[onclick="toggleMobileMenu()"]');
+            if (!menu || !btn) return;
+            if (!menu.classList.contains('hidden')) {
+                if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                    menu.classList.add('hidden');
+                }
+            }
+        });
     </script>
 </body>
 </html>
