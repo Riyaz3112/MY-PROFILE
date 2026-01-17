@@ -1,3 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Home</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;padding:0;color:#222}
+    header{padding:20px;background:#0d6efd;color:#fff}
+    .container{max-width:1100px;margin:24px auto;padding:0 16px}
+    /* Product section */
+    #products{padding:32px 0}
+    #products h2{margin:0 0 16px;font-size:1.6rem}
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{border:1px solid #e6e6e6;border-radius:8px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:12px;flex:1;display:flex;flex-direction:column}
+    .card .title{font-weight:600;margin-bottom:6px}
+    .card .price{color:#0d6efd;font-weight:700;margin-bottom:10px}
+    .card .actions{margin-top:auto;display:flex;gap:8px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:6px;text-decoration:none;text-align:center}
+    .btn-primary{background:#0d6efd;color:#fff}
+    .btn-outline{border:1px solid #0d6efd;color:#0d6efd;background:transparent}
+    @media (max-width:420px){.card img{height:130px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <h1>My Shop</h1>
+      <div>
+        <button id="viewCartBtn" class="btn btn-outline">Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Product Section -->
+    <section id="products">
+      <h2>Products</h2>
+      <p>Explore our featured products below.</p>
+
+      <div class="product-grid">
+        <article class="card">
+          <img src="https://via.placeholder.com/600x400?text=Product+1" alt="Product 1">
+          <div class="body">
+            <div class="title">Product One</div>
+            <div class="price">$29.99</div>
+            <div class="desc">A short description of product one. Great value and quality.</div>
+            <div class="actions">
+              <button class="btn btn-primary add-to-cart" data-id="1" data-name="Product One" data-price="29.99">Add to cart</button>
+              <button class="btn btn-outline view-product" data-name="Product One">View</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://via.placeholder.com/600x400?text=Product+2" alt="Product 2">
+          <div class="body">
+            <div class="title">Product Two</div>
+            <div class="price">$49.00</div>
+            <div class="desc">Comfortable, stylish, and built to last.</div>
+            <div class="actions">
+              <button class="btn btn-primary add-to-cart" data-id="2" data-name="Product Two" data-price="49.00">Add to cart</button>
+              <button class="btn btn-outline view-product" data-name="Product Two">View</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://via.placeholder.com/600x400?text=Product+3" alt="Product 3">
+          <div class="body">
+            <div class="title">Product Three</div>
+            <div class="price">$15.50</div>
+            <div class="desc">Affordable choice with great features.</div>
+            <div class="actions">
+              <button class="btn btn-primary add-to-cart" data-id="3" data-name="Product Three" data-price="15.50">Add to cart</button>
+              <button class="btn btn-outline view-product" data-name="Product Three">View</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="padding:20px;text-align:center;color:#666">
+    © My Shop
+  </footer>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -307,6 +399,157 @@
         </div>
     </footer>
 
+    <!-- Cart / Checkout Modal -->
+    <div id="cartModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:20px">
+      <div style="background:#fff;max-width:720px;width:100%;border-radius:8px;overflow:auto;max-height:90vh;padding:18px;position:relative">
+        <button id="closeCart" style="position:absolute;right:12px;top:12px;border:none;background:transparent;font-size:18px;cursor:pointer">✕</button>
+        <h3>Your Cart</h3>
+        <div id="cartItems"></div>
+        <div style="margin-top:12px;font-weight:700">Subtotal: $<span id="cartSubtotal">0.00</span></div>
+
+        <hr style="margin:16px 0">
+
+        <h4>Checkout</h4>
+        <form id="checkoutForm">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <input id="custName" placeholder="Full name" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
+            <input id="custPhone" placeholder="Phone number" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
+          </div>
+          <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <input id="custEmail" placeholder="Email (for receipt)" type="email" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
+            <input id="custAddress" placeholder="Address" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
+          </div>
+          <div style="margin-top:8px">
+            <input id="custAddress" placeholder="Address" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px">
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button id="gpayBtn" type="button" class="btn btn-primary">Pay with UPI (GPay)</button>
+            <button id="payCancel" type="button" class="btn btn-outline">Cancel</button>
+          </div>
+          <div id="upiInstructions" style="display:none;margin-top:12px;border:1px dashed #ddd;padding:12px;border-radius:6px">
+            <div style="font-weight:700;margin-bottom:6px">Pay using UPI</div>
+            <div>Send the exact subtotal to: <span id="upiId" style="font-family:monospace">9360232991@okbizaxis</span></div>
+            <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+              <a id="upiLink" href="#" target="_blank" class="btn btn-outline">Open UPI App</a>
+              <button id="copyUpi" type="button" class="btn btn-outline">Copy UPI ID</button>
+            </div>
+            <div style="margin-top:8px">
+              <img id="upiQR" alt="UPI QR" src="" style="width:140px;height:140px;border:1px solid #eee;padding:6px;background:#fff">
+            </div>
+            <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center">
+              <input id="txnIdInput" placeholder="Enter UPI transaction ID / Ref" style="padding:8px;border:1px solid #ddd;border-radius:4px">
+              <button id="confirmPaidBtn" type="button" class="btn btn-primary">Submit transaction & place order</button>
+            </div>
+          </div>
+        </form>
+        <div id="checkoutMsg" style="margin-top:12px;color:green;display:none"></div>
+      </div>
+    </div>
+
+    <script>
+      // Simple client-side cart using localStorage
+      function getCart(){try{return JSON.parse(localStorage.getItem('cart')||'[]')}catch(e){return []}}
+      function saveCart(c){localStorage.setItem('cart',JSON.stringify(c));updateCartCount()}
+      function updateCartCount(){const c=getCart();document.getElementById('cartCount').textContent=c.reduce((s,i)=>s+i.qty,0)}
+
+      function renderCart(){const items=document.getElementById('cartItems');const cart=getCart();if(!items) return;items.innerHTML='';
+        if(cart.length===0){items.innerHTML='<div style="padding:12px;color:#666">Cart is empty.</div>';document.getElementById('cartSubtotal').textContent='0.00';return}
+        cart.forEach(it=>{const el=document.createElement('div');el.style.display='flex';el.style.justifyContent='space-between';el.style.padding='8px 0';el.innerHTML=`<div>${it.name} x ${it.qty}</div><div>$${(it.price*it.qty).toFixed(2)}</div>`;items.appendChild(el)});
+        const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById('cartSubtotal').textContent=subtotal.toFixed(2)}
+
+      function addToCart(id,name,price){const cart=getCart();const existing=cart.find(i=>i.id==id);if(existing){existing.qty+=1}else{cart.push({id,name,price:parseFloat(price),qty:1})}saveCart(cart)}
+
+      // Handlers
+      document.addEventListener('click',function(e){
+        if(e.target.matches('.add-to-cart')){
+          const btn=e.target;addToCart(btn.dataset.id,btn.dataset.name,btn.dataset.price);renderCart();
+          alert(btn.dataset.name + ' added to cart');
+        }
+        if(e.target.id==='viewCartBtn' || e.target.matches('.view-product')){
+          renderCart();document.getElementById('cartModal').style.display='flex';
+        }
+        if(e.target.id==='closeCart' || e.target.id==='payCancel'){
+          document.getElementById('cartModal').style.display='none';document.getElementById('checkoutMsg').style.display='none';
+        }
+      });
+
+      // UPI payment instructions flow (uses your UPI ID)
+      const UPI_ID = '9360232991@okbizaxis';
+      function buildUpiLink(amount){
+        const pa = encodeURIComponent(UPI_ID);
+        const pn = encodeURIComponent('My Shop');
+        const am = encodeURIComponent(amount);
+        return `upi://pay?pa=${pa}&pn=${pn}&am=${am}`;
+      }
+
+      document.getElementById('gpayBtn').addEventListener('click',function(){
+        const name=document.getElementById('custName').value.trim();
+        const phone=document.getElementById('custPhone').value.trim();
+        const address=document.getElementById('custAddress').value.trim();
+        if(!name||!phone||!address){alert('Please fill name, phone and address');return}
+        const subtotal=document.getElementById('cartSubtotal').textContent;
+        const upiLink = buildUpiLink(subtotal);
+
+        // Try to open Google Pay directly using Android intent URI (works on Android Chrome when GPay is installed)
+        const intentURI = `intent://upi/pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('My Shop')}&am=${encodeURIComponent(subtotal)}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+
+        // First try intent open. If app not installed, fallback to showing UPI instructions after timeout.
+        let fallbackShown = false;
+        const showFallback = () => {
+          if (fallbackShown) return;
+          fallbackShown = true;
+          const upiAnchor = document.getElementById('upiLink');
+          upiAnchor.href = upiLink;
+          upiAnchor.textContent = 'Open UPI App or copy UPI ID';
+          document.getElementById('upiId').textContent = UPI_ID;
+          const qrData = encodeURIComponent(upiLink);
+          document.getElementById('upiQR').src = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${qrData}`;
+          document.getElementById('upiInstructions').style.display = 'block';
+          document.getElementById('checkoutMsg').style.display='none';
+        };
+
+        // Navigate to intent URI — on Android this should prompt/open Google Pay.
+        window.location = intentURI;
+
+        // Fallback: after short delay, show instructions so user can manually pay.
+        setTimeout(showFallback, 900);
+      });
+
+      // Copy UPI ID
+      document.getElementById('copyUpi').addEventListener('click',function(){
+        navigator.clipboard.writeText(UPI_ID).then(()=>{alert('UPI ID copied to clipboard')}).catch(()=>{alert('Copy failed; please copy manually')});
+      });
+
+      // Confirm paid button: submit transaction id and order to server
+      document.getElementById('confirmPaidBtn').addEventListener('click',async function(){
+        const txn = document.getElementById('txnIdInput').value.trim();
+        const name = document.getElementById('custName').value.trim();
+        const phone = document.getElementById('custPhone').value.trim();
+        const email = document.getElementById('custEmail').value.trim();
+        const address = document.getElementById('custAddress').value.trim();
+        if(!txn){alert('Please enter the transaction id from your payment.');return}
+        if(!name||!phone||!email||!address){alert('Please complete your details before submitting order.');return}
+        const cart = getCart();
+        if(!cart || cart.length===0){alert('Cart empty');return}
+
+        const payload = {merchantUpi: UPI_ID, txnId: txn, customer:{name,phone,email,address}, items:cart, subtotal:document.getElementById('cartSubtotal').textContent, ts: new Date().toISOString()};
+
+        try{
+          const res = await fetch('http://localhost:3000/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+          if(!res.ok) throw new Error('Server error');
+          const data = await res.json();
+          document.getElementById('checkoutMsg').textContent='Order placed. Confirmation sent via email.';
+          document.getElementById('checkoutMsg').style.display='block';
+          localStorage.removeItem('cart');updateCartCount();renderCart();
+          setTimeout(()=>{document.getElementById('cartModal').style.display='none';document.getElementById('upiInstructions').style.display='none';},1200);
+        }catch(err){
+          alert('Could not submit order to server. Make sure the order webhook is running on http://localhost:3000');
+        }
+      });
+
+      // Init
+      updateCartCount();
+    </script>
     <script>
         lucide.createIcons();
 
@@ -357,5 +600,3 @@
     </script>
 </body>
 </html>
-
-
