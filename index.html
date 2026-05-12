@@ -1,602 +1,597 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shop — Home</title>
-  <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;padding:0;color:#222}
-    header{padding:20px;background:#0d6efd;color:#fff}
-    .container{max-width:1100px;margin:24px auto;padding:0 16px}
-    /* Product section */
-    #products{padding:32px 0}
-    #products h2{margin:0 0 16px;font-size:1.6rem}
-    .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-    .card{border:1px solid #e6e6e6;border-radius:8px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-    .card img{width:100%;height:160px;object-fit:cover}
-    .card .body{padding:12px;flex:1;display:flex;flex-direction:column}
-    .card .title{font-weight:600;margin-bottom:6px}
-    .card .price{color:#0d6efd;font-weight:700;margin-bottom:10px}
-    .card .actions{margin-top:auto;display:flex;gap:8px}
-    .btn{display:inline-block;padding:8px 12px;border-radius:6px;text-decoration:none;text-align:center}
-    .btn-primary{background:#0d6efd;color:#fff}
-    .btn-outline{border:1px solid #0d6efd;color:#0d6efd;background:transparent}
-    @media (max-width:420px){.card img{height:130px}}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
-      <h1>My Shop</h1>
-      <div>
-        <button id="viewCartBtn" class="btn btn-outline">Cart (<span id="cartCount">0</span>)</button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- Product Section -->
-    <section id="products">
-      <h2>Products</h2>
-      <p>Explore our featured products below.</p>
-
-      <div class="product-grid">
-        <article class="card">
-          <img src="https://via.placeholder.com/600x400?text=Product+1" alt="Product 1">
-          <div class="body">
-            <div class="title">Product One</div>
-            <div class="price">$29.99</div>
-            <div class="desc">A short description of product one. Great value and quality.</div>
-            <div class="actions">
-              <button class="btn btn-primary add-to-cart" data-id="1" data-name="Product One" data-price="29.99">Add to cart</button>
-              <button class="btn btn-outline view-product" data-name="Product One">View</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://via.placeholder.com/600x400?text=Product+2" alt="Product 2">
-          <div class="body">
-            <div class="title">Product Two</div>
-            <div class="price">$49.00</div>
-            <div class="desc">Comfortable, stylish, and built to last.</div>
-            <div class="actions">
-              <button class="btn btn-primary add-to-cart" data-id="2" data-name="Product Two" data-price="49.00">Add to cart</button>
-              <button class="btn btn-outline view-product" data-name="Product Two">View</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="https://via.placeholder.com/600x400?text=Product+3" alt="Product 3">
-          <div class="body">
-            <div class="title">Product Three</div>
-            <div class="price">$15.50</div>
-            <div class="desc">Affordable choice with great features.</div>
-            <div class="actions">
-              <button class="btn btn-primary add-to-cart" data-id="3" data-name="Product Three" data-price="15.50">Add to cart</button>
-              <button class="btn btn-outline view-product" data-name="Product Three">View</button>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer style="padding:20px;text-align:center;color:#666">
-    © My Shop
-  </footer>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LookStylo Fashion | Shariff Enterprise</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookstylo Fashion | You Design It, We Print It</title>
+    
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons via CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-            scroll-behavior: smooth;
-        }
-
-        .serif { font-family: 'Playfair Display', serif; }
-
-        /* Hero Image Section (Upper Image) */
-        .hero-section {
-            background-image: linear-gradient(rgba(12, 74, 110, 0.5), rgba(12, 74, 110, 0.5)), url('1000521495.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .nav-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .section-content {
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.1);
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            font-weight: 700;
-            transition: all 0.2s;
-        }
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-            transform: scale(1.02);
-        }
-        
-        .logo-nav {
-            background: white;
-            padding: 4px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        /* Flip card for product image with color swatches on back */
-        .flip-card { perspective: 1000px; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
-        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; top: 0; left: 0; backface-visibility: hidden; }
-        .flip-card-front img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .flip-card-back { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 1rem; background: #ffffff; }
-        .swatch { width: 40px; height: 40px; border-radius: 9999px; border: 2px solid rgba(0,0,0,0.06); box-shadow: 0 2px 6px rgba(2,6,23,0.08); cursor: pointer; }
-        .swatch-label { font-size: 12px; color: #0f172a; margin-top: 6px; text-align: center; }
-        /* Color palette overrides: remap Tailwind 'sky' utilities to an emerald/green theme */
-        :root{
-            --primary-600: #059669; /* emerald-600 */
-            --primary-500: #10b981; /* emerald-500 */
-            --primary-900: #064e3b; /* emerald-900 */
-            --primary-50:  #ecfdf5; /* emerald-50 */
-            --primary-200: #bbf7d0; /* emerald-200 */
-            --primary-100: #d1fae5; /* emerald-100 */
-            --primary-950: #053d2f; /* deep emerald */
-        }
-
-        .bg-sky-600{ background-color: var(--primary-600) !important; }
-        .text-sky-900, .text-sky-950{ color: var(--primary-900) !important; }
-        .text-sky-200{ color: var(--primary-200) !important; }
-        .bg-sky-50{ background-color: var(--primary-50) !important; }
-        .text-sky-500{ color: var(--primary-500) !important; }
-        .border-sky-100{ border-color: var(--primary-100) !important; }
-        .bg-sky-950{ background-color: var(--primary-950) !important; color: #fff !important; }
-        .hover\:bg-sky-50:hover{ background-color: var(--primary-50) !important; }
-    </style>
 </head>
-<body>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 nav-glass">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
-                    <div class="logo-nav">
-                        <img src="WhatsApp Image 2025-01-24 at 9.35.35 PM.jpeg" alt="LookStylo Logo" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e2e8f0%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Fashion Logo" class="h-16 w-auto object-contain">
                     </div>
-                        <div class="flex flex-col">
-                            <span class="serif text-xl font-bold text-sky-900 leading-none">LookStylo</span>
-                            <span class="text-[9px] uppercase tracking-[0.2em] text-sky-500 font-bold">Fashion</span>
-                            <span class="text-[10px] text-slate-500 mt-1">GSTIN: <strong>33NEYPS4388G1ZC</strong></span>
-                        </div>
                 </div>
                 
-                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-500">
-                    <a onclick="showSection('home')" class="hover:text-sky-600 cursor-pointer">Home</a>
-                    <a onclick="showSection('about')" class="hover:text-sky-600 cursor-pointer">About</a>
-                    <a onclick="showSection('support')" class="hover:text-sky-600 cursor-pointer">Support</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-purple-700 font-medium transition">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-purple-700 font-medium transition">Services</a>
+                    <a href="#custom-print" class="text-gray-700 hover:text-purple-700 font-medium transition">Custom Print</a>
+                    <a href="#locations" class="text-gray-700 hover:text-purple-700 font-medium transition">Stores</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-purple-700 font-medium transition">Reviews</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-700 font-medium transition">Contact</a>
+                    <a 
+                        href="https://wa.me/918680857511" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="bg-purple-900 hover:bg-purple-800 text-white px-5 py-2 rounded-full font-medium transition flex items-center gap-2 shadow-lg"
+                    >
+                        <i data-lucide="message-circle" width="18" height="18"></i>
+                        WhatsApp Us
+                    </a>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <a href="https://wa.me/918680857511" target="_blank" class="hidden sm:flex items-center gap-2 bg-sky-600 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase shadow-sm">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
-                    </a>
-                    <button onclick="toggleMobileMenu()" class="md:hidden text-sky-900">
-                        <i data-lucide="menu"></i>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button 
+                        onclick="toggleMenu()"
+                        class="text-gray-700 hover:text-purple-900 focus:outline-none"
+                    >
+                        <i data-lucide="menu" width="28" height="28"></i>
                     </button>
                 </div>
             </div>
         </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-8 space-y-4 shadow-xl">
-            <a onclick="showSection('home')" class="block text-lg font-bold">Home</a>
-            <a onclick="showSection('about')" class="block text-lg font-bold">About Us</a>
-            <a onclick="showSection('order')" class="block text-lg font-bold">Shop Collection</a>
-            <a onclick="showSection('support')" class="block text-lg font-bold">Customer Care</a>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+            <a href="#home" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Home</a>
+            <a href="#services" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Services</a>
+            <a href="#custom-print" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Custom Print</a>
+            <a href="#locations" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Stores</a>
+            <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Reviews</a>
+            <a href="#contact" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Contact</a>
         </div>
     </nav>
 
-    <main class="pt-20">
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-[#301040] text-white py-20 lg:py-32 overflow-hidden">
+        <!-- Abstract Background Design -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute transform -rotate-45 -right-1/4 -top-1/4 w-full h-full bg-white blur-3xl rounded-full"></div>
+        </div>
         
-        <!-- HOME SECTION -->
-        <section id="home-section" class="section-content">
-            <div class="hero-section">
-                <div class="max-w-3xl">
-                    <img src="1000378316.webp" alt="LookStylo" class="h-20 mx-auto mb-6 bg-white p-2 rounded-xl shadow-2xl" onerror="this.style.display='none'">
-                    <span class="uppercase tracking-[0.4em] text-xs font-bold text-sky-200 mb-4 block">Shariff Enterprise</span>
-                    <h1 class="serif text-5xl md:text-7xl text-white mb-6">Exquisite Style</h1>
-                    <p class="text-white text-lg mb-10 opacity-90 font-light max-w-xl mx-auto">Discover a new standard of elegance in Jolarpattai. Quality fabrics meet modern design.</p>
-                    <a href="https://wa.me/c/918680857511" target="_blank" rel="noopener" class="bg-white text-sky-900 px-12 py-4 rounded-xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-sky-50 transition-all inline-block">
-                        View Shop Collection
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-6 animate-pulse">
+                    LOOKSTYLO FASHION
+                </div>
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+                    YOU DESIGN IT,<br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-yellow-400">
+                        WE PRINT.
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-10 font-light">
+                    Premium Ready-Made Apparel, Custom T-Shirts, Group Shirts, and Uniforms.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a 
+                        href="https://wa.me/918680857511" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="bg-white text-[#301040] hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition shadow-xl flex items-center justify-center gap-2"
+                    >
+                        <i data-lucide="palette" width="20" height="20"></i>
+                        Start Your Design
+                    </a>
+                    <a 
+                        href="#services" 
+                        class="border-2 border-white text-white hover:bg-white hover:text-[#301040] px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center"
+                    >
+                        Explore Services
                     </a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-10 rounded-[2rem] text-center border border-slate-100">
-                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="map-pin"></i></div>
-                    <h3 class="font-bold text-sky-950 mb-2">Our Store</h3>
-                    <p class="text-sm text-slate-500">Shop No 2, Opposite Post Office, Pakkirthaka, Jolarpattai.</p>
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Premium Services</h2>
+                <div class="h-1 w-24 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="bg-purple-100 w-14 h-14 rounded-xl flex items-center justify-center text-purple-900 mb-6">
+                        <i data-lucide="shirt" width="28" height="28"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Ready-Made Apparel</h3>
+                    <p class="text-gray-600">Discover our collection of high-quality, trendy, and comfortable ready-to-wear clothing for everyday style.</p>
                 </div>
-                <div class="bg-white p-10 rounded-[2rem] text-center border border-slate-100">
-                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="truck"></i></div>
-                    <h3 class="font-bold text-sky-950 mb-2">Home Delivery</h3>
-                    <p class="text-sm text-slate-500">We deliver across Tirupattur District And Allover Indian.</p>
+
+                <!-- Service 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="bg-red-100 w-14 h-14 rounded-xl flex items-center justify-center text-red-600 mb-6">
+                        <i data-lucide="palette" width="28" height="28"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Custom T-Shirts</h3>
+                    <p class="text-gray-600">Bring your ideas to life. We print your custom designs, logos, and artwork on premium quality t-shirts.</p>
                 </div>
-                <div class="bg-white p-10 rounded-[2rem] text-center border border-slate-100">
-                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="smartphone"></i></div>
-                    <h3 class="font-bold text-sky-950 mb-2">Direct Support</h3>
-                    <p class="text-sm text-slate-500">WhatsApp 8680857511 or 6380818578 for inquiries.</p>
+
+                <!-- Service 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="bg-blue-100 w-14 h-14 rounded-xl flex items-center justify-center text-blue-700 mb-6">
+                        <i data-lucide="users" width="28" height="28"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Group Shirts</h3>
+                    <p class="text-gray-600">Perfect for events, sports teams, college fests, or family gatherings. Bulk orders handled with precision.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="bg-green-100 w-14 h-14 rounded-xl flex items-center justify-center text-green-700 mb-6">
+                        <i data-lucide="briefcase" width="28" height="28"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Uniforms</h3>
+                    <p class="text-gray-600">Professional and durable uniforms for corporate staff, security personnel, schools, and institutions.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-       <!-- ABOUT / OUR STORY SECTION -->
-<section id="about-section" class="section-content hidden py-20 px-6">
-  <div class="max-w-5xl mx-auto bg-white rounded-[2.5rem] p-10 md:p-16 border border-slate-100">
-    
-    <span class="text-sky-500 font-bold text-xs uppercase tracking-widest mb-4 block">
-      Our Story
-    </span>
+    <!-- Banner / Call to Action -->
+    <section id="custom-print" class="py-16 bg-gradient-to-r from-gray-900 to-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 border-l-4 border-red-600 pl-4">
+                        Bring Your Own Design
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-6 max-w-2xl">
+                        Whether it's a single custom t-shirt or bulk printing for an entire organization, Lookstylo Fashion guarantees top-notch print quality, vibrant colors, and durable fabrics.
+                    </p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-300">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> High-Quality Fabric</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> Long-Lasting Prints</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> Fast Turnaround</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> Affordable Bulk Pricing</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/3 text-center md:text-right">
+                    <a 
+                        href="https://wa.me/918680857511" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-green-500/30 w-full sm:w-auto"
+                    >
+                        <i data-lucide="message-circle" width="24" height="24"></i>
+                        Chat for Bulk Orders
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2 class="serif text-4xl text-sky-950 mb-8">
-      LookStylo Fashion
-    </h2>
+    <!-- Our Stores / Locations Section -->
+    <section id="locations" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Stores</h2>
+                <div class="h-1 w-24 bg-red-600 mx-auto rounded-full"></div>
+            </div>
 
-    <div class="space-y-6 text-slate-600 leading-relaxed text-lg font-light">
-      <p>
-        LookStylo Fashion began with a simple yet powerful vision — to bring style,
-        confidence, and personality into everyday wardrobes. Located in the heart of
-        <strong>Jolarpattai</strong>, our store has grown into a trusted destination
-        for trendy apparel and custom fashion.
-      </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Jolarpattai Branch -->
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white group">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <!-- Image Slider Container -->
+                        <div id="store-slider" class="relative w-full h-full">
+                            <!-- Slide 1: Storefront -->
+                            <img 
+                                src="image.jpeg" 
+                                alt="Lookstylo Fashion Storefront" 
+                                class="store-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-100"
+                            />
+                            <!-- Slide 2: Clothes Rack -->
+                            <img 
+                                src="image1.jpeg" 
+                                alt="Lookstylo Fashion Collections" 
+                                class="store-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0"
+                            />
+                        </div>
 
-      <p>
-        What started as a passion for fashion and creativity soon transformed into a
-        growing retail brand under <strong>Shariff Enterprise</strong>. From humble
-        beginnings, we opened our doors with one promise: quality clothing that makes
-        people feel confident and comfortable.
-      </p>
+                        <!-- Open Now Badge (Overlays on top of slider) -->
+                        <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 z-10">
+                            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> Open Now
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="store" class="text-purple-900" width="24" height="24"></i>
+                            <h3 class="text-2xl font-bold text-gray-900">Jolarpattai Branch</h3>
+                        </div>
+                        <p class="text-gray-600 mb-5 flex items-start gap-2">
+                            <i data-lucide="map-pin" class="text-red-500 shrink-0 mt-1" width="18" height="18"></i>
+                            <span>Shop No. 2, Opposite Post Office, Pakkirithakka, Tirupathur Main Road, Jolarpattai – 635853</span>
+                        </p>
+                        <a 
+                            href="https://share.google/XplhUJFfISXCKNndP" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 bg-purple-100 hover:bg-purple-200 text-purple-900 font-semibold px-4 py-2 rounded-lg transition text-sm"
+                        >
+                            <i data-lucide="navigation" width="16" height="16"></i>
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
 
-      <p>
-        At LookStylo Fashion, we believe fashion is more than clothing — it’s a form of
-        self-expression. Every piece in our collection is carefully selected to balance
-        comfort, modern trends, and timeless style.
-      </p>
-
-      <p>
-        We specialize in trendy ready-to-wear outfits, premium shirts and casual wear,
-        custom printed T-shirts, and group orders. We proudly offer delivery across
-        <strong>Tamil Nadu and all over India</strong>.
-      </p>
-
-      <p>
-        We are proud to be part of the vibrant Jolarpattai and Tirupattur community.
-        Our customers are our family — their trust and support inspire us to keep
-        innovating and styling our community with confidence.
-      </p>
-    </div>
-
-    <div class="mt-10 bg-sky-50 p-6 rounded-xl border border-sky-100">
-      <p class="text-xs font-bold text-sky-800 uppercase tracking-widest mb-1">
-        Store Address
-      </p>
-      <p class="text-sky-900 text-sm">
-        Shop No 2, Opposite Post Office, Pakkirthaka, Jolarpattai, Tirupattur District
-      </p>
-    </div>
-
-  </div>
-</section>
-        <!-- CUSTOMER SERVICE SECTION -->
-        <section id="support-section" class="section-content hidden py-20 px-6">
-            <div class="max-w-6xl mx-auto bg-sky-950 rounded-[3rem] p-10 md:p-20 text-white flex flex-col md:flex-row gap-16">
-                <div class="md:w-1/2">
-                    <h2 class="serif text-4xl mb-6">Customer Care</h2>
-                    <p class="text-sky-200 mb-10 text-lg">We're here to help you with your order or any questions about our Jolarpattai boutique.</p>
+                <!-- Tirupathur Branch (Coming Soon) -->
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-gradient-to-br from-purple-50 to-red-50 relative group">
+                    <div class="absolute inset-0 bg-[url('image.jpeg')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
                     
-                    <div class="space-y-8">
-                        <div class="flex items-center gap-5">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400"><i data-lucide="phone"></i></div>
-                            <div>
-                                <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest">WhatsApp</p>
-                                <p class="text-lg font-bold">8680857511 / 6380818578</p>
-                            </div>
+                    <div class="relative h-64 flex flex-col items-center justify-center bg-[#301040]/5 backdrop-blur-sm border-b border-white/20">
+                        <div class="bg-[#301040] text-white text-xl md:text-2xl font-black tracking-widest uppercase px-6 py-3 rounded-xl shadow-xl transform -rotate-2 animate-bounce mt-4">
+                            Coming Soon
                         </div>
-                        <div class="flex items-center gap-5">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400"><i data-lucide="mail"></i></div>
-                            <div>
-                                <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest">Email Address</p>
-                                <p class="text-lg break-all">shariffenterprise.0115@gmail.com</p>
-                            </div>
+                        <p class="mt-4 text-purple-900 font-medium tracking-wide">Get ready for our new exclusive outlet!</p>
+                    </div>
+                    <div class="p-8 relative z-10 bg-white/80 backdrop-blur-md h-full">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="store" class="text-gray-400" width="24" height="24"></i>
+                            <h3 class="text-2xl font-bold text-gray-400">Tirupathur Branch</h3>
                         </div>
-                        <div class="flex items-center gap-5">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400"><i data-lucide="map-pin"></i></div>
-                            <div>
-                                <p class="text-[10px] font-bold text-sky-500 uppercase tracking-widest">Location</p>
-                                <p class="text-sm">Shop No 2, Opposite Post Office, Jolarpattai.</p>
+                        <p class="text-gray-500 mb-4 flex items-start gap-2 italic">
+                            <i data-lucide="map-pin" class="text-gray-400 shrink-0 mt-1" width="18" height="18"></i>
+                            <span>Tirupathur City (Location Details Coming Soon)</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="py-20 bg-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="flex text-yellow-400">
+                        <i data-lucide="star" class="fill-current" width="28" height="28"></i>
+                        <i data-lucide="star" class="fill-current" width="28" height="28"></i>
+                        <i data-lucide="star" class="fill-current" width="28" height="28"></i>
+                        <i data-lucide="star" class="fill-current" width="28" height="28"></i>
+                        <i data-lucide="star" class="fill-current" width="28" height="28"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900 ml-2">4.9 / 5.0</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600 text-lg">Based on 46 glowing reviews on Google.</p>
+                <div class="h-1 w-24 bg-red-600 mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-purple-100 flex flex-col h-full relative">
+                    <i data-lucide="quote" class="absolute top-6 right-8 text-purple-100" width="48" height="48"></i>
+                    <div class="flex items-center gap-4 mb-6 relative z-10">
+                        <div class="w-12 h-12 bg-purple-900 text-white flex items-center justify-center rounded-full font-bold text-xl">
+                            MI
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Mohammed Ibrahim</h4>
+                            <div class="flex text-yellow-400 mt-1">
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
                             </div>
                         </div>
                     </div>
+                    <p class="text-gray-600 italic flex-grow">"I ordered a customized T-shirt from LookStylo Fashion and I'm really impressed with the quality! The print came out exactly how I wanted, and the fabric feels comfortable and durable. The team was responsive and delivered it on time. Great experience overall - highly recommend for custom T-shirt lovers!"</p>
                 </div>
-                <div class="md:w-1/2 bg-white rounded-3xl p-8 text-slate-900">
-                    <h3 class="font-bold text-xl mb-6 text-sky-950">Direct Inquiry</h3>
-                    <form onsubmit="event.preventDefault(); window.location.href='https://wa.me/918680857511?text=Hello LookStylo, I have an inquiry!';" class="space-y-4">
-                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border-none outline-none focus:ring-2 focus:ring-sky-500">
-                        <textarea placeholder="How can we help?" rows="3" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border-none outline-none focus:ring-2 focus:ring-sky-500"></textarea>
-                        <button class="w-full bg-sky-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-sky-700 transition-all">Submit via WhatsApp</button>
-                    </form>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-purple-100 flex flex-col h-full relative">
+                    <i data-lucide="quote" class="absolute top-6 right-8 text-purple-100" width="48" height="48"></i>
+                    <div class="flex items-center gap-4 mb-6 relative z-10">
+                        <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center rounded-full font-bold text-xl">
+                            MR
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Mohammed Rishad S</h4>
+                            <div class="flex text-yellow-400 mt-1">
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic flex-grow">"Look Stylo Fashion is the go-to destination for trendy and high-quality T-shirts! Their collection perfectly blends style, comfort, and affordability. The fabric quality is excellent... Highly recommended for anyone looking for stylish and comfortable clothing!"</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-purple-100 flex flex-col h-full relative">
+                    <i data-lucide="quote" class="absolute top-6 right-8 text-purple-100" width="48" height="48"></i>
+                    <div class="flex items-center gap-4 mb-6 relative z-10">
+                        <div class="w-12 h-12 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-xl">
+                            AJ
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Asmitha Jayaprakasam</h4>
+                            <div class="flex text-yellow-400 mt-1">
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                                <i data-lucide="star" class="fill-current" width="14" height="14"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic flex-grow">"Cloth material and designs are tooo goood..with affordable price..must try."</p>
+                    
+                    <!-- Added a small 4th review since Asmitha's is short -->
+                    <div class="mt-6 pt-6 border-t border-gray-100">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-green-600 text-white flex items-center justify-center rounded-full font-bold text-xs">
+                                AS
+                            </div>
+                            <h4 class="font-bold text-gray-900 text-sm">Ayesha Siddique j</h4>
+                        </div>
+                        <p class="text-gray-600 italic text-sm">"Perfect place to buy the good quality t shirt and shirt at best prices and good quality 👌."</p>
+                    </div>
                 </div>
             </div>
-        </section>
 
-    </main>
+            <div class="text-center mt-12">
+                <a 
+                    href="https://www.google.com/search?q=lookstylo+fashion+reviews" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 font-bold px-6 py-3 rounded-full transition shadow-sm"
+                >
+                    Read all 46 reviews on Google
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    
+                    <!-- Contact Information -->
+                    <div class="md:w-1/2 p-10 md:p-12 lg:p-16 bg-[#301040] text-white">
+                        <h2 class="text-3xl font-bold mb-2">Get in Touch</h2>
+                        <p class="text-purple-200 mb-8 font-light">Visit our shop or reach out via WhatsApp.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/10 p-3 rounded-full mt-1">
+                                    <i data-lucide="users" class="text-white" width="24" height="24"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-purple-300 font-medium">Proprietor</p>
+                                    <p class="text-lg font-bold">S RIYAZ SHARIEF <span class="text-sm font-normal text-purple-200">BCA.,</span></p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/10 p-3 rounded-full mt-1">
+                                    <i data-lucide="map-pin" class="text-white" width="24" height="24"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-purple-300 font-medium">Shop Address</p>
+                                    <p class="text-base leading-relaxed mb-2">
+                                        Shop No. 2, Opposite Post Office,<br />
+                                        Pakkirithakka, Tirupathur Main Road,<br />
+                                        Jolarpattai – 635853
+                                    </p>
+                                    <a href="https://share.google/XplhUJFfISXCKNndP" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-green-400 hover:text-green-300 font-medium transition">
+                                        <i data-lucide="map" width="16" height="16"></i> View on Map
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/10 p-3 rounded-full mt-1">
+                                    <i data-lucide="phone" class="text-white" width="24" height="24"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-purple-300 font-medium">Contact Numbers</p>
+                                    <p class="text-lg font-bold flex items-center gap-2">
+                                        8680857511 <a href="https://wa.me/918680857511" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300"><i data-lucide="message-circle" width="18" height="18"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social & Connect Action -->
+                    <div class="md:w-1/2 p-10 md:p-12 lg:p-16 flex flex-col justify-center bg-white">
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 overflow-hidden">
+                                <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Fashion Logo" class="h-24 w-auto object-contain">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Connect With Us Online</h3>
+                            <p class="text-gray-500 mb-8">Follow our Instagram page for the latest custom designs and ready-made fashion updates.</p>
+                            
+                            <a 
+                                href="https://instagram.com/LOOKSTLYO_FASHION" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg w-full mb-4"
+                            >
+                                <i data-lucide="instagram" width="24" height="24"></i>
+                                @LOOKSTLYO_FASHION
+                            </a>
+
+                            <div class="grid grid-cols-1 gap-4 mt-6">
+                                <a href="https://wa.me/918680857511" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 hover:border-green-500 hover:bg-green-50 transition group">
+                                    <i data-lucide="message-circle" class="text-green-500 mb-2" width="28" height="28"></i>
+                                    <span class="font-semibold text-gray-700 group-hover:text-green-600">WhatsApp Us</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 py-20 mt-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="inline-block bg-white p-2 rounded-lg border border-slate-100 mb-6 shadow-sm">
-                <img src="1000378316.webp" alt="LookStylo Footer" class="h-12 mx-auto" onerror="this.style.display='none'">
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-[#301040]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <div class="text-2xl font-serif font-bold text-white mb-2 tracking-wider">
+                        LOOKSTYLO FASHION
+                    </div>
+                    <p class="text-sm">
+                        You Design It, We Print.<br/>
+                        SHARIFF ENTERPRISES
+                    </p>
+                </div>
+                <div class="text-center md:text-right text-sm">
+                    <p>&copy; <span id="currentYear"></span> Lookstylo Fashion. All rights reserved.</p>
+                </div>
             </div>
-            <h3 class="serif text-2xl text-sky-950 mb-2">LookStylo Fashion</h3>
-            <p class="text-slate-400 text-sm mb-12 max-w-sm mx-auto">Premium apparel by Shariff Enterprise. Serving Jolarpattai since 2024.</p>
-            
-            <div class="flex justify-center gap-8 mb-12 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-                <a onclick="showSection('home')" class="hover:text-sky-600 cursor-pointer">Home</a>
-                <a onclick="showSection('about')" class="hover:text-sky-600 cursor-pointer">About</a>
-                <a onclick="showSection('order')" class="hover:text-sky-600 cursor-pointer">Shop</a>
-                <a onclick="showSection('support')" class="hover:text-sky-600 cursor-pointer">Help</a>
-            </div>
-
-            <p class="text-slate-300 text-[8px] uppercase tracking-[0.5em]">&copy; 2024 LookStylo. All Rights Reserved.</p>
-            <p class="text-slate-400 text-[10px] mt-4">Udyam Registration: <strong>UDYAM-TN-36-0045645</strong></p>
-            <p class="text-slate-400 text-[10px] mt-1">GST Number: <strong>33NEYPS4388G1ZC</strong></p>
         </div>
     </footer>
 
-    <!-- Cart / Checkout Modal -->
-    <div id="cartModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:20px">
-      <div style="background:#fff;max-width:720px;width:100%;border-radius:8px;overflow:auto;max-height:90vh;padding:18px;position:relative">
-        <button id="closeCart" style="position:absolute;right:12px;top:12px;border:none;background:transparent;font-size:18px;cursor:pointer">✕</button>
-        <h3>Your Cart</h3>
-        <div id="cartItems"></div>
-        <div style="margin-top:12px;font-weight:700">Subtotal: $<span id="cartSubtotal">0.00</span></div>
-
-        <hr style="margin:16px 0">
-
-        <h4>Checkout</h4>
-        <form id="checkoutForm">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <input id="custName" placeholder="Full name" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
-            <input id="custPhone" placeholder="Phone number" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
-          </div>
-          <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <input id="custEmail" placeholder="Email (for receipt)" type="email" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
-            <input id="custAddress" placeholder="Address" required style="padding:8px;border:1px solid #ddd;border-radius:4px">
-          </div>
-          <div style="margin-top:8px">
-            <input id="custAddress" placeholder="Address" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px">
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-            <button id="gpayBtn" type="button" class="btn btn-primary">Pay with UPI (GPay)</button>
-            <button id="payCancel" type="button" class="btn btn-outline">Cancel</button>
-          </div>
-          <div id="upiInstructions" style="display:none;margin-top:12px;border:1px dashed #ddd;padding:12px;border-radius:6px">
-            <div style="font-weight:700;margin-bottom:6px">Pay using UPI</div>
-            <div>Send the exact subtotal to: <span id="upiId" style="font-family:monospace">9360232991@okbizaxis</span></div>
-            <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
-              <a id="upiLink" href="#" target="_blank" class="btn btn-outline">Open UPI App</a>
-              <button id="copyUpi" type="button" class="btn btn-outline">Copy UPI ID</button>
+    <!-- Announcement Popup Modal -->
+    <div id="branchPopup" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity cursor-pointer" onclick="closePopup()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden max-w-md w-full transform transition-all duration-300 scale-95 opacity-0" id="popupContent">
+            <!-- Close Button -->
+            <button onclick="closePopup()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/50 text-white rounded-full p-2 backdrop-blur-md transition z-20 focus:outline-none">
+                <i data-lucide="x" width="20" height="20"></i>
+            </button>
+            
+            <!-- Image / Graphic Header -->
+            <div class="h-48 bg-[#301040] relative flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 bg-[url('image1.jpeg')] opacity-20 bg-cover bg-center mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#301040] to-transparent opacity-80"></div>
+                <div class="text-center z-10 relative mt-4">
+                    <div class="bg-red-600 text-white text-[10px] font-bold uppercase tracking-[0.2em] py-1 px-3 rounded-full inline-block mb-3 animate-pulse shadow-lg">Big Announcement</div>
+                    <h3 class="text-4xl font-black text-white tracking-wider transform -rotate-2">COMING SOON</h3>
+                </div>
+            </div> 
+            
+            <!-- Text Content -->
+            <div class="p-8 text-center bg-gradient-to-b from-white to-purple-50">
+                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto -mt-16 mb-4 relative z-10 border-4 border-purple-100 shadow-xl">
+                    <i data-lucide="map-pin" class="text-red-500" width="36" height="36"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">New Branch @ Tirupathur!</h4>
+                <p class="text-gray-600 mb-6 leading-relaxed">We are thrilled to announce that an exclusive new Lookstylo Fashion outlet is opening very soon in Tirupathur City.</p>
+                
+                <button onclick="closePopup()" class="w-full bg-[#301040] hover:bg-purple-900 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg shadow-purple-900/30 flex items-center justify-center gap-2">
+                    <i data-lucide="thumbs-up" width="20" height="20"></i>
+                    Awesome, can't wait!
+                </button>
             </div>
-            <div style="margin-top:8px">
-              <img id="upiQR" alt="UPI QR" src="" style="width:140px;height:140px;border:1px solid #eee;padding:6px;background:#fff">
-            </div>
-            <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center">
-              <input id="txnIdInput" placeholder="Enter UPI transaction ID / Ref" style="padding:8px;border:1px solid #ddd;border-radius:4px">
-              <button id="confirmPaidBtn" type="button" class="btn btn-primary">Submit transaction & place order</button>
-            </div>
-          </div>
-        </form>
-        <div id="checkoutMsg" style="margin-top:12px;color:green;display:none"></div>
-      </div>
+        </div>
     </div>
 
+    <!-- Interactive Scripts -->
     <script>
-      // Simple client-side cart using localStorage
-      function getCart(){try{return JSON.parse(localStorage.getItem('cart')||'[]')}catch(e){return []}}
-      function saveCart(c){localStorage.setItem('cart',JSON.stringify(c));updateCartCount()}
-      function updateCartCount(){const c=getCart();document.getElementById('cartCount').textContent=c.reduce((s,i)=>s+i.qty,0)}
-
-      function renderCart(){const items=document.getElementById('cartItems');const cart=getCart();if(!items) return;items.innerHTML='';
-        if(cart.length===0){items.innerHTML='<div style="padding:12px;color:#666">Cart is empty.</div>';document.getElementById('cartSubtotal').textContent='0.00';return}
-        cart.forEach(it=>{const el=document.createElement('div');el.style.display='flex';el.style.justifyContent='space-between';el.style.padding='8px 0';el.innerHTML=`<div>${it.name} x ${it.qty}</div><div>$${(it.price*it.qty).toFixed(2)}</div>`;items.appendChild(el)});
-        const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById('cartSubtotal').textContent=subtotal.toFixed(2)}
-
-      function addToCart(id,name,price){const cart=getCart();const existing=cart.find(i=>i.id==id);if(existing){existing.qty+=1}else{cart.push({id,name,price:parseFloat(price),qty:1})}saveCart(cart)}
-
-      // Handlers
-      document.addEventListener('click',function(e){
-        if(e.target.matches('.add-to-cart')){
-          const btn=e.target;addToCart(btn.dataset.id,btn.dataset.name,btn.dataset.price);renderCart();
-          alert(btn.dataset.name + ' added to cart');
-        }
-        if(e.target.id==='viewCartBtn' || e.target.matches('.view-product')){
-          renderCart();document.getElementById('cartModal').style.display='flex';
-        }
-        if(e.target.id==='closeCart' || e.target.id==='payCancel'){
-          document.getElementById('cartModal').style.display='none';document.getElementById('checkoutMsg').style.display='none';
-        }
-      });
-
-      // UPI payment instructions flow (uses your UPI ID)
-      const UPI_ID = '9360232991@okbizaxis';
-      function buildUpiLink(amount){
-        const pa = encodeURIComponent(UPI_ID);
-        const pn = encodeURIComponent('My Shop');
-        const am = encodeURIComponent(amount);
-        return `upi://pay?pa=${pa}&pn=${pn}&am=${am}`;
-      }
-
-      document.getElementById('gpayBtn').addEventListener('click',function(){
-        const name=document.getElementById('custName').value.trim();
-        const phone=document.getElementById('custPhone').value.trim();
-        const address=document.getElementById('custAddress').value.trim();
-        if(!name||!phone||!address){alert('Please fill name, phone and address');return}
-        const subtotal=document.getElementById('cartSubtotal').textContent;
-        const upiLink = buildUpiLink(subtotal);
-
-        // Try to open Google Pay directly using Android intent URI (works on Android Chrome when GPay is installed)
-        const intentURI = `intent://upi/pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('My Shop')}&am=${encodeURIComponent(subtotal)}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-
-        // First try intent open. If app not installed, fallback to showing UPI instructions after timeout.
-        let fallbackShown = false;
-        const showFallback = () => {
-          if (fallbackShown) return;
-          fallbackShown = true;
-          const upiAnchor = document.getElementById('upiLink');
-          upiAnchor.href = upiLink;
-          upiAnchor.textContent = 'Open UPI App or copy UPI ID';
-          document.getElementById('upiId').textContent = UPI_ID;
-          const qrData = encodeURIComponent(upiLink);
-          document.getElementById('upiQR').src = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${qrData}`;
-          document.getElementById('upiInstructions').style.display = 'block';
-          document.getElementById('checkoutMsg').style.display='none';
-        };
-
-        // Navigate to intent URI — on Android this should prompt/open Google Pay.
-        window.location = intentURI;
-
-        // Fallback: after short delay, show instructions so user can manually pay.
-        setTimeout(showFallback, 900);
-      });
-
-      // Copy UPI ID
-      document.getElementById('copyUpi').addEventListener('click',function(){
-        navigator.clipboard.writeText(UPI_ID).then(()=>{alert('UPI ID copied to clipboard')}).catch(()=>{alert('Copy failed; please copy manually')});
-      });
-
-      // Confirm paid button: submit transaction id and order to server
-      document.getElementById('confirmPaidBtn').addEventListener('click',async function(){
-        const txn = document.getElementById('txnIdInput').value.trim();
-        const name = document.getElementById('custName').value.trim();
-        const phone = document.getElementById('custPhone').value.trim();
-        const email = document.getElementById('custEmail').value.trim();
-        const address = document.getElementById('custAddress').value.trim();
-        if(!txn){alert('Please enter the transaction id from your payment.');return}
-        if(!name||!phone||!email||!address){alert('Please complete your details before submitting order.');return}
-        const cart = getCart();
-        if(!cart || cart.length===0){alert('Cart empty');return}
-
-        const payload = {merchantUpi: UPI_ID, txnId: txn, customer:{name,phone,email,address}, items:cart, subtotal:document.getElementById('cartSubtotal').textContent, ts: new Date().toISOString()};
-
-        try{
-          const res = await fetch('http://localhost:3000/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-          if(!res.ok) throw new Error('Server error');
-          const data = await res.json();
-          document.getElementById('checkoutMsg').textContent='Order placed. Confirmation sent via email.';
-          document.getElementById('checkoutMsg').style.display='block';
-          localStorage.removeItem('cart');updateCartCount();renderCart();
-          setTimeout(()=>{document.getElementById('cartModal').style.display='none';document.getElementById('upiInstructions').style.display='none';},1200);
-        }catch(err){
-          alert('Could not submit order to server. Make sure the order webhook is running on http://localhost:3000');
-        }
-      });
-
-      // Init
-      updateCartCount();
-    </script>
-    <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // WhatsApp Ordering Logic
-        function sendOrder(name, price, imgId) {
-            const phone = '918680857511';
-            const imgElement = document.getElementById(imgId);
-            const imgUrl = imgElement ? imgElement.src : 'Image link not found';
+        // Set the current year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            const messageText = `*LookStylo Fashion Order Inquiry*\n\nHello Shariff Enterprise! I want to order this item:\n\n*Product:* ${name}\n*Price:* ${price}\n*Image Reference:* ${imgUrl}\n\nPlease confirm if available. Thank you!`;
-
-            const encodedMessage = encodeURIComponent(messageText);
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
-
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // Navigation and mobile menu controls
-        function showSection(id) {
-            document.querySelectorAll('.section-content').forEach(s => s.classList.add('hidden'));
-            const section = document.getElementById(id + '-section');
-            if (section) section.classList.remove('hidden');
-            // Close mobile menu if open
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (!menu) return;
+        // Mobile Menu Toggle Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('mobile-menu');
-            const btn = document.querySelector('button[onclick="toggleMobileMenu()"]');
-            if (!menu || !btn) return;
-            if (!menu.classList.contains('hidden')) {
-                if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                    menu.classList.add('hidden');
-                }
+        // Image Slider Logic for Jolarpattai Store
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.store-slide');
+            let currentSlideIndex = 0;
+
+            if (slides.length > 0) {
+                // Change slide every 3 seconds (3000 milliseconds)
+                setInterval(() => {
+                    // Hide current slide
+                    slides[currentSlideIndex].classList.remove('opacity-100');
+                    slides[currentSlideIndex].classList.add('opacity-0');
+                    
+                    // Move to the next slide (loop back to start if at the end)
+                    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                    
+                    // Show new slide
+                    slides[currentSlideIndex].classList.remove('opacity-0');
+                    slides[currentSlideIndex].classList.add('opacity-100');
+                }, 3000);
             }
         });
+
+        // Popup Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show popup after 1.5 seconds of page load
+            setTimeout(() => {
+                const popup = document.getElementById('branchPopup');
+                const content = document.getElementById('popupContent');
+                
+                // Show the container
+                popup.classList.remove('hidden');
+                popup.classList.add('flex');
+                
+                // Slight delay for the transition effect to kick in
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 50);
+                
+                // Re-initialize icons inside the dynamically shown popup
+                lucide.createIcons();
+            }, 1500); 
+        });
+
+        // Function to close the popup
+        function closePopup() {
+            const popup = document.getElementById('branchPopup');
+            const content = document.getElementById('popupContent');
+            
+            // Animate out
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            // Hide container after animation finishes
+            setTimeout(() => {
+                popup.classList.remove('flex');
+                popup.classList.add('hidden');
+            }, 300);
+        }
     </script>
 </body>
 </html>
