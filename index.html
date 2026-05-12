@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lookstylo Fashion | You Design It, We Print It</title>
     <link rel="icon" type="image/x-icon" href="slazzer-preview-x2n1h.png">
+    
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Lucide Icons via CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900 scroll-smooth">
 
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
@@ -27,6 +28,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-gray-700 hover:text-purple-700 font-medium transition">Home</a>
                     <a href="#services" class="text-gray-700 hover:text-purple-700 font-medium transition">Services</a>
+                    <a href="#products" class="text-gray-700 hover:text-purple-700 font-medium transition">Products</a>
                     <a href="#custom-print" class="text-gray-700 hover:text-purple-700 font-medium transition">Custom Print</a>
                     <a href="#locations" class="text-gray-700 hover:text-purple-700 font-medium transition">Stores</a>
                     <a href="#reviews" class="text-gray-700 hover:text-purple-700 font-medium transition">Reviews</a>
@@ -55,13 +57,14 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
-            <a href="#home" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Home</a>
-            <a href="#services" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Services</a>
-            <a href="#custom-print" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Custom Print</a>
-            <a href="#locations" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Stores</a>
-            <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Reviews</a>
-            <a href="#contact" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md">Contact</a>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg absolute w-full">
+            <a href="#home" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Home</a>
+            <a href="#services" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Services</a>
+            <a href="#products" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Products</a>
+            <a href="#custom-print" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Custom Print</a>
+            <a href="#locations" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Stores</a>
+            <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Reviews</a>
+            <a href="#contact" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Contact</a>
         </div>
     </nav>
 
@@ -97,12 +100,256 @@
                         Start Your Design
                     </a>
                     <a 
-                        href="#services" 
+                        href="#products" 
                         class="border-2 border-white text-white hover:bg-white hover:text-[#301040] px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center"
                     >
-                        Explore Services
+                        Explore Collections
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Our Products / New Arrivals -->
+    <section id="products" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-purple-100 text-purple-900 px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-4 uppercase">Featured Products</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Latest Collections</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Explore our top-trending designs. View all variations below and tap 'Secure Your Order' to book via WhatsApp.</p>
+                <div class="h-1 w-24 bg-red-600 mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <!-- Product 1: Brand Unveiled Collection -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl mb-12">
+                <div class="flex flex-col lg:flex-row">
+                    
+                    <!-- Image Gallery Left Side -->
+                    <div class="lg:w-1/2 p-4 sm:p-6 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
+                        <!-- Main Large Image -->
+                        <div class="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-200 shadow-inner group">
+                            <img id="mainProductImage" src="IMG11.jpeg" alt="Brand Unveiled Double Pocket" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=IMG11'" />
+                            <div class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-full z-10 shadow-lg animate-pulse tracking-wider">NEW ARRIVAL</div>
+                        </div>
+                        
+                        <!-- Thumbnail Row (5 Images) -->
+                        <div class="flex gap-2 sm:gap-4 justify-between">
+                            <button onclick="changeMainImage('IMG11.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-purple-600 shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG11.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG11'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG12.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG12.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG12'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG13.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG13.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG13'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG14.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG14.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG14'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG15.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG15.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG15'"/>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details Right Side -->
+                    <div class="lg:w-1/2 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-2">Brand Unveiled</h3>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <p class="text-xl text-purple-900 font-semibold">Double Pocket Design</p>
+                                    <span class="text-sm font-bold text-gray-500 tracking-wider bg-gray-100 px-3 py-1 rounded-lg border border-gray-200 shadow-sm">SKU: 177814</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-8 leading-relaxed text-lg">Premium quality fabric with a modern double-pocket finish. Perfect for everyday style, offering both ultimate comfort and durability.</p>
+
+                        <!-- Colors (Text Display) -->
+                        <div class="mb-8">
+                            <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
+                                <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
+                                5 COLOURS AVAILABLE
+                            </div>
+                        </div>
+
+                        <!-- Sizes -->
+                        <div class="mb-10">
+                            <h4 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-widest">Select Size</h4>
+                            <div class="flex gap-3 text-sm font-bold text-gray-700">
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">M</span>
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">L</span>
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">XL</span>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/918680857511?text=Hi! I am interested in ordering the Brand Unveiled Double Pocket Shirt." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full bg-[#301040] text-white hover:bg-purple-900 px-6 py-4 rounded-2xl font-bold text-lg transition duration-300 shadow-xl shadow-[#301040]/30 transform hover:-translate-y-1">
+                            <i data-lucide="shopping-cart" width="24" height="24"></i> Secure Your Order
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Korean Linen Premium Shirts -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl">
+                <div class="flex flex-col lg:flex-row">
+                    
+                    <!-- Image Gallery Left Side -->
+                    <div class="lg:w-1/2 p-4 sm:p-6 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
+                        <!-- Main Large Image -->
+                        <div class="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-200 shadow-inner group">
+                            <img id="mainProductImage2" src="IMG111.jpeg" alt="Korean Linen Premium Shirts" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=IMG111'" />
+                            <div class="absolute top-4 left-4 bg-purple-900 text-white text-xs font-bold px-4 py-2 rounded-full z-10 shadow-lg tracking-wider">PREMIUM</div>
+                        </div>
+                        
+                        <!-- Thumbnail Grid (8 Images - 2 rows of 4) -->
+                        <div class="grid grid-cols-4 gap-2 sm:gap-3">
+                            <button onclick="changeMainImage('IMG111.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-purple-600 shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG111.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=111'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG112.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG112.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=112'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG113.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG113.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=113'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG114.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG114.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=114'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG115.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG115.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=115'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG116.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG116.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=116'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG117.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG117.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=117'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG118.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG118.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=118'"/>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details Right Side -->
+                    <div class="lg:w-1/2 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-2">Korean Linen</h3>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <p class="text-xl text-purple-900 font-semibold">Premium Shirts</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-8 leading-relaxed text-lg">Experience ultimate comfort and breathability with our premium Korean Linen fabric. A perfect blend of casual sophistication and durability for any occasion.</p>
+
+                        <!-- Colors (Text Display) -->
+                        <div class="mb-8">
+                            <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
+                                <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
+                                7 COLOURS AVAILABLE
+                            </div>
+                        </div>
+
+                        <!-- Sizes -->
+                        <div class="mb-10">
+                            <h4 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-widest">Select Size</h4>
+                            <div class="flex gap-3 text-sm font-bold text-gray-700">
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">M</span>
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">L</span>
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">XL</span>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/918680857511?text=Hi! I am interested in ordering the Korean Linen Premium Shirt." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full bg-[#301040] text-white hover:bg-purple-900 px-6 py-4 rounded-2xl font-bold text-lg transition duration-300 shadow-xl shadow-[#301040]/30 transform hover:-translate-y-1">
+                            <i data-lucide="shopping-cart" width="24" height="24"></i> Secure Your Order
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Harry & Rick Oxford Cotton -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl mt-12">
+                <div class="flex flex-col lg:flex-row">
+                    
+                    <!-- Image Gallery Left Side -->
+                    <div class="lg:w-1/2 p-4 sm:p-6 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
+                        <!-- Main Large Image -->
+                        <div class="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-200 shadow-inner group">
+                            <img id="mainProductImage3" src="IMG101.jpeg" alt="Harry & Rick Oxford Cotton" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=IMG101'" />
+                            <div class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-bold px-4 py-2 rounded-full z-10 shadow-lg tracking-wider">FORMAL WEAR</div>
+                        </div>
+                        
+                        <!-- Thumbnail Row (5 Images) -->
+                        <div class="flex gap-2 sm:gap-4 justify-between">
+                            <button onclick="changeMainImage('IMG101.jpeg', this, 'mainProductImage3')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-purple-600 shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG101.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=101'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG102.jpeg', this, 'mainProductImage3')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG102.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=102'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG103.jpeg', this, 'mainProductImage3')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG103.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=103'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG104.jpeg', this, 'mainProductImage3')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG104.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=104'"/>
+                            </button>
+                            <button onclick="changeMainImage('IMG105.jpeg', this, 'mainProductImage3')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
+                                <img src="IMG105.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=105'"/>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details Right Side -->
+                    <div class="lg:w-1/2 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-2">Harry & Rick</h3>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <p class="text-xl text-purple-900 font-semibold">Oxford Cotton Premium Shirts</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-8 leading-relaxed text-lg">Best for formal wear, college, and office. Elevate your everyday professional look with our crisp, premium Oxford cotton that guarantees both style and all-day comfort.</p>
+
+                        <!-- Colors (Text Display) -->
+                        <div class="mb-8">
+                            <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
+                                <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
+                                4 COLOURS AVAILABLE
+                            </div>
+                        </div>
+
+                        <!-- Sizes -->
+                        <div class="mb-10">
+                            <h4 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-widest">Select Size</h4>
+                            <div class="flex gap-3 text-sm font-bold text-gray-700">
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">M</span>
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">L</span>
+                                <span class="w-12 h-12 flex items-center justify-center bg-white rounded-xl border-2 border-gray-200 shadow-sm hover:border-[#301040] hover:text-[#301040] transition cursor-pointer">XL</span>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/918680857511?text=Hi! I am interested in ordering the Harry & Rick Oxford Cotton Premium Shirt." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full bg-[#301040] text-white hover:bg-purple-900 px-6 py-4 rounded-2xl font-bold text-lg transition duration-300 shadow-xl shadow-[#301040]/30 transform hover:-translate-y-1">
+                            <i data-lucide="shopping-cart" width="24" height="24"></i> Secure Your Order
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Button -->
+            <div class="text-center mt-12">
+                <a 
+                    href="https://wa.me/918680857511" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 border-2 border-[#301040] text-[#301040] hover:bg-[#301040] hover:text-white font-bold px-8 py-4 rounded-full transition shadow-sm hover:shadow-lg"
+                >
+                    Request Full Catalog <i data-lucide="arrow-right" width="20" height="20"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -376,7 +623,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
                 <div class="flex flex-col md:flex-row">
@@ -443,7 +690,7 @@
                                 rel="noopener noreferrer"
                                 class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg w-full mb-4"
                             >
-                                <i data-lucide="instagram" width="24" height="24"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                                 @LOOKSTLYO_FASHION
                             </a>
 
@@ -591,6 +838,24 @@
                 popup.classList.remove('flex');
                 popup.classList.add('hidden');
             }, 300);
+        }
+
+        // Product Image Gallery Swapper
+        function changeMainImage(imageSrc, buttonElement, mainImageId = 'mainProductImage') {
+            // Update main image source
+            document.getElementById(mainImageId).src = imageSrc;
+            
+            // Remove purple border from all thumbnails in the specific product container
+            const galleryContainer = buttonElement.parentElement;
+            const thumbnails = galleryContainer.querySelectorAll('.thumbnail-btn');
+            thumbnails.forEach(thumb => {
+                thumb.classList.remove('border-purple-600');
+                thumb.classList.add('border-transparent');
+            });
+            
+            // Add purple border to the clicked thumbnail
+            buttonElement.classList.remove('border-transparent');
+            buttonElement.classList.add('border-purple-600');
         }
     </script>
 </body>
