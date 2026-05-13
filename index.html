@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lookstylo Fashion | You Design It, We Print It</title>
+    <title>Lookstylo Fashion | Custom T-Shirt Printing & Ready-Made Apparel in Jolarpattai</title>
+    <meta name="description" content="Lookstylo Fashion in Jolarpattai offers premium ready-made apparel, custom t-shirt printing, group shirts, and professional uniforms. You design it, we print it!">
+    <meta name="keywords" content="Custom T-shirt printing Jolarpattai, Lookstylo Fashion, Uniforms, Premium shirts, Group shirts, Tirupathur fashion, Ready-made apparel">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Lookstylo Fashion | You Design It, We Print">
+    <meta property="og:description" content="Premium ready-made apparel, custom t-shirts, and uniforms in Jolarpattai.">
+    <meta property="og:type" content="website">
+    
     <link rel="icon" type="image/x-icon" href="slazzer-preview-x2n1h.png">
     
     <!-- Tailwind CSS via CDN -->
@@ -11,8 +19,27 @@
     
     <!-- Lucide Icons via CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- LocalBusiness Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "Lookstylo Fashion",
+      "image": "slazzer-preview-x2n1h.png",
+      "description": "Premium ready-made apparel, custom t-shirts, group shirts, and uniforms.",
+      "telephone": "+918680857511",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shop No. 2, Opposite Post Office, Pakkirithakka, Tirupathur Main Road",
+        "addressLocality": "Jolarpattai",
+        "postalCode": "635853",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
 </head>
-<body class="min-h-screen bg-gray-50 font-sans text-gray-900 scroll-smooth">
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
 
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
@@ -20,24 +47,24 @@
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Fashion Logo" class="h-16 w-auto object-contain">
+                        <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Fashion Logo" class="h-16 w-auto object-contain" onerror="this.src='https://placehold.co/150x50/ffffff/301040?text=LOOKSTYLO'">
                     </div>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-purple-700 font-medium transition">Home</a>
-                    <a href="#services" class="text-gray-700 hover:text-purple-700 font-medium transition">Services</a>
-                    <a href="#products" class="text-gray-700 hover:text-purple-700 font-medium transition">Products</a>
-                    <a href="#custom-print" class="text-gray-700 hover:text-purple-700 font-medium transition">Custom Print</a>
-                    <a href="#locations" class="text-gray-700 hover:text-purple-700 font-medium transition">Stores</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-purple-700 font-medium transition">Reviews</a>
-                    <a href="#contact" class="text-gray-700 hover:text-purple-700 font-medium transition">Contact</a>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Home</a>
+                    <a href="#internship" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Internship</a>
+                    <a href="#services" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Services</a>
+                    <a href="#products" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Products</a>
+                    <a href="#locations" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Stores</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Reviews</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Contact</a>
                     <a 
                         href="https://wa.me/918680857511" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="bg-purple-900 hover:bg-purple-800 text-white px-5 py-2 rounded-full font-medium transition flex items-center gap-2 shadow-lg"
+                        class="bg-purple-900 hover:bg-purple-800 text-white px-4 lg:px-5 py-2 rounded-full font-medium transition flex items-center gap-2 shadow-lg text-sm lg:text-base"
                     >
                         <i data-lucide="message-circle" width="18" height="18"></i>
                         WhatsApp Us
@@ -57,11 +84,11 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg absolute w-full">
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg absolute w-full z-50">
             <a href="#home" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Home</a>
+            <a href="#internship" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Internship</a>
             <a href="#services" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Services</a>
             <a href="#products" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Products</a>
-            <a href="#custom-print" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Custom Print</a>
             <a href="#locations" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Stores</a>
             <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Reviews</a>
             <a href="#contact" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Contact</a>
@@ -110,7 +137,65 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: Our Products / New Arrivals -->
+    <!-- Internship Program Section -->
+    <section id="internship" class="py-16 bg-gradient-to-br from-purple-900 to-[#301040] text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white opacity-5 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-red-500 opacity-10 blur-2xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-12">
+                <div class="md:w-1/2 lg:w-3/5">
+                    <div class="inline-block bg-yellow-400 text-purple-900 px-4 py-1 rounded-full text-xs font-bold tracking-wider mb-4 uppercase shadow-sm">
+                        Hiring Now
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3">
+                        <i data-lucide="briefcase" class="text-yellow-400" width="36" height="36"></i>
+                        Process Executive Intern
+                    </h2>
+                    <p class="text-gray-200 text-lg mb-6 max-w-2xl leading-relaxed">
+                        Kickstart your career with Shariff Enterprises! We are offering internships to college students. Gain real-world experience working with an established, fast-growing brand in the fashion and custom printing industry.
+                    </p>
+                    <ul class="space-y-3 text-gray-300 mb-6 hidden sm:block">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> Learn order processing & management</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> Real-world business operations</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-green-400" width="20" height="20"></i> Hands-on industry experience</li>
+                    </ul>
+                </div>
+                
+                <!-- Internship Application Form -->
+                <div class="md:w-1/2 lg:w-2/5 w-full bg-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-md border border-white/20 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-white mb-2">Apply for Internship</h3>
+                    <p class="text-purple-200 text-sm mb-6">Fill out your details to apply instantly via WhatsApp.</p>
+                    
+                    <form id="internForm" onsubmit="sendInternship(event)" class="space-y-4">
+                        <div>
+                            <input type="text" id="internName" required class="w-full px-4 py-3 rounded-xl border-none bg-white/90 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-yellow-400 outline-none transition" placeholder="Your Full Name">
+                        </div>
+                        <div>
+                            <input type="tel" id="internPhone" required class="w-full px-4 py-3 rounded-xl border-none bg-white/90 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-yellow-400 outline-none transition" placeholder="Phone Number">
+                        </div>
+                        <div>
+                            <input type="text" id="internCollege" required class="w-full px-4 py-3 rounded-xl border-none bg-white/90 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-yellow-400 outline-none transition" placeholder="College / University Name">
+                        </div>
+                        <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-purple-900 font-bold py-4 px-6 rounded-xl transition shadow-lg flex items-center justify-center gap-2 mt-2 group">
+                            <i data-lucide="send" class="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" width="20" height="20"></i>
+                            Submit Application
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 pt-6 border-t border-white/20 text-center">
+                        <p class="text-sm text-gray-300 mb-3">Or send your CV directly via email:</p>
+                        <!-- Direct Gmail Link -->
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shariffenterprise.0115@gmail.com&su=Application%20for%20Process%20Executive%20Intern" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-white text-purple-900 hover:bg-gray-100 transition font-bold px-6 py-3 rounded-xl w-full shadow-md">
+                            <i data-lucide="mail" width="20" height="20"></i> Email Your CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Products / New Arrivals -->
     <section id="products" class="py-20 bg-gray-50 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -126,28 +211,27 @@
                     
                     <!-- Image Gallery Left Side -->
                     <div class="lg:w-1/2 p-4 sm:p-6 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
-                        <!-- Main Large Image -->
                         <div class="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-200 shadow-inner group">
-                            <img id="mainProductImage" src="IMG11.jpeg" alt="Brand Unveiled Double Pocket" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=IMG11'" />
+                            <img id="mainProductImage" src="IMG11.jpeg" alt="Brand Unveiled Double Pocket" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=Brand+Unveiled'" />
                             <div class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-full z-10 shadow-lg animate-pulse tracking-wider">NEW ARRIVAL</div>
                         </div>
                         
                         <!-- Thumbnail Row (5 Images) -->
                         <div class="flex gap-2 sm:gap-4 justify-between">
                             <button onclick="changeMainImage('IMG11.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-purple-600 shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
-                                <img src="IMG11.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG11'"/>
+                                <img src="IMG11.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG1'"/>
                             </button>
                             <button onclick="changeMainImage('IMG12.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
-                                <img src="IMG12.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG12'"/>
+                                <img src="IMG12.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG2'"/>
                             </button>
                             <button onclick="changeMainImage('IMG13.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
-                                <img src="IMG13.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG13'"/>
+                                <img src="IMG13.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG3'"/>
                             </button>
                             <button onclick="changeMainImage('IMG14.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
-                                <img src="IMG14.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG14'"/>
+                                <img src="IMG14.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG4'"/>
                             </button>
                             <button onclick="changeMainImage('IMG15.jpeg', this, 'mainProductImage')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-transparent shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
-                                <img src="IMG15.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG15'"/>
+                                <img src="IMG15.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=IMG5'"/>
                             </button>
                         </div>
                     </div>
@@ -166,7 +250,7 @@
 
                         <p class="text-gray-600 mb-8 leading-relaxed text-lg">Premium quality fabric with a modern double-pocket finish. Perfect for everyday style, offering both ultimate comfort and durability.</p>
 
-                        <!-- Colors (Text Display) -->
+                        <!-- Colors -->
                         <div class="mb-8">
                             <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
                                 <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
@@ -192,18 +276,17 @@
             </div>
 
             <!-- Product 2: Korean Linen Premium Shirts -->
-            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl mb-12">
                 <div class="flex flex-col lg:flex-row">
                     
                     <!-- Image Gallery Left Side -->
                     <div class="lg:w-1/2 p-4 sm:p-6 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
-                        <!-- Main Large Image -->
                         <div class="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-200 shadow-inner group">
-                            <img id="mainProductImage2" src="IMG111.jpeg" alt="Korean Linen Premium Shirts" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=IMG111'" />
+                            <img id="mainProductImage2" src="IMG111.jpeg" alt="Korean Linen Premium Shirts" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=Korean+Linen'" />
                             <div class="absolute top-4 left-4 bg-purple-900 text-white text-xs font-bold px-4 py-2 rounded-full z-10 shadow-lg tracking-wider">PREMIUM</div>
                         </div>
                         
-                        <!-- Thumbnail Grid (8 Images - 2 rows of 4) -->
+                        <!-- Thumbnail Grid -->
                         <div class="grid grid-cols-4 gap-2 sm:gap-3">
                             <button onclick="changeMainImage('IMG111.jpeg', this, 'mainProductImage2')" class="thumbnail-btn w-full aspect-square rounded-xl overflow-hidden border-2 border-purple-600 shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
                                 <img src="IMG111.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=111'"/>
@@ -246,7 +329,6 @@
 
                         <p class="text-gray-600 mb-8 leading-relaxed text-lg">Experience ultimate comfort and breathability with our premium Korean Linen fabric. A perfect blend of casual sophistication and durability for any occasion.</p>
 
-                        <!-- Colors (Text Display) -->
                         <div class="mb-8">
                             <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
                                 <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
@@ -254,7 +336,6 @@
                             </div>
                         </div>
 
-                        <!-- Sizes -->
                         <div class="mb-10">
                             <h4 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-widest">Select Size</h4>
                             <div class="flex gap-3 text-sm font-bold text-gray-700">
@@ -272,18 +353,15 @@
             </div>
 
             <!-- Product 3: Harry & Rick Oxford Cotton -->
-            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl mt-12">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-5xl mx-auto transition duration-300 hover:shadow-2xl">
                 <div class="flex flex-col lg:flex-row">
                     
-                    <!-- Image Gallery Left Side -->
                     <div class="lg:w-1/2 p-4 sm:p-6 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
-                        <!-- Main Large Image -->
                         <div class="relative h-[400px] sm:h-[500px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-200 shadow-inner group">
-                            <img id="mainProductImage3" src="IMG101.jpeg" alt="Harry & Rick Oxford Cotton" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=IMG101'" />
+                            <img id="mainProductImage3" src="IMG101.jpeg" alt="Harry & Rick Oxford Cotton" class="w-full h-full object-cover transition duration-500 ease-in-out group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/e2e8f0/301040?text=Harry+%26+Rick'" />
                             <div class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-bold px-4 py-2 rounded-full z-10 shadow-lg tracking-wider">FORMAL WEAR</div>
                         </div>
                         
-                        <!-- Thumbnail Row (5 Images) -->
                         <div class="flex gap-2 sm:gap-4 justify-between">
                             <button onclick="changeMainImage('IMG101.jpeg', this, 'mainProductImage3')" class="thumbnail-btn w-1/5 aspect-square rounded-xl overflow-hidden border-2 border-purple-600 shadow-sm transition-transform hover:-translate-y-1 focus:outline-none">
                                 <img src="IMG101.jpeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150/e2e8f0/301040?text=101'"/>
@@ -303,7 +381,6 @@
                         </div>
                     </div>
                     
-                    <!-- Product Details Right Side -->
                     <div class="lg:w-1/2 p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
                         <div class="flex justify-between items-start mb-2">
                             <div>
@@ -317,7 +394,6 @@
 
                         <p class="text-gray-600 mb-8 leading-relaxed text-lg">Best for formal wear, college, and office. Elevate your everyday professional look with our crisp, premium Oxford cotton that guarantees both style and all-day comfort.</p>
 
-                        <!-- Colors (Text Display) -->
                         <div class="mb-8">
                             <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
                                 <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
@@ -325,7 +401,6 @@
                             </div>
                         </div>
 
-                        <!-- Sizes -->
                         <div class="mb-10">
                             <h4 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-widest">Select Size</h4>
                             <div class="flex gap-3 text-sm font-bold text-gray-700">
@@ -342,7 +417,6 @@
                 </div>
             </div>
 
-            <!-- View More Button -->
             <div class="text-center mt-12">
                 <a 
                     href="https://wa.me/918680857511" 
@@ -437,8 +511,8 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: Completed Custom Works Gallery -->
-    <section class="py-16 bg-gray-50 border-b border-gray-200">
+    <!-- Completed Custom Works Gallery -->
+    <section id="portfolio" class="py-16 bg-gray-50 border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <div class="inline-block bg-purple-100 text-purple-900 px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-4 uppercase">Portfolio</div>
@@ -447,91 +521,22 @@
                 <div class="h-1 w-24 bg-red-600 mx-auto rounded-full mt-6"></div>
             </div>
 
-            <!-- 10 Image Grid -->
+            <!-- Image Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-                <!-- Image 1111 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1111.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1111'"/>
+                    <img src="img1111.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=Work+1'"/>
                 </div>
-                <!-- Image 1112 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1112.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1112'"/>
+                    <img src="img1112.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=Work+2'"/>
                 </div>
-                <!-- Image 1113 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1113.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1113'"/>
+                    <img src="img1113.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=Work+3'"/>
                 </div>
-                <!-- Image 1114 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1114.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1114'"/>
+                    <img src="img1114.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=Work+4'"/>
                 </div>
-                <!-- Image 1115 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1115.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1115'"/>
-                </div>
-                <!-- Image 1116 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1116.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1116'"/>
-                </div>
-                <!-- Image 1117 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1117.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1117'"/>
-                </div>
-                <!-- Image 1118 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1118.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1118'"/>
-                </div>
-                <!-- Image 1119 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1119.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1119'"/>
-                </div>
-                <!-- Image 1120 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1120.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1120'"/>
-                </div>
-                <!-- Image 1121 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1121.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1121'"/>
-                </div>
-                <!-- Image 1122 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1122.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1122'"/>
-                </div>
-                <!-- Image 1123 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1123.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1123'"/>
-                </div>
-                <!-- Image 1124 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1124.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1124'"/>
-                </div>
-                <!-- Image 1125 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1125.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1125'"/>
-                </div>
-                <!-- Image 1126 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1126.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1126'"/>
-                </div>
-                <!-- Image 1127 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1127.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1127'"/>
-                </div>
-                <!-- Image 1128 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1128.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1128'"/>
-                </div>
-                <!-- Image 1129 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1129.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1129'"/>
-                </div>
-                <!-- Image 1130 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1130.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1130'"/>
-                </div>
-                <!-- Image 1131 -->
-                <div class="relative overflow-hidden rounded-2xl aspect-square bg-white shadow-sm border border-gray-200 hover:shadow-xl transition duration-300 group">
-                    <img src="img1131.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=img1131'"/>
+                    <img src="img1115.jpeg" alt="Completed Custom Work" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out" onerror="this.src='https://placehold.co/400/e2e8f0/301040?text=Work+5'"/>
                 </div>
             </div>
             
@@ -561,23 +566,21 @@
                 <!-- Jolarpattai Branch -->
                 <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-white group">
                     <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <!-- Image Slider Container -->
                         <div id="store-slider" class="relative w-full h-full">
-                            <!-- Slide 1: Storefront -->
                             <img 
                                 src="image.jpeg" 
                                 alt="Lookstylo Fashion Storefront" 
                                 class="store-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-100"
+                                onerror="this.src='https://placehold.co/800x400/e2e8f0/301040?text=Jolarpattai+Store'"
                             />
-                            <!-- Slide 2: Clothes Rack -->
                             <img 
                                 src="image1.jpeg" 
                                 alt="Lookstylo Fashion Collections" 
                                 class="store-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0"
+                                onerror="this.src='https://placehold.co/800x400/e2e8f0/301040?text=Store+Interior'"
                             />
                         </div>
 
-                        <!-- Open Now Badge (Overlays on top of slider) -->
                         <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 z-10">
                             <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> Open Now
                         </div>
@@ -605,8 +608,6 @@
 
                 <!-- Tirupathur Branch (Coming Soon) -->
                 <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-gradient-to-br from-purple-50 to-red-50 relative group">
-                    <div class="absolute inset-0 bg-[url('image.jpeg')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
-                    
                     <div class="relative h-64 flex flex-col items-center justify-center bg-[#301040]/5 backdrop-blur-sm border-b border-white/20">
                         <div class="bg-[#301040] text-white text-xl md:text-2xl font-black tracking-widest uppercase px-6 py-3 rounded-xl shadow-xl transform -rotate-2 animate-bounce mt-4">
                             Coming Soon
@@ -652,9 +653,7 @@
                 <div class="bg-white p-8 rounded-3xl shadow-md border border-purple-100 flex flex-col h-full relative">
                     <i data-lucide="quote" class="absolute top-6 right-8 text-purple-100" width="48" height="48"></i>
                     <div class="flex items-center gap-4 mb-6 relative z-10">
-                        <div class="w-12 h-12 bg-purple-900 text-white flex items-center justify-center rounded-full font-bold text-xl">
-                            MI
-                        </div>
+                        <div class="w-12 h-12 bg-purple-900 text-white flex items-center justify-center rounded-full font-bold text-xl">MI</div>
                         <div>
                             <h4 class="font-bold text-gray-900">Mohammed Ibrahim</h4>
                             <div class="flex text-yellow-400 mt-1">
@@ -666,16 +665,14 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic flex-grow">"I ordered a customized T-shirt from LookStylo Fashion and I'm really impressed with the quality! The print came out exactly how I wanted, and the fabric feels comfortable and durable. The team was responsive and delivered it on time. Great experience overall - highly recommend for custom T-shirt lovers!"</p>
+                    <p class="text-gray-600 italic flex-grow">"I ordered a customized T-shirt from LookStylo Fashion and I'm really impressed with the quality! The print came out exactly how I wanted, and the fabric feels comfortable and durable. Great experience overall!"</p>
                 </div>
 
                 <!-- Review 2 -->
                 <div class="bg-white p-8 rounded-3xl shadow-md border border-purple-100 flex flex-col h-full relative">
                     <i data-lucide="quote" class="absolute top-6 right-8 text-purple-100" width="48" height="48"></i>
                     <div class="flex items-center gap-4 mb-6 relative z-10">
-                        <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center rounded-full font-bold text-xl">
-                            MR
-                        </div>
+                        <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center rounded-full font-bold text-xl">MR</div>
                         <div>
                             <h4 class="font-bold text-gray-900">Mohammed Rishad S</h4>
                             <div class="flex text-yellow-400 mt-1">
@@ -687,16 +684,14 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic flex-grow">"Look Stylo Fashion is the go-to destination for trendy and high-quality T-shirts! Their collection perfectly blends style, comfort, and affordability. The fabric quality is excellent... Highly recommended for anyone looking for stylish and comfortable clothing!"</p>
+                    <p class="text-gray-600 italic flex-grow">"Look Stylo Fashion is the go-to destination for trendy and high-quality T-shirts! Their collection perfectly blends style, comfort, and affordability. Highly recommended!"</p>
                 </div>
 
                 <!-- Review 3 -->
                 <div class="bg-white p-8 rounded-3xl shadow-md border border-purple-100 flex flex-col h-full relative">
                     <i data-lucide="quote" class="absolute top-6 right-8 text-purple-100" width="48" height="48"></i>
                     <div class="flex items-center gap-4 mb-6 relative z-10">
-                        <div class="w-12 h-12 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-xl">
-                            AJ
-                        </div>
+                        <div class="w-12 h-12 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-xl">AJ</div>
                         <div>
                             <h4 class="font-bold text-gray-900">Asmitha Jayaprakasam</h4>
                             <div class="flex text-yellow-400 mt-1">
@@ -710,15 +705,12 @@
                     </div>
                     <p class="text-gray-600 italic flex-grow">"Cloth material and designs are tooo goood..with affordable price..must try."</p>
                     
-                    <!-- Added a small 4th review since Asmitha's is short -->
                     <div class="mt-6 pt-6 border-t border-gray-100">
                         <div class="flex items-center gap-3 mb-2">
-                            <div class="w-8 h-8 bg-green-600 text-white flex items-center justify-center rounded-full font-bold text-xs">
-                                AS
-                            </div>
+                            <div class="w-8 h-8 bg-green-600 text-white flex items-center justify-center rounded-full font-bold text-xs">AS</div>
                             <h4 class="font-bold text-gray-900 text-sm">Ayesha Siddique j</h4>
                         </div>
-                        <p class="text-gray-600 italic text-sm">"Perfect place to buy the good quality t shirt and shirt at best prices and good quality 👌."</p>
+                        <p class="text-gray-600 italic text-sm">"Perfect place to buy good quality t shirt and shirt at best prices 👌."</p>
                     </div>
                 </div>
             </div>
@@ -740,10 +732,10 @@
     <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
-                <div class="flex flex-col md:flex-row">
+                <div class="flex flex-col lg:flex-row">
                     
                     <!-- Contact Information -->
-                    <div class="md:w-1/2 p-10 md:p-12 lg:p-16 bg-[#301040] text-white">
+                    <div class="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-[#301040] text-white">
                         <h2 class="text-3xl font-bold mb-2">Get in Touch</h2>
                         <p class="text-purple-200 mb-8 font-light">Visit our shop or reach out via WhatsApp.</p>
                         
@@ -789,32 +781,29 @@
                         </div>
                     </div>
 
-                    <!-- Social & Connect Action -->
-                    <div class="md:w-1/2 p-10 md:p-12 lg:p-16 flex flex-col justify-center bg-white">
-                        <div class="text-center">
-                            <div class="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 overflow-hidden">
-                                <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Fashion Logo" class="h-24 w-auto object-contain">
+                    <!-- Enquiry Form -->
+                    <div class="lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Send an Enquiry</h3>
+                        <p class="text-gray-500 mb-6">Fill this form to send a message directly to our WhatsApp.</p>
+                        
+                        <form id="enquiryForm" onsubmit="sendEnquiry(event)" class="space-y-4">
+                            <div>
+                                <label for="enquiryName" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                <input type="text" id="enquiryName" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-gray-900 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition" placeholder="John Doe">
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Connect With Us Online</h3>
-                            <p class="text-gray-500 mb-8">Follow our Instagram page for the latest custom designs and ready-made fashion updates.</p>
-                            
-                            <a 
-                                href="https://instagram.com/LOOKSTLYO_FASHION" 
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg w-full mb-4"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                                @LOOKSTLYO_FASHION
-                            </a>
-
-                            <div class="grid grid-cols-1 gap-4 mt-6">
-                                <a href="https://wa.me/918680857511" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 hover:border-green-500 hover:bg-green-50 transition group">
-                                    <i data-lucide="message-circle" class="text-green-500 mb-2" width="28" height="28"></i>
-                                    <span class="font-semibold text-gray-700 group-hover:text-green-600">WhatsApp Us</span>
-                                </a>
+                            <div>
+                                <label for="enquiryPhone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="enquiryPhone" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-gray-900 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition" placeholder="9876543210">
                             </div>
-                        </div>
+                            <div>
+                                <label for="enquiryDescription" class="block text-sm font-medium text-gray-700 mb-1">How can we help?</label>
+                                <textarea id="enquiryDescription" required rows="3" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-gray-900 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition resize-none" placeholder="I want to print 50 custom t-shirts for my college event..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition shadow-lg shadow-green-500/30 flex items-center justify-center gap-2 mt-4 group">
+                                <i data-lucide="message-circle" class="group-hover:scale-110 transition-transform" width="20" height="20"></i>
+                                Send via WhatsApp
+                            </button>
+                        </form>
                     </div>
 
                 </div>
@@ -825,19 +814,54 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-12 border-t-4 border-[#301040]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
+                
+                <!-- Brand Info -->
                 <div class="text-center md:text-left">
                     <div class="text-2xl font-serif font-bold text-white mb-2 tracking-wider">
                         LOOKSTYLO FASHION
                     </div>
-                    <p class="text-sm">
+                    <p class="text-sm text-gray-400">
                         You Design It, We Print.<br/>
                         SHARIFF ENTERPRISES
                     </p>
                 </div>
-                <div class="text-center md:text-right text-sm">
-                    <p>&copy; <span id="currentYear"></span> Lookstylo Fashion. All rights reserved.</p>
+                
+                <!-- Social Media SVG Icons -->
+                <div class="flex items-center gap-4">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/918680857511" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-green-500 hover:text-white transition duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1" aria-label="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/LOOKSTLYO_FASHION" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#E1306C] hover:text-white transition duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.036 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Facebook -->
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Email (Direct Web URL) -->
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shariffenterprise.0115@gmail.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </a>
                 </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center md:text-right text-sm">
+                <p>&copy; <span id="currentYear"></span> Lookstylo Fashion. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -880,6 +904,43 @@
         </div>
     </div>
 
+    <!-- Internship Announcement Popup Modal -->
+    <div id="internshipPopup" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity cursor-pointer" onclick="closeInternshipPopup()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden max-w-md w-full transform transition-all duration-300 scale-95 opacity-0" id="internshipPopupContent">
+            <!-- Close Button -->
+            <button onclick="closeInternshipPopup()" class="absolute top-4 right-4 bg-black/20 hover:bg-black/50 text-white rounded-full p-2 backdrop-blur-md transition z-20 focus:outline-none">
+                <i data-lucide="x" width="20" height="20"></i>
+            </button>
+            
+            <!-- Graphic Header -->
+            <div class="h-40 bg-gradient-to-br from-yellow-400 to-yellow-500 relative flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 bg-white opacity-20 mix-blend-overlay"></div>
+                <div class="text-center z-10 relative mt-4">
+                    <div class="bg-[#301040] text-yellow-400 text-[10px] font-bold uppercase tracking-[0.2em] py-1 px-3 rounded-full inline-block mb-3 animate-pulse shadow-lg">Hiring Now</div>
+                    <h3 class="text-3xl font-black text-white tracking-wider transform -rotate-2 drop-shadow-md">WE ARE HIRING!</h3>
+                </div>
+            </div> 
+            
+            <!-- Text Content -->
+            <div class="p-8 text-center bg-gradient-to-b from-white to-yellow-50">
+                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto -mt-16 mb-4 relative z-10 border-4 border-yellow-100 shadow-xl">
+                    <i data-lucide="briefcase" class="text-[#301040]" width="36" height="36"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Process Executive Intern</h4>
+                <p class="text-gray-600 mb-6 leading-relaxed text-sm">Kickstart your career with Shariff Enterprises! Gain real-world business experience working with a fast-growing fashion brand.</p>
+                
+                <a href="#internship" onclick="closeInternshipPopup()" class="w-full bg-[#301040] hover:bg-purple-900 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg shadow-purple-900/30 flex items-center justify-center gap-2">
+                    <i data-lucide="arrow-down-circle" width="20" height="20"></i>
+                    Apply Instantly
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Interactive Scripts -->
     <script>
         // Initialize Lucide Icons
@@ -894,22 +955,51 @@
             menu.classList.toggle('hidden');
         }
 
+        // WhatsApp Form Submission Logic (Enquiry) - Uses encodeURIComponent for safety
+        function sendEnquiry(event) {
+            event.preventDefault(); // Stop page reload
+            
+            const name = document.getElementById('enquiryName').value;
+            const phone = document.getElementById('enquiryPhone').value;
+            const description = document.getElementById('enquiryDescription').value;
+            
+            const whatsappNumber = "918680857511";
+            const message = `*Website Enquiry*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Message:* ${description}`;
+            
+            // Generate link and open safely
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // WhatsApp Form Submission Logic (Internship Application) - Uses encodeURIComponent
+        function sendInternship(event) {
+            event.preventDefault(); // Stop page reload
+            
+            const name = document.getElementById('internName').value;
+            const phone = document.getElementById('internPhone').value;
+            const college = document.getElementById('internCollege').value;
+            
+            const whatsappNumber = "918680857511";
+            const message = `*Internship Application*\n\n*Position:* Process Executive Intern\n*Name:* ${name}\n*Phone:* ${phone}\n*College:* ${college}\n\nHi Lookstylo Fashion, I would like to apply for the internship!`;
+            
+            // Generate link and open safely
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
         // Image Slider Logic for Jolarpattai Store
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.store-slide');
             let currentSlideIndex = 0;
 
             if (slides.length > 0) {
-                // Change slide every 3 seconds (3000 milliseconds)
+                // Change slide every 3 seconds
                 setInterval(() => {
-                    // Hide current slide
                     slides[currentSlideIndex].classList.remove('opacity-100');
                     slides[currentSlideIndex].classList.add('opacity-0');
                     
-                    // Move to the next slide (loop back to start if at the end)
                     currentSlideIndex = (currentSlideIndex + 1) % slides.length;
                     
-                    // Show new slide
                     slides[currentSlideIndex].classList.remove('opacity-0');
                     slides[currentSlideIndex].classList.add('opacity-100');
                 }, 3000);
@@ -918,27 +1008,23 @@
 
         // Popup Logic
         document.addEventListener('DOMContentLoaded', () => {
-            // Show popup after 1.5 seconds of page load
             setTimeout(() => {
                 const popup = document.getElementById('branchPopup');
                 const content = document.getElementById('popupContent');
                 
-                // Show the container
                 popup.classList.remove('hidden');
                 popup.classList.add('flex');
                 
-                // Slight delay for the transition effect to kick in
                 setTimeout(() => {
                     content.classList.remove('scale-95', 'opacity-0');
                     content.classList.add('scale-100', 'opacity-100');
                 }, 50);
                 
-                // Re-initialize icons inside the dynamically shown popup
                 lucide.createIcons();
             }, 1500); 
         });
 
-        // Function to close the popup
+        // Function to close the Branch popup and trigger the Internship popup
         function closePopup() {
             const popup = document.getElementById('branchPopup');
             const content = document.getElementById('popupContent');
@@ -951,15 +1037,46 @@
             setTimeout(() => {
                 popup.classList.remove('flex');
                 popup.classList.add('hidden');
+                
+                // Show Internship Popup 2 seconds after closing the Branch popup
+                setTimeout(openInternshipPopup, 2000);
+            }, 300);
+        }
+
+        // Internship Popup Open Logic
+        function openInternshipPopup() {
+            const popup = document.getElementById('internshipPopup');
+            const content = document.getElementById('internshipPopupContent');
+            
+            popup.classList.remove('hidden');
+            popup.classList.add('flex');
+            
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 50);
+            
+            lucide.createIcons();
+        }
+
+        // Internship Popup Close Logic
+        function closeInternshipPopup() {
+            const popup = document.getElementById('internshipPopup');
+            const content = document.getElementById('internshipPopupContent');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                popup.classList.remove('flex');
+                popup.classList.add('hidden');
             }, 300);
         }
 
         // Product Image Gallery Swapper
         function changeMainImage(imageSrc, buttonElement, mainImageId = 'mainProductImage') {
-            // Update main image source
             document.getElementById(mainImageId).src = imageSrc;
             
-            // Remove purple border from all thumbnails in the specific product container
             const galleryContainer = buttonElement.parentElement;
             const thumbnails = galleryContainer.querySelectorAll('.thumbnail-btn');
             thumbnails.forEach(thumb => {
@@ -967,7 +1084,6 @@
                 thumb.classList.add('border-transparent');
             });
             
-            // Add purple border to the clicked thumbnail
             buttonElement.classList.remove('border-transparent');
             buttonElement.classList.add('border-purple-600');
         }
