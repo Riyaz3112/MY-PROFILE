@@ -1,14 +1,28 @@
 {
-  "name": "shop-order-webhook",
+  "name": "lookstylo-billing",
   "version": "1.0.0",
-  "description": "Simple order webhook to receive orders and send email notifications",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
+  "description": "Modern billing and inventory management system for fashion retail",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/billing.git"
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.3"
+  "keywords": [
+    "billing",
+    "invoice",
+    "inventory",
+    "accounting",
+    "retail",
+    "fashion",
+    "pos"
+  ],
+  "author": "Shariff Enterprises",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server -p 8000",
+    "serve": "npx http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
