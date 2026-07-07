@@ -20,6 +20,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/minified/html5-qrcode.min.js"></script>
 
     <script>
         // Workaround for file:// protocol - disable import checks
@@ -99,6 +100,8 @@
         #reader button { background-color: #4f46e5 !important; color: white !important; font-family: 'Outfit', sans-serif !important; border-radius: 8px !important; padding: 10px 20px !important; font-weight: 600 !important; border: none !important; cursor: pointer !important; margin: 5px !important; transition: all 0.2s ease !important; }
         #reader button:hover { background-color: #4338ca !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important; }
         #reader select { padding: 10px !important; border-radius: 8px !important; border: 1px solid #cbd5e1 !important; margin-bottom: 10px !important; font-family: 'Outfit', sans-serif !important; }
+        #reader video { width: 100% !important; height: auto !important; max-height: 280px !important; object-fit: cover !important; border-radius: 16px !important; }
+        #reader__scan_region, #reader__dashboard_section, #reader__dashboard_section_csr { width: 100% !important; }
         #reader__dashboard_section_csr span { color: #ef4444 !important; font-weight: 600 !important; font-size: 14px !important; display: block !important; margin-top: 10px !important; }
     </style>
 </head>
@@ -226,14 +229,21 @@
                 </div>
 
                 <div className="flex-grow flex flex-col">
-                    <div className="mb-6">
-                        <h3 className="font-extrabold text-2xl uppercase mb-1">FROM:</h3>
-                        <div className="font-bold text-lg leading-snug uppercase">LOOKSTYLO FASHION,<br/>NO 18, SACRED HEART COLLEGE SHOPPING COMPLEX OPPSITE POORVIKA VANIYAMBADI MAIN ROAD TIRUPATHUR DIST-635 601.<br/>TIRUPATHUR BRANCH 📞 8680857511 <br/>JOLARPATTAI BRANCH 📞 9360232991</div>
+                    <div className="mb-4">
+                        <h3 className="font-extrabold text-[14px] uppercase mb-1">FROM:</h3>
+                        <div className="font-bold text-[11px] leading-tight uppercase">
+                            <div>LOOKSTYLO FASHION</div>
+                            <div className="mt-0.5">No 18, Sacred Heart College Shopping Complex</div>
+                            <div>Opposite Poorvika Vaniyambadi Main Road</div>
+                            <div>Tirupathur District - 635 601</div>
+                            <div className="mt-0.5">Tirupathur Branch: 📞 8680857511</div>
+                            <div>Jolarpattai Branch: 📞 9360232991</div>
+                        </div>
                     </div>
                     
-                    <div className="mb-4">
-                        <h3 className="font-extrabold text-2xl uppercase mb-1">TO,</h3>
-                        <div className="font-bold text-lg leading-snug uppercase">
+                    <div className="mb-3">
+                        <h3 className="font-extrabold text-[15px] uppercase mb-1">TO,</h3>
+                        <div className="font-bold text-[12px] leading-tight uppercase">
                             {toName || ' '}<br/>
                             {toAddress ? toAddress.split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>) : ' '}<br/>
                             {toPhone ? `📞 ${toPhone}` : ' '}
@@ -241,9 +251,9 @@
                     </div>
 
                     {(billName || billAddress || billPhone) && (
-                        <div className="mb-4 pt-4 border-t border-dashed border-gray-400">
-                            <h3 className="font-extrabold text-xl uppercase mb-1">BILL TO,</h3>
-                            <div className="font-bold text-md leading-snug uppercase text-gray-700">
+                        <div className="mb-3 pt-2 border-t border-dashed border-gray-400">
+                            <h3 className="font-extrabold text-[13px] uppercase mb-1">BILL TO,</h3>
+                            <div className="font-bold text-[10px] leading-tight uppercase text-gray-700">
                                 {billName || ' '}<br/>{billAddress ? billAddress.split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>) : ' '}<br/>{billPhone || ' '}
                             </div>
                         </div>
@@ -270,19 +280,27 @@
             const [isAppLocked, setIsAppLocked] = useState(true);
             const [loginId, setLoginId] = useState('');
             const [loginPass, setLoginPass] = useState('');
+            const [billingCode, setBillingCode] = useState('');
+            const [loginMode, setLoginMode] = useState('admin');
             const [authError, setAuthError] = useState('');
             
             const appAuth = JSON.parse(localStorage.getItem('lookstylo_auth') || '{"id":"admin", "pass":"admin123"}');
             const [newAuthId, setNewAuthId] = useState(appAuth.id);
             const [newAuthPass, setNewAuthPass] = useState(appAuth.pass);
+            const [newBillingCode, setNewBillingCode] = useState(localStorage.getItem('lookstylo_billing_code') || 'billing');
 
             const handleLogin = (e) => {
                 e.preventDefault();
-                if (loginId === appAuth.id && loginPass === appAuth.pass) {
+                const isAdminLogin = loginMode === 'admin';
+                const storedBillingCode = (localStorage.getItem('lookstylo_billing_code') || 'billing').trim().toLowerCase();
+                const isValidAdmin = loginId === appAuth.id && loginPass === appAuth.pass;
+                const isValidBilling = loginMode === 'billing' && billingCode.trim().toLowerCase() === storedBillingCode;
+
+                if ((isAdminLogin && isValidAdmin) || (!isAdminLogin && isValidBilling)) {
                     setIsAppLocked(false);
                     setAuthError('');
                 } else {
-                    setAuthError('Invalid User ID or Password');
+                    setAuthError(isAdminLogin ? 'Invalid User ID or Password' : 'Invalid Billing Code');
                 }
             };
 
@@ -290,6 +308,14 @@
                 if(!newAuthId.trim() || !newAuthPass.trim()) return showNotification("Fields cannot be empty");
                 localStorage.setItem('lookstylo_auth', JSON.stringify({ id: newAuthId, pass: newAuthPass }));
                 showNotification("Lock Credentials Updated successfully!");
+            };
+
+            const updateBillingCode = () => {
+                const trimmedCode = newBillingCode.trim();
+                if (!trimmedCode) return showNotification("Billing code cannot be empty");
+                localStorage.setItem('lookstylo_billing_code', trimmedCode);
+                setNewBillingCode(trimmedCode);
+                showNotification("Billing code updated successfully!");
             };
 
             const [activeTab, setActiveTab] = useState('billing'); 
@@ -637,8 +663,9 @@
                 return acc + gstAmount;
             }, 0);
 
-            const grandTotal = Math.round(totalAfterDiscount);
-            const roundOffAmount = grandTotal - totalAfterDiscount;
+            const grandTotalBeforeRound = billType === 'GST' ? totalAfterDiscount + totalIncludedGstAmount : totalAfterDiscount;
+            const grandTotal = Math.round(grandTotalBeforeRound);
+            const roundOffAmount = grandTotal - grandTotalBeforeRound;
             const totalQty = billItems.reduce((acc, item) => acc + Number(item.qty || 0), 0);
             const balanceAmount = grandTotal - (Number(paidGpay) || 0) - (Number(paidCash) || 0) - (Number(advancePayment) || 0);
 
@@ -697,7 +724,7 @@
                 if (!phone) return showNotification("Please enter customer phone number.");
                 const totalPaidAndAdvance = Number(paidCash) + Number(paidGpay) + Number(advancePayment);
                 
-                let msg = `Thank you for shopping with us 😀\n\n*Your e-Bill Summary:*\nInvoice: ${billInvoice}\nDate: ${billDate.split('-').reverse().join('-')}\nTotal Amount: ₹ ${grandTotal}\nPaid Amount: ₹ ${totalPaidAndAdvance}\nPending Balance: ₹ ${balanceAmount}\n\n`;
+                let msg = `🎉 Thank you for shopping with LookStylo Fashion!\n\nWe truly appreciate your support. ❤️\n\n*Your e-Bill Summary:*\nInvoice: ${billInvoice}\nDate: ${billDate.split('-').reverse().join('-')}\nTotal Amount: ₹ ${grandTotal}\nPaid Amount: ₹ ${totalPaidAndAdvance}\nPending Balance: ₹ ${balanceAmount}\n\n`;
                 
                 if (balanceAmount > 0) {
                     const qrData = `upi://pay?pa=9360232991@okbizaxis&pn=LOOKSTYLO FASHION&am=${balanceAmount}&cu=INR`;
@@ -705,7 +732,7 @@
                     msg += `👇 *Click link to view Payment QR Code:*\n${qrLink}\n\n*Or use UPI ID:* 9360232991@okbizaxis\n\n`;
                 }
                 
-                msg += `Based on your recent experience, how would you rate your experience at Lookstylo Fashion?\n⭐ Please rate us here: https://g.page/r/CYYvcLcuUkztECk/review`;
+                msg += `📸 Follow us on Instagram for the latest arrivals, exclusive offers & fashion updates:\nhttps://www.instagram.com/lookstlyo_fashion?igsh=MWs4amhoazR5YTg5NQ==\n\n💬 Join our WhatsApp Group to get instant updates on new collections, discounts & giveaways:\nhttps://chat.whatsapp.com/IjvWkTNYwv8De8u9p4kfyv\n\n⭐ We'd love to hear about your experience! Please leave us a Google review:\nhttps://share.google/ox6hh22WFQ4vzLyPk\n\nThank you for choosing LookStylo Fashion. We look forward to serving you again! 😊`;
                 
                 openWhatsAppMsg(phone, msg);
             };
@@ -825,6 +852,12 @@
             const [savedScans, setSavedScans] = useState(() => JSON.parse(localStorage.getItem('savedScans') || '[]'));
             const scannerRef = useRef(null);
             const [manualCode, setManualCode] = useState('');
+            const [scannerError, setScannerError] = useState('');
+            const [scannerStatus, setScannerStatus] = useState('Preparing camera...');
+            const scannerAttemptRef = useRef(0);
+            const fallbackStreamRef = useRef(null);
+            const fallbackFrameRef = useRef(null);
+            const scannerModeRef = useRef(null);
 
             const saveScanToDatabase = (data) => {
                 setSavedScans(prev => {
@@ -853,46 +886,182 @@
                 }
             };
 
-            const processScan = (decodedText) => {
+            const stopScanner = async () => {
+                if (scannerRef.current && typeof scannerRef.current.stop === 'function') {
+                    try { await scannerRef.current.stop(); } catch (e) { console.warn('Scanner stop failed:', e); }
+                    try { await scannerRef.current.clear(); } catch (e) { console.warn('Scanner clear failed:', e); }
+                }
+                if (fallbackStreamRef.current) {
+                    fallbackStreamRef.current.getTracks().forEach(track => track.stop());
+                    fallbackStreamRef.current = null;
+                }
+                if (fallbackFrameRef.current) {
+                    cancelAnimationFrame(fallbackFrameRef.current);
+                    fallbackFrameRef.current = null;
+                }
+                scannerModeRef.current = null;
+                const readerElement = document.getElementById('reader');
+                if (readerElement) {
+                    readerElement.innerHTML = '';
+                }
+                scannerRef.current = null;
+            };
+
+            const processScan = async (decodedText) => {
                 if (!decodedText) return;
                 const awaiting = awaitingTrackingRef.current;
+                setScannerStatus('QR code scanned. Processing...');
+                await stopScanner();
                 if (awaiting) {
                     handleScannedTracking(awaiting, decodedText);
-                    if (scannerRef.current) { scannerRef.current.clear().catch(e => console.error(e)); scannerRef.current = null; }
                 } else {
                     let parsed;
                     try { parsed = JSON.parse(decodedText); } catch (e) { parsed = { id: decodedText, name: 'Unknown (Raw Text)' }; }
                     setScanResult(parsed); saveScanToDatabase(parsed);
-                    if (scannerRef.current) { scannerRef.current.clear().catch(e => console.error(e)); scannerRef.current = null; }
                 }
             };
 
-            // HTML5 QR Code Scanner - Temporarily disabled
-            // useEffect(() => {
-            //     let isMounted = true; let timeoutId;
-            //     const initScanner = () => {
-            //         const readerElement = document.getElementById("reader");
-            //         if (activeTab === 'scanner' && !scanResult && readerElement && isMounted) {
-            //             if (!scannerRef.current) {
-            //                 try {
-            //                     scannerRef.current = new Html5QrcodeScanner("reader", { fps: 10, qrbox: {width: 250, height: 250} }, false);
-            //                     scannerRef.current.render(
-            //                         (decodedText) => processScan(decodedText),
-            //                         (err) => {}
-            //                     );
-            //                 } catch (err) { console.error("Scanner initialization failed:", err); }
-            //             }
-            //         } else if (activeTab === 'scanner' && !scanResult && isMounted) { 
-            //             timeoutId = setTimeout(initScanner, 100); 
-            //         }
-            //     };
-            //
-            //     if (activeTab === 'scanner' && !scanResult) { initScanner(); }
-            //     return () => { 
-            //         isMounted = false; clearTimeout(timeoutId); 
-            //         if (scannerRef.current) { scannerRef.current.clear().catch(e => console.error(e)); scannerRef.current = null; } 
-            //     };
-            // }, [activeTab, scanResult]);
+            const startScanner = async () => {
+                const readerElement = document.getElementById('reader');
+                if (activeTab !== 'scanner' || scanResult || !readerElement) {
+                    return;
+                }
+
+                if (!window.isSecureContext && window.location.protocol !== 'http:') {
+                    setScannerError('Use localhost or HTTPS for camera access.');
+                    setScannerStatus('Insecure context');
+                    return;
+                }
+
+                if (!navigator.mediaDevices?.getUserMedia) {
+                    setScannerError('This browser does not support camera scanning. Try Chrome or Safari on mobile.');
+                    setScannerStatus('Camera unsupported');
+                    return;
+                }
+
+                if (scannerRef.current) {
+                    return;
+                }
+
+                scannerAttemptRef.current += 1;
+                const attemptId = scannerAttemptRef.current;
+                setScannerError('');
+                setScannerStatus('Starting camera...');
+
+                try {
+                    if (window.Html5Qrcode) {
+                        const html5QrCode = new window.Html5Qrcode('reader', { useBarCodeDetectorIfSupported: true });
+                        scannerRef.current = html5QrCode;
+
+                        const cameraConfigs = [
+                            { facingMode: 'environment' },
+                            { facingMode: 'user' },
+                            { facingMode: { exact: 'environment' } }
+                        ];
+
+                        let lastError = null;
+                        for (const config of cameraConfigs) {
+                            try {
+                                await html5QrCode.start(
+                                    config,
+                                    { fps: 10, qrbox: { width: 260, height: 260 }, aspectRatio: 1.0 },
+                                    async (decodedText) => {
+                                        if (attemptId !== scannerAttemptRef.current) return;
+                                        await processScan(decodedText);
+                                    },
+                                    () => {}
+                                );
+                                setScannerStatus('Scanning... Point the camera at a QR code.');
+                                return;
+                            } catch (err) {
+                                lastError = err;
+                                console.warn('Scanner camera attempt failed:', config, err);
+                            }
+                        }
+                        throw lastError || new Error('Unable to open camera');
+                    }
+
+                    if (window.BarcodeDetector && typeof window.BarcodeDetector === 'function') {
+                        readerElement.innerHTML = '';
+                        const video = document.createElement('video');
+                        video.setAttribute('playsinline', 'true');
+                        video.setAttribute('autoplay', 'true');
+                        video.setAttribute('muted', 'true');
+                        video.style.width = '100%';
+                        video.style.height = '100%';
+                        video.style.objectFit = 'cover';
+                        readerElement.appendChild(video);
+
+                        const stream = await navigator.mediaDevices.getUserMedia({
+                            video: { facingMode: { ideal: 'environment' } },
+                            audio: false
+                        });
+                        fallbackStreamRef.current = stream;
+                        video.srcObject = stream;
+                        await video.play();
+
+                        const detector = new window.BarcodeDetector({ formats: ['qr_code'] });
+                        scannerRef.current = { type: 'fallback' };
+                        scannerModeRef.current = 'fallback';
+
+                        const scanLoop = async () => {
+                            if (!scannerModeRef.current || !fallbackStreamRef.current) return;
+                            try {
+                                const barcodes = await detector.detect(video);
+                                if (barcodes && barcodes.length > 0) {
+                                    const value = barcodes[0].rawValue;
+                                    if (value) {
+                                        await processScan(value);
+                                        return;
+                                    }
+                                }
+                            } catch (err) {
+                                console.warn('Fallback detector failed:', err);
+                            }
+                            fallbackFrameRef.current = requestAnimationFrame(() => {
+                                void scanLoop();
+                            });
+                        };
+
+                        setScannerStatus('Scanning... Point the camera at a QR code.');
+                        void scanLoop();
+                        return;
+                    }
+
+                    throw new Error('No supported scanner engine available');
+                } catch (err) {
+                    console.error('Scanner initialization failed:', err);
+                    setScannerError('Camera access was blocked or unavailable. Please allow camera permission or use manual entry.');
+                    setScannerStatus('Camera unavailable');
+                    await stopScanner();
+                }
+            };
+
+            useEffect(() => {
+                let isMounted = true;
+
+                const initScanner = async () => {
+                    if (activeTab !== 'scanner' || scanResult || !isMounted) {
+                        return;
+                    }
+                    await startScanner();
+                };
+
+                if (activeTab === 'scanner' && !scanResult) {
+                    initScanner();
+                    const timeoutId = setTimeout(() => initScanner(), 400);
+                    return () => {
+                        isMounted = false;
+                        clearTimeout(timeoutId);
+                        void stopScanner();
+                    };
+                }
+
+                return () => {
+                    isMounted = false;
+                    void stopScanner();
+                };
+            }, [activeTab, scanResult]);
 
             const saveCurrentBill = () => {
                 if (grandTotal <= 0 && totalQty === 0) return;
@@ -1202,7 +1371,7 @@
                                 </tbody>
                             </table>
                             <div className="text-[9px] text-gray-500 italic py-1 px-1 border-b-2 border-gray-900 bg-gray-50 text-right mt-auto">
-                                * All prices are inclusive of applicable GST
+                                * GST not included. GST extra as applicable.
                             </div>
                         </div>
 
@@ -1240,7 +1409,7 @@
                             <div className="w-[45%]">
                                 <div className="flex justify-between py-1"><span className="font-semibold">Sub Total:</span><span>₹ {subTotal.toFixed(2)}</span></div>
                                 {billDiscount > 0 && <div className="flex justify-between py-1 text-gray-700"><span>Discount ({billDiscount}%):</span><span>- ₹ {discountAmount.toFixed(2)}</span></div>}
-                                {billType === 'GST' && totalIncludedGstAmount > 0 && <div className="flex justify-between py-1 text-gray-700"><span>Includes GST:</span><span>₹ {totalIncludedGstAmount.toFixed(2)}</span></div>}
+                                {billType === 'GST' && totalIncludedGstAmount > 0 && <div className="flex justify-between py-1 text-gray-700"><span>GST Extra:</span><span>₹ {totalIncludedGstAmount.toFixed(2)}</span></div>}
                                 {roundOffAmount !== 0 && <div className="flex justify-between py-1 text-gray-700"><span>Round Off:</span><span>{roundOffAmount > 0 ? '+ ' : '- '}₹ {Math.abs(roundOffAmount).toFixed(2)}</span></div>}
                                 <div className="flex justify-between text-sm font-bold border-t border-b border-gray-900 py-2 mt-1 bg-gray-50 px-1 mb-1"><span>Grand Total:</span><span>₹ {grandTotal.toFixed(2)}</span></div>
                                 
@@ -1292,21 +1461,40 @@
                             <h2 className="text-2xl font-black text-white tracking-widest mb-2 text-center uppercase">LOOKSTYLO FASHION</h2>
                             <p className="text-slate-400 text-sm font-medium mb-8 text-center">Authenticate to access the terminal</p>
 
+                            <div className="flex gap-2 mb-6 w-full">
+                                <button type="button" onClick={() => { setLoginMode('admin'); setAuthError(''); }} className={`flex-1 py-3 rounded-xl text-sm font-bold uppercase tracking-wide transition-all ${loginMode === 'admin' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/70 text-slate-300 border border-slate-700'}`}>
+                                    Admin Login
+                                </button>
+                                <button type="button" onClick={() => { setLoginMode('billing'); setAuthError(''); }} className={`flex-1 py-3 rounded-xl text-sm font-bold uppercase tracking-wide transition-all ${loginMode === 'billing' ? 'bg-emerald-600 text-white shadow-lg' : 'bg-slate-800/70 text-slate-300 border border-slate-700'}`}>
+                                    Billing Login
+                                </button>
+                            </div>
+
                             <form onSubmit={handleLogin} className="w-full space-y-5">
-                                <div>
-                                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">User ID</label>
-                                    <input type="text" value={loginId} onChange={e=>setLoginId(e.target.value)} className="w-full p-4 bg-slate-800/50 border border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-white font-medium placeholder-slate-500 shadow-inner" placeholder="Enter User ID" />
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Password</label>
-                                    <input type="password" value={loginPass} onChange={e=>setLoginPass(e.target.value)} className="w-full p-4 bg-slate-800/50 border border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-white font-medium placeholder-slate-500 shadow-inner" placeholder="••••••••" />
-                                </div>
+                                {loginMode === 'admin' ? (
+                                    <>
+                                        <div>
+                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">User ID</label>
+                                            <input type="text" value={loginId} onChange={e=>setLoginId(e.target.value)} className="w-full p-4 bg-slate-800/50 border border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-white font-medium placeholder-slate-500 shadow-inner" placeholder="Enter User ID" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1">Password</label>
+                                            <input type="password" value={loginPass} onChange={e=>setLoginPass(e.target.value)} className="w-full p-4 bg-slate-800/50 border border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-white font-medium placeholder-slate-500 shadow-inner" placeholder="••••••••" />
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div>
+                                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Billing Code</label>
+                                        <input type="text" value={billingCode} onChange={e=>setBillingCode(e.target.value)} className="w-full p-4 bg-slate-800/50 border border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-white font-medium placeholder-slate-500 shadow-inner" placeholder="Enter Billing Code" />
+                                        <p className="text-[11px] text-slate-500 mt-2 ml-1">Use the code: billing</p>
+                                    </div>
+                                )}
                                 
                                 {authError && <p className="text-red-400 text-xs font-bold text-center bg-red-900/20 py-3 rounded-xl border border-red-500/20">{authError}</p>}
                                 
                                 <button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.3)] transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2 mt-4 text-sm tracking-wide">
                                     <Icons.CheckCircle className="w-5 h-5" />
-                                    SECURE LOGIN
+                                    {loginMode === 'admin' ? 'SECURE LOGIN' : 'BILLING LOGIN'}
                                 </button>
                             </form>
                         </div>
@@ -1390,6 +1578,7 @@
                                             setBillCustomerPhone('');
                                             setBillCustomerAddress('');
                                             setBillDelivery('Store Walk-in');
+                          
                                             setBillCourier('');
                                             setBillTracking('');
                                             setBillItems([]);
@@ -1455,6 +1644,9 @@
                                     </h1>
                                 </div>
                                 <div className="flex items-center gap-2 xl:hidden">
+                                    <a href="index.html" className="bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors border border-green-700 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    </a>
                                     <button onClick={() => setIsAppLocked(true)} className="bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors border border-slate-700 flex items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                                     </button>
@@ -1480,6 +1672,10 @@
                                         Install App
                                     </button>
                                 )}
+                                <a href="index.html" className="bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors border border-green-700 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    Billing
+                                </a>
                                 <button onClick={() => setIsAppLocked(true)} className="bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors border border-slate-700 flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                                     Lock
@@ -2131,7 +2327,22 @@
                                                 {awaitingTrackingFor ? `Scan Tracking For: ${awaitingTrackingFor.id}` : `Scan Order QR Code`}
                                             </h3>
                                             
-                                            <div id="reader" className="w-full rounded-2xl overflow-hidden min-h-[250px] shadow-sm bg-white relative"></div>
+                                            <div className="w-full rounded-2xl overflow-hidden min-h-[280px] shadow-sm bg-white relative border border-slate-200">
+                                                <div id="reader" className="w-full min-h-[280px]"></div>
+                                            </div>
+
+                                            {scannerStatus && <p className="mt-3 text-center text-xs font-semibold text-slate-500">{scannerStatus}</p>}
+                                            {scannerError && (
+                                                <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700 text-center">
+                                                    {scannerError}
+                                                </div>
+                                            )}
+
+                                            <div className="mt-4 flex gap-2">
+                                                <button type="button" onClick={() => { setScannerError(''); setScannerStatus('Retrying camera...'); void startScanner(); }} className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50">
+                                                    Retry Camera
+                                                </button>
+                                            </div>
 
                                             <div className="mt-8 border-t border-slate-200 pt-6">
                                                 <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
@@ -2282,6 +2493,14 @@
                                             </div>
                                             <button onClick={updateAuth} className="w-full md:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-6 rounded-xl transition-colors shadow-sm text-sm">
                                                 Update Security
+                                            </button>
+                                        </div>
+                                        <div className="mt-5 flex flex-col md:flex-row gap-5 items-end">
+                                            <div className="flex-1 w-full">
+                                                <ModernInput label="Billing Code" type="text" value={newBillingCode} onChange={e=>setNewBillingCode(e.target.value)} className="bg-white" />
+                                            </div>
+                                            <button onClick={updateBillingCode} className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition-colors shadow-sm text-sm">
+                                                Update Billing Code
                                             </button>
                                         </div>
                                     </div>
