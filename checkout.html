@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto object-contain">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Opening Soon Banner -->
+    <div id="openingBanner" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-4 shadow-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex-1">
+                <h3 class="font-bold text-lg mb-1">🎉 Sportswear Store Opening Soon!</h3>
+                <p class="text-sm">Shop No. 2, Opposite Post Office, Pakkirithakka, Tirupathur Main Road, Jolarpattai – 635853</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Shop+No.+2,+Opposite+Post+Office,+Pakkirithakka,+Tirupathur+Main+Road,+Jolarpattai+635853" target="_blank" rel="noopener noreferrer" class="bg-white text-red-600 font-bold px-4 py-2 rounded hover:bg-gray-100 transition text-sm">
+                    View on Map
+                </a>
+                <button onclick="closeBanner()" class="text-white hover:text-gray-200 text-xl font-bold">
+                    ✕
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8">Checkout</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Checkout Form -->
+                <div class="md:col-span-2">
+                    <form id="checkoutForm" class="bg-white rounded-lg shadow-md p-6 space-y-6">
+                        <!-- Customer Information -->
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">Delivery Address</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-medium mb-2">Full Name *</label>
+                                    <input type="text" id="fullName" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">Mobile Number *</label>
+                                    <input type="tel" id="mobile" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">Email *</label>
+                                    <input type="email" id="email" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">Pincode *</label>
+                                    <input type="text" id="pincode" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label class="block font-medium mb-2">Address *</label>
+                                <textarea id="address" required rows="3" class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                <div>
+                                    <label class="block font-medium mb-2">City *</label>
+                                    <input type="text" id="city" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block font-medium mb-2">State *</label>
+                                    <input type="text" id="state" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label class="block font-medium mb-2">Order Notes (Optional)</label>
+                                <textarea id="orderNotes" rows="2" class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Payment Information -->
+                        <div class="border-t pt-6">
+                            <h2 class="text-2xl font-bold mb-4">UPI Payment</h2>
+                            
+                            <div class="bg-blue-50 p-4 rounded mb-4">
+                                <p class="text-sm text-gray-700 mb-2"><strong>Pay to:</strong> 9360232991@okbizaxis</p>
+                                <p class="text-sm text-gray-700"><strong>Enter the UTR number below after payment</strong></p>
+                            </div>
+
+                            <div>
+                                <label class="block font-medium mb-2">UTR Number *</label>
+                                <input type="text" id="utrNumber" required placeholder="Enter the 12-digit UTR from your payment"
+                                       class="w-full border border-gray-300 rounded px-3 py-2">
+                            </div>
+
+                            <div class="mt-4">
+                                <label class="block font-medium mb-2">Payment Screenshot (Optional)</label>
+                                <input type="file" id="paymentScreenshot" accept="image/jpeg,image/png,image/webp"
+                                       class="w-full border border-gray-300 rounded px-3 py-2">
+                                <p class="text-xs text-gray-500 mt-1">Supported formats: JPG, PNG, WEBP (Max 5MB)</p>
+                            </div>
+                        </div>
+
+                        <!-- QR Code -->
+                        <div class="bg-gray-100 p-6 rounded text-center">
+                            <p class="font-bold mb-4">Scan QR Code to Pay</p>
+                            <img id="qrCode" src="" alt="UPI QR Code" class="w-48 h-48 mx-auto">
+                        </div>
+
+                        <button type="submit" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 rounded transition">
+                            Place Order
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="bg-white rounded-lg shadow-md p-6 h-fit">
+                    <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                    <div id="orderSummary" class="space-y-3 mb-6 border-b pb-4">
+                        <!-- Items will be loaded here -->
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold">Total:</span>
+                        <span class="text-2xl font-bold text-purple-700">₹<span id="totalAmount">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function closeBanner() {
+            document.getElementById('openingBanner').style.display = 'none';
+        }
+    </script>
+
+    <script type="module">
+        import { initFirebase, createOrder } from './firebase-init.js';
+
+        // Initialize Firebase
+        await initFirebase();
+
+        // Generate UPI QR code
+        function generateQRCode() {
+            const upiLink = "upi://pay?pa=9360232991@okbizaxis&pn=LookStylo&tr=LookStylo";
+            const encodedUpi = encodeURIComponent(upiLink);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUpi}`;
+            document.getElementById('qrCode').src = qrUrl;
+        }
+
+        // Load cart and display items
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const summaryDiv = document.getElementById('orderSummary');
+            const totalSpan = document.getElementById('totalAmount');
+
+            let total = 0;
+            let html = '';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                html += `
+                    <div class="text-sm border-b pb-2 mb-2">
+                        <p class="font-medium">${item.name}</p>
+                        <p class="text-gray-600 text-xs">Size: ${item.size} | Color: ${item.color}</p>
+                        <p class="text-gray-600">₹${item.price} x ${item.quantity} = ₹${itemTotal}</p>
+                    </div>
+                `;
+            });
+
+            summaryDiv.innerHTML = html || '<p class="text-gray-500">No items in cart</p>';
+            totalSpan.textContent = total.toFixed(2);
+        }
+
+        // Handle form submission
+        document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            // Get form data
+            const orderData = {
+                fullName: document.getElementById('fullName').value,
+                mobile: document.getElementById('mobile').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                orderNotes: document.getElementById('orderNotes').value,
+                utrNumber: document.getElementById('utrNumber').value,
+                cartItems: cart,
+                totalAmount: cart.reduce((total, item) => total + (item.price * item.quantity), 0)
+            };
+
+            // Handle screenshot upload if provided
+            const fileInput = document.getElementById('paymentScreenshot');
+            if (fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                
+                // Validate file
+                const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Invalid file format. Please upload JPG, PNG, or WEBP');
+                    return;
+                }
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File too large. Maximum size is 5MB');
+                    return;
+                }
+
+                // Convert to base64
+                const reader = new FileReader();
+                reader.onload = async (event) => {
+                    orderData.paymentScreenshot = event.target.result;
+                    await submitOrder(orderData);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                await submitOrder(orderData);
+            }
+        });
+
+        async function submitOrder(orderData) {
+            try {
+                const result = await createOrder(orderData);
+                if (result.success) {
+                    // Clear cart
+                    localStorage.removeItem('cart');
+                    // Redirect to success page
+                    window.location.href = `order-success.html?order=${result.orderId}`;
+                } else {
+                    alert('Error creating order: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Generate QR code on load
+        generateQRCode();
+        loadOrderSummary();
+    </script>
+</body>
+</html>

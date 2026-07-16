@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto object-contain">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
+                    <a href="shop.html" class="text-gray-700 hover:text-purple-700 font-medium">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Track Order Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8 text-center">Track Your Order</h1>
+
+            <!-- Search Form -->
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <form id="trackForm" class="space-y-4">
+                    <div>
+                        <label class="block font-medium mb-2">Order ID *</label>
+                        <input type="text" id="orderId" placeholder="e.g., LS202600001" required
+                               class="w-full border border-gray-300 rounded px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-2">Mobile Number *</label>
+                        <input type="tel" id="mobile" placeholder="Your registered mobile number" required
+                               class="w-full border border-gray-300 rounded px-4 py-2">
+                    </div>
+                    <button type="submit" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 rounded transition">
+                        Search Order
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Result -->
+            <div id="orderResult" class="hidden bg-white rounded-lg shadow-md p-8">
+                <h2 class="text-2xl font-bold mb-6" id="resultTitle">Order Found</h2>
+
+                <!-- Order Info -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-gray-600 text-sm">Order ID</p>
+                            <p class="font-bold text-lg" id="resultOrderId"></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm">Order Date</p>
+                            <p class="font-bold text-lg" id="resultDate"></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Amount</p>
+                            <p class="font-bold text-lg text-purple-700" id="resultAmount"></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm">Current Status</p>
+                            <p class="font-bold text-lg" id="resultStatus"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Timeline -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-lg mb-4">Order Timeline</h3>
+                    <div id="timeline" class="space-y-4">
+                        <!-- Timeline items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-lg mb-4">Items in Order</h3>
+                    <div id="itemsList" class="space-y-3">
+                        <!-- Items will be loaded here -->
+                    </div>
+                </div>
+
+                <button onclick="resetForm()" class="w-full bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 rounded transition">
+                    Search Another Order
+                </button>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorResult" class="hidden bg-red-50 border border-red-200 rounded-lg p-8 text-center">
+                <p class="text-red-700 font-bold text-lg" id="errorMessage"></p>
+                <button onclick="resetForm()" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        import { initFirebase, trackOrder } from './firebase-init.js';
+
+        // Initialize Firebase
+        await initFirebase();
+
+        // Handle form submission
+        document.getElementById('trackForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const orderId = document.getElementById('orderId').value;
+            const mobile = document.getElementById('mobile').value;
+
+            try {
+                const result = await trackOrder(orderId, mobile);
+
+                if (result.success && result.order) {
+                    displayOrder(result.order);
+                } else {
+                    showError('Order not found. Please check your Order ID and mobile number.');
+                }
+            } catch (error) {
+                showError('Error tracking order: ' + error.message);
+            }
+        });
+
+        function displayOrder(order) {
+            document.getElementById('trackForm').parentElement.style.display = 'none';
+            document.getElementById('errorResult').classList.add('hidden');
+            document.getElementById('orderResult').classList.remove('hidden');
+
+            document.getElementById('resultOrderId').textContent = order.orderId;
+            document.getElementById('resultDate').textContent = new Date(order.createdAt).toLocaleDateString();
+            document.getElementById('resultAmount').textContent = '₹' + order.totalAmount;
+            document.getElementById('resultStatus').textContent = order.status;
+
+            // Display timeline
+            let timelineHtml = '';
+            order.timeline.forEach((entry, index) => {
+                const isActive = index === order.timeline.length - 1;
+                timelineHtml += `
+                    <div class="flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="w-4 h-4 rounded-full ${isActive ? 'bg-purple-700' : 'bg-gray-300'}"></div>
+                            ${index < order.timeline.length - 1 ? '<div class="w-1 h-12 bg-gray-300"></div>' : ''}
+                        </div>
+                        <div>
+                            <p class="font-bold">${entry.status}</p>
+                            <p class="text-sm text-gray-600">${new Date(entry.date).toLocaleDateString()}</p>
+                            <p class="text-sm text-gray-600">${entry.note}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('timeline').innerHTML = timelineHtml;
+
+            // Display items
+            let itemsHtml = '';
+            order.items.forEach(item => {
+                itemsHtml += `
+                    <div class="border-b pb-3">
+                        <p class="font-bold">${item.productName}</p>
+                        <p class="text-sm text-gray-600">Size: ${item.size} | Color: ${item.color}</p>
+                        <p class="text-sm">Qty: ${item.quantity} x ₹${item.price}</p>
+                    </div>
+                `;
+            });
+            document.getElementById('itemsList').innerHTML = itemsHtml;
+        }
+
+        function showError(message) {
+            document.getElementById('trackForm').parentElement.style.display = 'none';
+            document.getElementById('orderResult').classList.add('hidden');
+            document.getElementById('errorResult').classList.remove('hidden');
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        window.resetForm = function() {
+            document.getElementById('trackForm').reset();
+            document.getElementById('trackForm').parentElement.style.display = 'block';
+            document.getElementById('orderResult').classList.add('hidden');
+            document.getElementById('errorResult').classList.add('hidden');
+        };
+    </script>
+</body>
+</html>

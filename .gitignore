@@ -1,19 +1,70 @@
-# Dependencies
-node_modules/
-npm-debug.log
-yarn-error.log
+# Git ignore file for Lookstylo Fashion Repository
+# Files and folders to exclude from version control
 
-# IDE
-.vscode/
-.idea/
+# OS files
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
 *~
-.DS_Store
 
-# OS
-Thumbs.db
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
+.project
+.classpath
+.c9/
+.settings/
+*.sublime-workspace
 
-# Backups
-*_backup.html
+# Node/NPM (if used in future)
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+*.min.js
+*.min.css
+
+# OS backups
 *.bak
+*.backup
+*.tmp
+.temp/
+
+# Cloud sync files
+desktop.ini
+.cloud
+
+# Backup files
+*.backup
+*.bck
+*_backup
+old_*
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+temp/
+tmp/
+cache/
+.cache/
+
+# IDE Generated
+.eslintignore
+.prettierignore
+
+# GitHub specific
+.github/workflows/build.yml
+
+# Keep only source files, images, and HTML
+# All other file types should be explicitly included

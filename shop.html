@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto object-contain">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-purple-700 font-medium">Cart (<span id="cartCount">0</span>)</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Opening Soon Banner -->
+    <div id="openingBanner" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-4 shadow-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex-1">
+                <h3 class="font-bold text-lg mb-1">🎉 Sportswear Store Opening Soon!</h3>
+                <p class="text-sm">Shop No. 2, Opposite Post Office, Pakkirithakka, Tirupathur Main Road, Jolarpattai – 635853</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Shop+No.+2,+Opposite+Post+Office,+Pakkirithakka,+Tirupathur+Main+Road,+Jolarpattai+635853" target="_blank" rel="noopener noreferrer" class="bg-white text-red-600 font-bold px-4 py-2 rounded hover:bg-gray-100 transition text-sm">
+                    View on Map
+                </a>
+                <button onclick="closeBanner()" class="text-white hover:text-gray-200 text-xl font-bold">
+                    ✕
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Section -->
+    <section id="products" class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-4xl font-bold mb-12 text-center">Our Collections</h1>
+            
+            <!-- Products Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function closeBanner() {
+            document.getElementById('openingBanner').style.display = 'none';
+        }
+    </script>
+
+    <script type="module">
+        import { initFirebase, getProducts } from './firebase-init.js';
+
+        // Hardcoded products (fallback)
+        const defaultProducts = [
+            {
+                id: 1,
+                name: "Premium Oversized T-Shirt",
+                slug: "premium-oversized-tshirt",
+                price: 499,
+                image: "IMG101.jpeg",
+                description: "High-quality oversized t-shirt perfect for streetwear",
+                category: "t-shirts"
+            },
+            {
+                id: 2,
+                name: "Baggy T-Shirt Black",
+                slug: "baggy-tshirt-black",
+                price: 599,
+                image: "IMG102.jpeg",
+                description: "Trendy baggy fit t-shirt in black",
+                category: "t-shirts"
+            },
+            {
+                id: 3,
+                name: "Football Jersey",
+                slug: "football-jersey",
+                price: 799,
+                image: "IMG103.jpeg",
+                description: "Sports-style football jersey",
+                category: "jerseys"
+            },
+            {
+                id: 4,
+                name: "Track Pants",
+                slug: "track-pants",
+                price: 899,
+                image: "IMG104.jpeg",
+                description: "Comfortable track pants with jogger style",
+                category: "pants"
+            }
+        ];
+
+        // Initialize Firebase (optional)
+        try {
+            await initFirebase();
+        } catch (e) {
+            console.log('Firebase not configured, using local products');
+        }
+
+        // Load and display cart items
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            defaultProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/250x200/301040/ffffff?text=${encodeURIComponent(product.name)}'">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4">${product.description}</p>
+                        <p class="text-purple-700 font-bold text-xl mb-4">₹${product.price}</p>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Size</label>
+                                <select class="w-full border border-gray-300 rounded px-3 py-2 size-select text-sm">
+                                    <option value="S">Small (S)</option>
+                                    <option value="M" selected>Medium (M)</option>
+                                    <option value="L">Large (L)</option>
+                                    <option value="XL">Extra Large (XL)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Color</label>
+                                <select class="w-full border border-gray-300 rounded px-3 py-2 color-select text-sm">
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Maroon">Maroon</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 rounded transition add-to-cart-btn" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+
+            // Add event listeners to all add to cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', addToCart);
+            });
+        }
+
+        // Add to cart function
+        function addToCart(e) {
+            const btn = e.target;
+            const productId = parseInt(btn.dataset.productId);
+            const productName = btn.dataset.productName;
+            const productPrice = parseInt(btn.dataset.productPrice);
+            
+            const card = btn.closest('.bg-white');
+            const size = card.querySelector('.size-select').value;
+            const color = card.querySelector('.color-select').value;
+
+            // Get existing cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            // Check if item already exists with same size and color
+            const existingItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    size: size,
+                    color: color,
+                    quantity: 1
+                });
+            }
+
+            // Save cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            // Show success message
+            btn.textContent = '✓ Added to Cart';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = 'Add to Cart';
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        // Load products on page load
+        loadProducts();
+        updateCartCount();
+
+        // Update cart count every second (for multiple tabs)
+        setInterval(updateCartCount, 1000);
+    </script>
+</body>
+</html>

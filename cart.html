@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto object-contain">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
+                    <a href="shop.html" class="text-gray-700 hover:text-purple-700 font-medium">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Opening Soon Banner -->
+    <div id="openingBanner" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-4 shadow-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex-1">
+                <h3 class="font-bold text-lg mb-1">🎉 Sportswear Store Opening Soon!</h3>
+                <p class="text-sm">Shop No. 2, Opposite Post Office, Pakkirithakka, Tirupathur Main Road, Jolarpattai – 635853</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Shop+No.+2,+Opposite+Post+Office,+Pakkirithakka,+Tirupathur+Main+Road,+Jolarpattai+635853" target="_blank" rel="noopener noreferrer" class="bg-white text-red-600 font-bold px-4 py-2 rounded hover:bg-gray-100 transition text-sm">
+                    View on Map
+                </a>
+                <button onclick="closeBanner()" class="text-white hover:text-gray-200 text-xl font-bold">
+                    ✕
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8">Shopping Cart</h1>
+            
+            <!-- Cart Items -->
+            <div id="cartItems" class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <!-- Cart items will be loaded here -->
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <span class="text-xl font-bold">Total:</span>
+                    <span class="text-3xl font-bold text-purple-700">₹<span id="cartTotal">0</span></span>
+                </div>
+                
+                <div class="space-y-3">
+                    <button onclick="continueShopping()" class="w-full bg-gray-300 hover:bg-gray-400 text-black font-bold py-3 rounded transition">
+                        Continue Shopping
+                    </button>
+                    <button onclick="proceedToCheckout()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 rounded transition">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function closeBanner() {
+            document.getElementById('openingBanner').style.display = 'none';
+        }
+
+        // Load and display cart items
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p class="text-center text-gray-500 py-8">Your cart is empty</p>';
+                cartTotalSpan.textContent = '0';
+                return;
+            }
+
+            let total = 0;
+            let html = '<div class="space-y-4">';
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                html += `
+                    <div class="flex items-center justify-between border-b pb-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg">${item.name}</h3>
+                            <p class="text-gray-600 text-sm">Size: ${item.size} | Color: ${item.color}</p>
+                            <p class="text-purple-700 font-bold">₹${item.price} x ${item.quantity} = ₹${itemTotal}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)" 
+                                   class="w-16 border border-gray-300 rounded px-2 py-1">
+                            <button onclick="removeFromCart(${index})" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            cartItemsDiv.innerHTML = html;
+            cartTotalSpan.textContent = total.toFixed(2);
+        }
+
+        window.updateQuantity = function(index, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const qty = parseInt(newQuantity);
+
+            if (qty > 0) {
+                cart[index].quantity = qty;
+            } else {
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        };
+
+        window.removeFromCart = function(index) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        };
+
+        window.continueShopping = function() {
+            window.location.href = 'shop.html';
+        };
+
+        window.proceedToCheckout = function() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            window.location.href = 'checkout.html';
+        };
+
+        // Load cart on page load
+        loadCart();
+    </script>
+</body>
+</html>

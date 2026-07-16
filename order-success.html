@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto object-contain">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
+                    <a href="shop.html" class="text-gray-700 hover:text-purple-700 font-medium">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Pop-up Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full transform transition-all animate-scale-in">
+            <div class="text-center">
+                <!-- Celebration Animation -->
+                <div class="mb-6 flex justify-center">
+                    <div class="relative w-24 h-24">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center animate-bounce">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <h2 class="text-3xl font-bold text-green-600 mb-2">🎉 Success!</h2>
+                <p class="text-gray-600 mb-6">Your order has been placed successfully!</p>
+
+                <!-- Order ID Display -->
+                <div class="bg-purple-50 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-gray-600 mb-2">Order ID</p>
+                    <p id="modalOrderId" class="text-2xl font-bold text-purple-700 break-all">Loading...</p>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-left">
+                    <h3 class="font-bold text-sm mb-2">✓ What's Next?</h3>
+                    <ul class="text-xs text-gray-700 space-y-1">
+                        <li>✓ Payment will be verified within 24 hours</li>
+                        <li>✓ You'll receive order updates via WhatsApp</li>
+                        <li>✓ Track your order anytime using your Order ID</li>
+                    </ul>
+                </div>
+
+                <!-- Buttons -->
+                <div class="space-y-3">
+                    <a href="track-order.html" class="block w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 rounded-lg transition">
+                        Track Order
+                    </a>
+                    <a href="shop.html" class="block w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 rounded-lg transition">
+                        Continue Shopping
+                    </a>
+                    <button onclick="closeModal()" class="w-full text-gray-600 hover:text-gray-800 font-medium py-2">
+                        ✕ Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <div class="mb-6">
+                    <div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <h1 class="text-4xl font-bold mb-4 text-green-600">Order Placed Successfully!</h1>
+                <p class="text-gray-600 mb-8">Thank you for your order. We'll verify your payment and process your order soon.</p>
+
+                <!-- Order Details -->
+                <div id="orderDetails" class="bg-gray-50 rounded-lg p-6 mb-8 text-left">
+                    <h2 class="text-xl font-bold mb-4">Order Details</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-medium">Order ID:</span>
+                            <span id="orderId" class="text-purple-700 font-bold">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">Total Amount:</span>
+                            <span id="totalAmount" class="text-purple-700 font-bold">₹0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">Status:</span>
+                            <span class="text-orange-600 font-bold">Payment Verification Pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 text-left">
+                    <h3 class="font-bold text-lg mb-3">What's Next?</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-sm">
+                        <li>We've received your order and payment details</li>
+                        <li>Our team will verify your payment within 24 hours</li>
+                        <li>Once verified, your order will be shipped</li>
+                        <li>You can track your order anytime using your Order ID and mobile number</li>
+                    </ol>
+                </div>
+
+                <!-- Track Order Link -->
+                <div class="mb-8">
+                    <a href="track-order.html" class="inline-block bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 px-8 rounded transition">
+                        Track Your Order
+                    </a>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="text-sm text-gray-600">
+                    <p>Questions? Contact us at</p>
+                    <p class="font-bold"><a href="tel:+918680857511">+91 8680 857 511</a> or <a href="https://wa.me/c/918680857511" class="text-green-600">WhatsApp</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Close modal
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // Get order ID from URL and display it
+        function loadOrderDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('order');
+
+            if (orderId) {
+                document.getElementById('orderId').textContent = orderId;
+                document.getElementById('modalOrderId').textContent = orderId;
+            } else {
+                document.getElementById('orderId').textContent = 'Unknown';
+                document.getElementById('modalOrderId').textContent = 'Unknown';
+            }
+        }
+
+        loadOrderDetails();
+
+        // Close modal when clicking outside
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Auto-show modal on load (already visible by default)
+        window.addEventListener('load', function() {
+            document.getElementById('successModal').style.display = 'flex';
+        });
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.4s ease-out;
+        }
+    </style>
+</body>
+</html>

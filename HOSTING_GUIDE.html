@@ -135,6 +135,28 @@
         .badge.ready {
             background: #10b981;
         }
+        .header {
+            position: relative;
+        }
+        .admin-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1f2937;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .admin-btn:hover {
+            background: #111827;
+        }
     </style>
 </head>
 <body>
@@ -142,6 +164,7 @@
         <div class="header">
             <h1>🚀 Lookstylo Fashion</h1>
             <p>GitHub Hosting Ready - Complete Deployment Guide</p>
+            <a href="admin.html" class="admin-btn" title="Admin Dashboard">⚙️ Admin</a>
         </div>
 
         <div class="content">
