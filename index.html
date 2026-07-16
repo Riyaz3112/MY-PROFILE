@@ -29,7 +29,7 @@
     <!-- Tailwind CSS via CDN -->
     <script defer src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons via CDN -->
+    <!-- Icon rendering -->
     <script defer src="https://unpkg.com/lucide@latest"></script>
 
     <script type="application/ld+json">
@@ -159,10 +159,9 @@
                     <a href="#home" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Home</a>
                     <a href="#products" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Products</a>
                     <a href="#locations" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Locations</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Reviews</a>
-                    <a href="#internship" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Internship</a>
-                    <a href="#business-card" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Business Card</a>
                     <a href="#contact" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Contact</a>
+                    <a href="shop.html" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Shop</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-purple-700 font-medium transition text-sm lg:text-base">Cart</a>
                     <a 
                         href="https://wa.me/c/918680857511" 
                         target="_blank" 
@@ -199,13 +198,30 @@
             <a href="#home" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Home</a>
             <a href="#products" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Products</a>
             <a href="#locations" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Locations</a>
-            <a href="#reviews" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Reviews</a>
-            <a href="#internship" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Internship</a>
-            <a href="#business-card" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Business Card</a>
             <a href="#contact" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Contact</a>
+            <a href="shop.html" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Shop</a>
+            <a href="cart.html" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Cart</a>
             <a href="admin.html" class="block px-3 py-2 text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-900 rounded-md" onclick="toggleMenu()">Admin</a>
         </div>
     </nav>
+
+    <!-- Opening Soon Banner -->
+    <div id="openingBanner" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-4 shadow-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-3">
+            <div class="flex-1 min-w-[200px]">
+                <h3 class="font-bold text-lg mb-1">🎉 Sportswear Store Opening Soon!</h3>
+                <p class="text-sm">Shop No. 2, Opposite Post Office, Pakkirithakka, Tirupathur Main Road, Jolarpattai – 635853</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Shop+No.+2,+Opposite+Post+Office,+Pakkirithakka,+Tirupathur+Main+Road,+Jolarpattai+635853" target="_blank" rel="noopener noreferrer" class="bg-white text-red-600 font-bold px-4 py-2 rounded hover:bg-gray-100 transition text-sm whitespace-nowrap">
+                    View on Map
+                </a>
+                <button onclick="closeBanner()" class="text-white hover:text-gray-200 text-xl font-bold">
+                    ✕
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="relative bg-[#301040] text-white py-20 lg:py-32 overflow-hidden">
@@ -378,7 +394,7 @@
                         <div class="mb-8">
                             <div class="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-2.5 rounded-xl font-bold tracking-wide border border-gray-200 shadow-sm">
                                 <i data-lucide="palette" class="text-[#301040]" width="20" height="20"></i>
-                                7 COLOURS AVAILABLE
+                                10 COLOURS AVAILABLE
                             </div>
                         </div>
 
@@ -1128,9 +1144,69 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // Initialize Lucide Icons
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-            window.lucide.createIcons();
+        function renderFallbackIcons() {
+            const iconMap = {
+                'message-circle': '<path d="M21 11.5a8.56 8.56 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.2 8.56 8.56 0 0 1-3.8-.9L3 21l1.4-6.4A8.56 8.56 0 0 1 4.5 7.9a8.5 8.5 0 0 1 5.2-7.6 8.56 8.56 0 0 1 3.8-.9h.7A8.5 8.5 0 0 1 21 11.5z"></path>',
+                'settings': '<circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 0 1 0 2.8 2 2 0 0 1-2.8 0l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 0 1-2.8 0 2 2 0 0 1 0-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 0 1 0-2.8 2 2 0 0 1 2.8 0l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 0 1 2.8 0 2 2 0 0 1 0 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.2a1.7 1.7 0 0 0-1.5 1z"></path>',
+                'menu': '<line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line>',
+                'palette': '<path d="M12 3a9 9 0 0 0 0 18h.3a1.5 1.5 0 0 0 1.4-2.1 1.6 1.6 0 0 1 .2-1.6 1.6 1.6 0 0 1 1.4-.7H20a9 9 0 0 0-8-9z"></path><path d="M9 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path><path d="M9 17a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path><path d="M15 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path><path d="M15 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>',
+                'layers': '<path d="M12 2 3 7l9 5 9-5-9-5z"></path><path d="m3 12 9 5 9-5"></path><path d="m3 17 9 5 9-5"></path>',
+                'shopping-cart': '<circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 3h2l2.4 8.4a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L17.5 6H7"></path>',
+                'arrow-right': '<line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>',
+                'shirt': '<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.35l.84 4.14a1 1 0 0 0 .95.75H6v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-9h2.93a1 1 0 0 0 .95-.75l.84-4.14a2 2 0 0 0-1.34-2.35z"></path>',
+                'users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
+                'briefcase': '<rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>',
+                'check-circle-2': '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>',
+                'upload-cloud': '<path d="M12 12v8"></path><path d="m16 16-4-4-4 4"></path><path d="M4 18v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"></path><path d="M12 10a4 4 0 0 1 4 4"></path><path d="M8 14a4 4 0 0 1 4-4"></path>',
+                'store': '<path d="m2 7 10-5 10 5"></path><path d="M4 10v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10"></path><path d="M9 21v-6h6v6"></path>',
+                'map-pin': '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle>',
+                'navigation': '<path d="m3 11 19-8-8 19-2-7-9-4z"></path>',
+                'star': '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01L12 2z"></path>',
+                'quote': '<path d="M7 7h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm7 0h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"></path>',
+                'map': '<path d="M3 6.5 9 3l6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15"></path><path d="M15 6v15"></path>',
+                'phone': '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>',
+                'send': '<path d="M22 2 11 13"></path><path d="M22 2 15 22 11 13 2 9 22 2Z"></path>',
+                'mail': '<rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>'
+            };
+
+            document.querySelectorAll('i[data-lucide]').forEach((iconElement) => {
+                const name = iconElement.getAttribute('data-lucide');
+                const pathMarkup = iconMap[name];
+                if (!pathMarkup) return;
+
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('viewBox', '0 0 24 24');
+                svg.setAttribute('width', iconElement.getAttribute('width') || iconElement.getAttribute('data-width') || '20');
+                svg.setAttribute('height', iconElement.getAttribute('height') || iconElement.getAttribute('data-height') || '20');
+                svg.setAttribute('fill', name === 'star' ? 'currentColor' : 'none');
+                svg.setAttribute('stroke', name === 'star' ? 'none' : 'currentColor');
+                svg.setAttribute('stroke-width', '2');
+                svg.setAttribute('stroke-linecap', 'round');
+                svg.setAttribute('stroke-linejoin', 'round');
+                svg.setAttribute('aria-hidden', 'true');
+                svg.setAttribute('class', iconElement.getAttribute('class') || '');
+                svg.style.display = 'inline-block';
+                svg.style.verticalAlign = 'middle';
+                svg.innerHTML = pathMarkup;
+                iconElement.replaceWith(svg);
+            });
+        }
+
+        function initializeIcons() {
+            try {
+                if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                    window.lucide.createIcons();
+                }
+            } catch (error) {
+                console.warn('Lucide failed to initialize, using fallback icons.', error);
+            }
+            renderFallbackIcons();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeIcons);
+        } else {
+            initializeIcons();
         }
 
         // Set the current year in the footer
@@ -1141,6 +1217,11 @@
 
         function sanitizeInput(value) {
             return String(value || '').replace(/[<>]/g, '').trim();
+        }
+
+        // Close Opening Soon Banner
+        function closeBanner() {
+            document.getElementById('openingBanner').style.display = 'none';
         }
 
         // Mobile Menu Toggle Logic
