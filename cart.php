@@ -19,7 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 
     if ($_POST['action'] === 'update') {
-        updateCartQuantity($pdo, (int) ($_POST['cart_id'] ?? 0), (int) ($_POST['quantity'] ?? 1));
+        $cartId = (int) ($_POST['cart_id'] ?? 0);
+        $size = sanitizeInput($_POST['size'] ?? 'M');
+        $color = sanitizeInput($_POST['color'] ?? 'Black');
+        $quantity = max(1, (int) ($_POST['quantity'] ?? 1));
+        // update size/color/quantity together
+        updateCartItem($pdo, $cartId, $quantity, $size, $color);
         header('Location: cart.php');
         exit;
     }
@@ -62,6 +67,18 @@ include __DIR__ . '/includes/header.php';
                                     <input type="hidden" name="csrf_token" value="<?php echo csrfToken(); ?>">
                                     <input type="hidden" name="action" value="update">
                                     <input type="hidden" name="cart_id" value="<?php echo (int) $item['cart_id']; ?>">
+                                    <label class="text-sm text-gray-500">Size</label>
+                                    <select name="size" class="rounded-xl border border-gray-300 px-3 py-2 text-sm">
+                                        <option value="M" <?php echo ($item['size'] === 'M') ? 'selected' : ''; ?>>M</option>
+                                        <option value="L" <?php echo ($item['size'] === 'L') ? 'selected' : ''; ?>>L</option>
+                                        <option value="XL" <?php echo ($item['size'] === 'XL') ? 'selected' : ''; ?>>XL</option>
+                                    </select>
+                                    <label class="text-sm text-gray-500">Color</label>
+                                    <select name="color" class="rounded-xl border border-gray-300 px-3 py-2 text-sm">
+                                        <option value="Black" <?php echo ($item['color'] === 'Black') ? 'selected' : ''; ?>>Black</option>
+                                        <option value="White" <?php echo ($item['color'] === 'White') ? 'selected' : ''; ?>>White</option>
+                                        <option value="Maroon" <?php echo ($item['color'] === 'Maroon') ? 'selected' : ''; ?>>Maroon</option>
+                                    </select>
                                     <label class="text-sm text-gray-500">Qty</label>
                                     <input type="number" name="quantity" value="<?php echo (int) $item['quantity']; ?>" min="1" class="w-20 rounded-xl border border-gray-300 px-3 py-2 text-sm">
                                     <button class="rounded-full border border-gray-300 px-3 py-2 text-sm">Update</button>

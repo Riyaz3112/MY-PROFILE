@@ -5,8 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - LookStylo Clothing</title>
     <script defer src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f8fafc;
+            color: #111827;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; min-height: 100vh; }
+        img { max-width: 100%; display: block; }
+        a { color: #4f46e5; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        button { font: inherit; cursor: pointer; }
+        nav { background: #ffffff; box-shadow: 0 10px 15px rgba(15, 23, 42, 0.08); position: sticky; top: 0; z-index: 50; }
+        .container { width: min(1120px, 100%); margin: 0 auto; padding: 0 1rem; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 5rem; }
+        .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+        .nav-links a { color: #374151; font-weight: 600; }
+        .banner { background: linear-gradient(90deg, #f97316, #ef4444); color: #ffffff; padding: 1rem; }
+        .banner-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; width: min(1120px, 100%); margin: 0 auto; padding: 0 1rem; }
+        .banner button { border: none; background: transparent; color: #ffffff; font-size: 1.35rem; line-height: 1; }
+        .page-section { padding: 3rem 1rem; }
+        .content-wrapper { width: min(960px, 100%); margin: 0 auto; }
+        .card { background: #ffffff; border-radius: 1rem; box-shadow: 0 10px 15px rgba(15, 23, 42, 0.06); padding: 1.5rem; }
+        .card + .card { margin-top: 1.5rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.4; }
+        .text-3xl { font-size: 1.875rem; line-height: 1.2; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-500 { color: #6b7280; }
+        .text-purple-700 { color: #6d28d9; }
+        .bg-white { background: #ffffff; }
+        .bg-gray-50 { background: #f8fafc; }
+        .bg-gray-300 { background: #d1d5db; }
+        .bg-purple-700 { background: #6d28d9; }
+        .bg-purple-800 { background: #5b21b6; }
+        .bg-red-500 { background: #ef4444; }
+        .rounded { border-radius: 0.75rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-lg { border-radius: 1rem; }
+        .shadow-md { box-shadow: 0 10px 15px rgba(15, 23, 42, 0.08); }
+        .shadow-lg { box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1); }
+        .sticky { position: sticky; }
+        .top-0 { top: 0; }
+        .z-50 { z-index: 50; }
+        .max-w-7xl { max-width: 80rem; }
+        .max-w-4xl { max-width: 64rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        @media (min-width: 640px) {
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .pb-4 { padding-bottom: 1rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .border { border: 1px solid #e5e7eb; }
+        .border-b { border-bottom: 1px solid #e5e7eb; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .gap-2 { gap: 0.5rem; }
+        .space-x-4 > :not([hidden]) + :not([hidden]) { margin-left: 1rem; }
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .w-full { width: 100%; }
+        .w-16 { width: 4rem; }
+        .h-20 { height: 5rem; }
+        .h-16 { height: 4rem; }
+        .w-auto { width: auto; }
+        .object-contain { object-fit: contain; }
+        .text-black { color: #111827; }
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-4 { margin-top: 1rem; }
+        .min-h-screen { min-height: 100vh; }
+        .text-center { text-align: center; }
+        .transition { transition: all 0.2s ease-in-out; }
+        .hover\:bg-gray-400:hover { background: #9ca3af; }
+        .hover\:bg-purple-800:hover { background: #5b21b6; }
+        .hover\:bg-red-600:hover { background: #dc2626; }
+        .hover\:text-purple-700:hover { color: #6d28d9; }
+        input[type="number"] { width: 4rem; border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.5rem; }
+        .button-primary { background: #6d28d9; color: #ffffff; border: none; border-radius: 0.75rem; padding: 0.875rem 1rem; font-weight: 700; }
+        .button-secondary { background: #d1d5db; color: #111827; border: none; border-radius: 0.75rem; padding: 0.875rem 1rem; font-weight: 700; }
+        .button-primary:hover { background: #5b21b6; }
+        .button-secondary:hover { background: #9ca3af; }
+        @media (max-width: 768px) {
+            .nav-inner, .banner-inner { flex-direction: column; align-items: stretch; }
+            .nav-links { justify-content: center; }
+            .page-section { padding: 2rem 1rem; }
+        }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-4 { margin-top: 1rem; }
+        .gap-2 { gap: 0.5rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .border { border: 1px solid #e5e7eb; }
+        .border-b { border-bottom: 1px solid #e5e7eb; }
+        .rounded-lg { border-radius: 1rem; }
+        .w-full { width: 100%; }
+        .max-w-4xl { max-width: 64rem; }
+        .min-h-screen { min-height: 100vh; }
+        .text-center { text-align: center; }
+        input[type="number"] { width: 4rem; border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.5rem; }
+        .button-primary { background: #6d28d9; color: #ffffff; border: none; border-radius: 0.75rem; padding: 0.875rem 1rem; font-weight: 700; }
+        .button-secondary { background: #d1d5db; color: #111827; border: none; border-radius: 0.75rem; padding: 0.875rem 1rem; font-weight: 700; }
+        .button-primary:hover { background: #5b21b6; }
+        .button-secondary:hover { background: #9ca3af; }
+        .text-sm { font-size: 0.875rem; }
+        @media (max-width: 768px) {
+            .nav-inner, .banner-inner { flex-direction: column; align-items: stretch; }
+            .nav-links { justify-content: center; }
+            .page-section { padding: 2rem 1rem; }
+        }
+    </style>
 </head>
 <body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+<meta http-equiv="refresh" content="0; url=cart.php">
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,9 +151,11 @@
                 <div class="flex items-center">
                     <img src="slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto object-contain">
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-4">
                     <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
                     <a href="shop.html" class="text-gray-700 hover:text-purple-700 font-medium">Shop</a>
+                    <a href="admin/login.php" class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-full font-medium transition">Admin</a>
+                    <a href="billing.html" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full font-medium transition">Billing App</a>
                 </div>
             </div>
         </div>

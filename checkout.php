@@ -10,7 +10,7 @@ if (empty($items)) {
 }
 
 $total = getCartTotal($items);
-$upiLink = buildUpiQrData();
+$upiLink = buildUpiQrData($total, 'Order payment');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !verifyCsrf($_POST['csrf_token'])) {
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullName = sanitizeInput($_POST['full_name'] ?? '');
     $mobile = sanitizeInput($_POST['mobile'] ?? '');
     $email = sanitizeInput($_POST['email'] ?? '');
+    $password = sanitizeInput($_POST['password'] ?? '');
     $address = sanitizeInput($_POST['address'] ?? '');
     $city = sanitizeInput($_POST['city'] ?? '');
     $state = sanitizeInput($_POST['state'] ?? '');
@@ -30,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     if ($fullName === '') $errors[] = 'Full name is required.';
     if ($mobile === '') $errors[] = 'Mobile number is required.';
+    if ($email === '') $errors[] = 'Email address is required.';
+    if ($password === '') $errors[] = 'Password is required.';
     if ($address === '') $errors[] = 'Address is required.';
     if ($city === '') $errors[] = 'City is required.';
     if ($state === '') $errors[] = 'State is required.';
@@ -40,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['payment_screenshot']) && $_FILES['payment_screenshot']['error'] === UPLOAD_ERR_OK) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
         $file = $_FILES['payment_screenshot'];
-        if (!in_array($file['type'], $allowedTypes, true)) {
+        if (!isValidImageUpload($file, 5 * 1024 * 1024)) {
             $errors[] = 'Only JPG, PNG, or WEBP files are allowed.';
         } elseif ($file['size'] > 5 * 1024 * 1024) {
             $errors[] = 'Payment screenshot must be 5 MB or less.';
@@ -59,10 +62,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $pdo->beginTransaction();
         try {
-            $userStmt = $pdo->prepare('INSERT INTO users (full_name, mobile, email, address, city, state, pincode) VALUES (?, ?, ?, ?, ?, ?, ?)');
-            $userStmt->execute([$fullName, $mobile, $email, $address, $city, $state, $pincode]);
-            $userId = (int) $pdo->lastInsertId();
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $userStmt = $pdo->prepare('SELECT id, password_hash FROM users WHERE mobile = ? OR email = ? LIMIT 1');
+            $userStmt->execute([$mobile, $email]);
+            $existingUser = $userStmt->fetch();
 
+            if ($existingUser) {
+                $userId = (int) $existingUser['id'];
+                if (empty($existingUser['password_hash']) || !password_verify($password, $existingUser['password_hash'])) {
+                    $updateUser = $pdo->prepare('UPDATE users SET password_hash = ?, full_name = ?, address = ?, city = ?, state = ?, pincode = ? WHERE id = ?');
+                    $updateUser->execute([$passwordHash, $fullName, $address, $city, $state, $pincode, $userId]);
+                }
+            } else {
+                $insertUser = $pdo->prepare('INSERT INTO users (full_name, mobile, email, password_hash, address, city, state, pincode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+                $insertUser->execute([$fullName, $mobile, $email, $passwordHash, $address, $city, $state, $pincode]);
+                $userId = (int) $pdo->lastInsertId();
+            }
+
+            $_SESSION['customer_id'] = $userId;
             $orderId = createOrderId($pdo);
             $orderStmt = $pdo->prepare('INSERT INTO orders (order_id, user_id, customer_name, mobile, email, address, city, state, pincode, order_notes, total_amount, utr_number, payment_screenshot, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
             $orderStmt->execute([$orderId, $userId, $fullName, $mobile, $email, $address, $city, $state, $pincode, $orderNotes, $total, $utr, $paymentFileName, 'Payment Verification Pending']);
@@ -81,6 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             clearCart($pdo);
             $pdo->commit();
+            
+            // Send notifications to owner and customer
+            sendOrderNotifications($pdo, $orderIdInt, $orderId, $fullName, $mobile, $email, $total);
+            
             header('Location: order-success.php?order=' . urlencode($orderId));
             exit;
         } catch (Throwable $e) {
@@ -117,9 +138,15 @@ include __DIR__ . '/includes/header.php';
                     <input type="tel" name="mobile" required class="w-full rounded-xl border border-gray-300 px-4 py-3">
                 </div>
             </div>
-            <div>
-                <label class="mb-2 block text-sm font-medium text-gray-700">Email Address</label>
-                <input type="email" name="email" class="w-full rounded-xl border border-gray-300 px-4 py-3">
+            <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" name="email" required class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" name="password" minlength="6" required class="w-full rounded-xl border border-gray-300 px-4 py-3" placeholder="Create a secure password">
+                </div>
             </div>
             <div>
                 <label class="mb-2 block text-sm font-medium text-gray-700">Full Address</label>
@@ -147,19 +174,19 @@ include __DIR__ . '/includes/header.php';
                 <h3 class="text-lg font-semibold text-[#301040]">Free UPI Payment</h3>
                 <p class="mt-2 text-sm text-gray-600">Scan the QR Code or use the UPI ID below to complete your payment. Supported by Google Pay, PhonePe, Paytm, BHIM, Amazon Pay UPI, and all UPI apps.</p>
                 <div class="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
-                    <div class="rounded-2xl bg-white p-4 shadow-sm">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=<?php echo urlencode($upiLink); ?>" alt="UPI QR Code" class="h-40 w-40">
+                        <div class="rounded-2xl bg-white p-4 shadow-sm">
+                        <img id="upiQr" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=<?php echo urlencode($upiLink); ?>" alt="UPI QR Code" class="h-40 w-40">
                     </div>
                     <div class="flex-1">
                         <p class="text-sm font-medium text-gray-700">UPI ID</p>
                         <div class="mt-2 flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700">
-                            <span>9360232991@okbizaxis</span>
+                            <a id="upiLink" href="upi://pay?pa=9360232991@okbizaxis&am=<?php echo number_format($total,2,'.',''); ?>" class="underline">9360232991@okbizaxis</a>
                             <button type="button" class="rounded-full bg-[#301040] px-3 py-1 text-xs font-semibold text-white" data-copy="9360232991@okbizaxis" data-target="copyMessage">Copy</button>
                         </div>
                         <p id="copyMessage" class="mt-2 text-sm text-green-600"></p>
                         <div class="mt-4">
                             <label class="mb-2 block text-sm font-medium text-gray-700">UTR / Transaction ID</label>
-                            <input type="text" name="utr_number" required class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                            <input id="utrInput" type="text" name="utr_number" required class="w-full rounded-xl border border-gray-300 px-4 py-3">
                         </div>
                         <div class="mt-4">
                             <label class="mb-2 block text-sm font-medium text-gray-700">Payment Screenshot (Optional)</label>
