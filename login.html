@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { color-scheme: dark; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; background: linear-gradient(135deg, #7c3aed 0%, #1e293b 100%); color: #fff; }
+        img { max-width: 100%; display: block; }
+        .min-h-screen { min-height: 100vh; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .w-full { width: 100%; }
+        .max-w-md { max-width: 28rem; }
+        .rounded-lg { border-radius: 1rem; }
+        .shadow-2xl { box-shadow: 0 25px 50px rgba(15, 23, 42, 0.35); }
+        .p-8 { padding: 2rem; }
+        .bg-white { background: #ffffff; }
+        .text-gray-900 { color: #111827; }
+        .text-gray-700 { color: #4b5563; }
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .block { display: block; }
+        .w-full { width: 100%; }
+        .rounded { border-radius: 0.75rem; }
+        .border { border: 1px solid #d1d5db; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .hover\:bg-purple-800:hover { background: #6d28d9; }
+        .bg-purple-700 { background: #6d28d9; }
+        .hover\:bg-purple-800:hover { background: #5b21b6; }
+        .text-white { color: #ffffff; }
+        .font-bold { font-weight: 700; }
+        .w-full { width: 100%; }
+        .rounded-full { border-radius: 9999px; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 to-purple-700 flex items-center justify-center px-4">
+    <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
+        <div class="text-center mb-8">
+            <img src="../slazzer-preview-x2n1h.png" alt="Lookstylo Logo" class="h-16 w-auto mx-auto mb-4 object-contain">
+            <h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            <p class="text-gray-600 mt-2">Sign in to manage orders</p>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block font-medium text-gray-700 mb-2">Username</label>
+                <input type="text" id="username" required placeholder="admin"
+                       class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600">
+            </div>
+
+            <div>
+                <label class="block font-medium text-gray-700 mb-2">Password</label>
+                <input type="password" id="password" required placeholder="••••••••"
+                       class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600">
+            </div>
+
+            <button type="submit" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 rounded transition">
+                Sign In
+            </button>
+        </form>
+
+        <div id="errorMessage" class="hidden bg-red-50 border border-red-200 rounded px-4 py-3 mt-4 text-red-700 text-sm"></div>
+    </div>
+
+    <script>
+        window.location.href = 'login.php';
+    </script>
+</body>
+</html>

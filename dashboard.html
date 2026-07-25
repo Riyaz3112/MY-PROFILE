@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LookStylo Clothing</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <!-- Navigation -->
+    <meta http-equiv="refresh" content="0; url=dashboard.php">
+    <p class="p-8 text-center text-lg">Redirecting to the working admin dashboard. <a href="dashboard.php" class="text-purple-700 underline">Click here if not redirected</a>.</p>
+
+    <!-- Dashboard Content -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <p class="text-gray-600 text-sm font-medium">Total Orders</p>
+                    <p class="text-4xl font-bold text-purple-700 mt-2">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <p class="text-gray-600 text-sm font-medium">Pending Verification</p>
+                    <p class="text-4xl font-bold text-orange-600 mt-2">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <p class="text-gray-600 text-sm font-medium">Delivered</p>
+                    <p class="text-4xl font-bold text-green-600 mt-2">0</p>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold">Recent Orders</h2>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Order ID</th>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Customer</th>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Amount</th>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Status</th>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Date</th>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTable" class="divide-y divide-gray-200">
+                            <tr>
+                                <td colspan="6" class="px-6 py-8 text-center text-gray-500">
+                                    Loading orders...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
+                <h3 class="font-bold text-lg mb-3">Admin Instructions</h3>
+                <ul class="list-disc list-inside space-y-2 text-sm">
+                    <li>Monitor orders with "Payment Verification Pending" status</li>
+                    <li>Check UTR numbers and payment screenshots when provided</li>
+                    <li>Update order status once payment is verified</li>
+                    <li>Track order fulfillment through the dashboard</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Check if user is authenticated
+        if (!localStorage.getItem('adminToken')) {
+            window.location.href = 'login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        // Load orders (in production, fetch from Netlify function)
+        function loadOrders() {
+            // Mock data - in production, fetch from backend
+            const mockOrders = [
+                {
+                    orderId: 'LS202600001',
+                    customer: 'John Doe',
+                    amount: 2500,
+                    status: 'Payment Verification Pending',
+                    date: '2026-07-16'
+                },
+                {
+                    orderId: 'LS202600002',
+                    customer: 'Jane Smith',
+                    amount: 1999,
+                    status: 'Processing',
+                    date: '2026-07-16'
+                }
+            ];
+
+            const tbody = document.getElementById('ordersTable');
+            tbody.innerHTML = mockOrders.map(order => `
+                <tr>
+                    <td class="px-6 py-4 font-bold text-purple-700">${order.orderId}</td>
+                    <td class="px-6 py-4">${order.customer}</td>
+                    <td class="px-6 py-4">₹${order.amount}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${
+                            order.status === 'Payment Verification Pending' 
+                                ? 'bg-orange-100 text-orange-800' 
+                                : 'bg-green-100 text-green-800'
+                        }">
+                            ${order.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">${order.date}</td>
+                    <td class="px-6 py-4">
+                        <button onclick="viewOrder('${order.orderId}')" class="text-blue-600 hover:underline text-sm font-medium">View</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function viewOrder(orderId) {
+            alert(`View order ${orderId} details here`);
+        }
+
+        loadOrders();
+    </script>
+</body>
+</html>
