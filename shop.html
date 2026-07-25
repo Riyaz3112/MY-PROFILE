@@ -8,6 +8,7 @@
     <script defer src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+<meta http-equiv="refresh" content="0; url=shop.php">
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,6 +19,7 @@
                 <div class="flex items-center space-x-6">
                     <a href="index.html" class="text-gray-700 hover:text-purple-700 font-medium">Home</a>
                     <a href="cart.html" class="text-gray-700 hover:text-purple-700 font-medium">Cart (<span id="cartCount">0</span>)</a>
+                    <a href="admin/login.php" class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-full font-medium transition">Admin</a>
                 </div>
             </div>
         </div>
@@ -59,79 +61,39 @@
         }
     </script>
 
-    <script type="module">
-        import { initFirebase, getProducts } from './firebase-init.js';
-
-        // Hardcoded products (fallback)
-        const defaultProducts = [
-            {
-                id: 1,
-                name: "Premium Oversized T-Shirt",
-                slug: "premium-oversized-tshirt",
-                price: 499,
-                image: "IMG101.jpeg",
-                description: "High-quality oversized t-shirt perfect for streetwear",
-                category: "t-shirts"
-            },
-            {
-                id: 2,
-                name: "Baggy T-Shirt Black",
-                slug: "baggy-tshirt-black",
-                price: 599,
-                image: "IMG102.jpeg",
-                description: "Trendy baggy fit t-shirt in black",
-                category: "t-shirts"
-            },
-            {
-                id: 3,
-                name: "Football Jersey",
-                slug: "football-jersey",
-                price: 799,
-                image: "IMG103.jpeg",
-                description: "Sports-style football jersey",
-                category: "jerseys"
-            },
-            {
-                id: 4,
-                name: "Track Pants",
-                slug: "track-pants",
-                price: 899,
-                image: "IMG104.jpeg",
-                description: "Comfortable track pants with jogger style",
-                category: "pants"
-            }
-        ];
-
-        // Initialize Firebase (optional)
-        try {
-            await initFirebase();
-        } catch (e) {
-            console.log('Firebase not configured, using local products');
+    <script>
+        async function fetchProducts(){
+            try{
+                const res = await fetch('products-api.php');
+                const data = await res.json();
+                if (data.success) return data.products;
+            }catch(e){ console.error(e); }
+            return [];
         }
 
-        // Load and display cart items
-        function loadProducts() {
+        function formatPrice(n){ return '₹' + n; }
+
+        async function loadProducts(){
+            const products = await fetchProducts();
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
-
-            defaultProducts.forEach(product => {
+            products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition';
+                const img = product.images && product.images.length ? product.images[0] : (product.image || '');
                 productCard.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/250x200/301040/ffffff?text=${encodeURIComponent(product.name)}'">
+                    <a href="product.php?id=${product.id}" class="block">
+                        <img src="${img}" alt="${product.name}" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/250x200/301040/ffffff?text=${encodeURIComponent(product.name)}'">
+                    </a>
                     <div class="p-4">
-                        <h3 class="font-bold text-lg mb-2">${product.name}</h3>
-                        <p class="text-gray-600 text-sm mb-4">${product.description}</p>
-                        <p class="text-purple-700 font-bold text-xl mb-4">₹${product.price}</p>
-                        
+                        <h3 class="font-bold text-lg mb-2"><a href="product.php?id=${product.id}" class="hover:underline">${product.name}</a></h3>
+                        <p class="text-gray-600 text-sm mb-4">${product.description || ''}</p>
+                        <p class="text-purple-700 font-bold text-xl mb-4">${formatPrice(product.price)}</p>
                         <div class="space-y-3 mb-4">
                             <div>
                                 <label class="block text-sm font-medium mb-1">Size</label>
                                 <select class="w-full border border-gray-300 rounded px-3 py-2 size-select text-sm">
-                                    <option value="S">Small (S)</option>
-                                    <option value="M" selected>Medium (M)</option>
-                                    <option value="L">Large (L)</option>
-                                    <option value="XL">Extra Large (XL)</option>
+                                    ${(product.sizes || 'S,M,L,XL').split(',').map(s => `<option value="${s.trim()}">${s.trim()}</option>`).join('')}
                                 </select>
                             </div>
                             <div>
@@ -143,7 +105,6 @@
                                 </select>
                             </div>
                         </div>
-                        
                         <button class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 rounded transition add-to-cart-btn" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}">
                             Add to Cart
                         </button>
@@ -152,67 +113,29 @@
                 grid.appendChild(productCard);
             });
 
-            // Add event listeners to all add to cart buttons
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                btn.addEventListener('click', addToCart);
-            });
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => btn.addEventListener('click', addToCart));
         }
 
-        // Add to cart function
-        function addToCart(e) {
+        function addToCart(e){
             const btn = e.target;
             const productId = parseInt(btn.dataset.productId);
             const productName = btn.dataset.productName;
-            const productPrice = parseInt(btn.dataset.productPrice);
-            
+            const productPrice = parseFloat(btn.dataset.productPrice);
             const card = btn.closest('.bg-white');
             const size = card.querySelector('.size-select').value;
             const color = card.querySelector('.color-select').value;
-
-            // Get existing cart from localStorage
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            
-            // Check if item already exists with same size and color
-            const existingItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: productPrice,
-                    size: size,
-                    color: color,
-                    quantity: 1
-                });
-            }
-
-            // Save cart to localStorage
+            const existing = cart.find(item => item.id === productId && item.size === size && item.color === color);
+            if (existing) existing.quantity += 1; else cart.push({ id: productId, name: productName, price: productPrice, size, color, quantity: 1 });
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
-            
-            // Show success message
-            btn.textContent = '✓ Added to Cart';
-            btn.disabled = true;
-            setTimeout(() => {
-                btn.textContent = 'Add to Cart';
-                btn.disabled = false;
-            }, 1500);
+            btn.textContent = '✓ Added to Cart'; btn.disabled = true;
+            setTimeout(()=>{ btn.textContent = 'Add to Cart'; btn.disabled = false; }, 1400);
         }
 
-        // Update cart count
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cartCount').textContent = count;
-        }
+        function updateCartCount(){ const cart = JSON.parse(localStorage.getItem('cart') || '[]'); const c = cart.reduce((s,i)=> s + i.quantity,0); document.getElementById('cartCount').textContent = c; }
 
-        // Load products on page load
-        loadProducts();
-        updateCartCount();
-
-        // Update cart count every second (for multiple tabs)
-        setInterval(updateCartCount, 1000);
+        loadProducts(); updateCartCount(); setInterval(updateCartCount, 1000);
     </script>
 </body>
 </html>

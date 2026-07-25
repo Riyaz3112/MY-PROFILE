@@ -6,6 +6,12 @@ $orderCode = $_GET['order'] ?? '';
 $order = $pdo->prepare('SELECT * FROM orders WHERE order_id = ?');
 $order->execute([$orderCode]);
 $orderData = $order->fetch();
+$latestTrackingStatus = null;
+if ($orderData) {
+    $trackingStmt = $pdo->prepare('SELECT status FROM order_tracking WHERE order_id = ? ORDER BY created_at DESC LIMIT 1');
+    $trackingStmt->execute([$orderData['id']]);
+    $latestTrackingStatus = $trackingStmt->fetchColumn();
+}
 include __DIR__ . '/includes/header.php';
 ?>
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -14,7 +20,7 @@ include __DIR__ . '/includes/header.php';
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         </div>
         <h1 class="mt-6 text-3xl font-bold text-[#301040]">Thank You for Your Order!</h1>
-        <p class="mt-3 text-gray-600">Your order has been placed successfully and is pending payment verification.</p>
+        <p class="mt-3 text-gray-600">Your order has been placed successfully and is now being processed.</p>
         <?php if ($orderData): ?>
             <div class="mt-8 grid gap-4 rounded-2xl bg-gray-50 p-6 text-left md:grid-cols-2">
                 <div>
@@ -30,8 +36,8 @@ include __DIR__ . '/includes/header.php';
                     <p class="text-lg font-semibold text-gray-900">₹<?php echo number_format((float) $orderData['total_amount'], 0); ?></p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">Payment Status</p>
-                    <p class="text-lg font-semibold text-gray-900"><?php echo htmlspecialchars($orderData['status']); ?></p>
+                    <p class="text-sm text-gray-500">Current Status</p>
+                    <p class="text-lg font-semibold text-gray-900"><?php echo htmlspecialchars($latestTrackingStatus ?: $orderData['status']); ?></p>
                 </div>
             </div>
         <?php endif; ?>

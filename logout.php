@@ -1,12 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/functions.php';
-// Clear session and cookie
-$_SESSION = [];
-if (ini_get('session.use_cookies')) {
-	$params = session_get_cookie_params();
-	setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'] ?? false, $params['httponly'] ?? true);
-}
-session_unset();
-session_destroy();
-header('Location: login.php');
+require_once __DIR__ . '/includes/functions.php';
+// Sign out customer
+unset($_SESSION['customer_id'], $_SESSION['customer_name']);
+header('Location: index.html');
 exit;

@@ -3,13 +3,20 @@ require_once __DIR__ . '/includes/functions.php';
 $pdo = getDbConnection();
 $pageTitle = 'Track Order | LookStylo Clothing';
 $result = null;
+$trackingEntries = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orderId = sanitizeInput($_POST['order_id'] ?? '');
     $mobile = sanitizeInput($_POST['mobile'] ?? '');
-    $stmt = $pdo->prepare('SELECT o.*, ot.status, ot.note, ot.created_at FROM orders o LEFT JOIN order_tracking ot ON ot.order_id = o.id WHERE o.order_id = ? AND o.mobile = ? ORDER BY ot.created_at DESC LIMIT 1');
-    $stmt->execute([$orderId, $mobile]);
-    $result = $stmt->fetch();
+    $orderStmt = $pdo->prepare('SELECT o.*, o.status AS order_status, o.created_at AS order_created_at FROM orders o WHERE o.order_id = ? AND o.mobile = ? LIMIT 1');
+    $orderStmt->execute([$orderId, $mobile]);
+    $result = $orderStmt->fetch();
+
+    if ($result) {
+        $trackingStmt = $pdo->prepare('SELECT status, note, created_at FROM order_tracking WHERE order_id = ? ORDER BY created_at ASC');
+        $trackingStmt->execute([(int)$result['id']]);
+        $trackingEntries = $trackingStmt->fetchAll();
+    }
 }
 
 include __DIR__ . '/includes/header.php';
@@ -38,18 +45,28 @@ include __DIR__ . '/includes/header.php';
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Current Status</p>
-                        <p class="text-lg font-semibold text-gray-900"><?php echo htmlspecialchars($result['status'] ?: 'Payment Verification Pending'); ?></p>
+                        <?php
+                            $displayStatus = $result['order_status'] ?? 'Payment Verification Pending';
+                            if (!empty($trackingEntries)) {
+                                $displayStatus = $trackingEntries[count($trackingEntries) - 1]['status'];
+                            }
+                        ?>
+                        <p class="text-lg font-semibold text-gray-900"><?php echo htmlspecialchars($displayStatus); ?></p>
                     </div>
                 </div>
                 <div class="mt-6 rounded-2xl bg-gray-50 p-4">
                     <p class="text-sm font-semibold text-gray-900">Timeline</p>
                     <ul class="mt-3 space-y-2 text-sm text-gray-600">
-                        <li>• Order Placed</li>
-                        <li>• Payment Verification Pending</li>
-                        <li>• Confirmed</li>
-                        <li>• Packed</li>
-                        <li>• Shipped</li>
-                        <li>• Delivered</li>
+                        <?php if (!empty($result['order_created_at'])): ?>
+                            <li>• Order Placed (<?php echo date('Y-m-d H:i', strtotime($result['order_created_at'])); ?>)</li>
+                        <?php endif; ?>
+                        <?php if (!empty($trackingEntries)): ?>
+                            <?php foreach ($trackingEntries as $tracking): ?>
+                                <li>• <?php echo htmlspecialchars($tracking['status']); ?><?php if (!empty($tracking['note'])) echo ' — ' . htmlspecialchars($tracking['note']); ?></li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li>• <?php echo htmlspecialchars($result['order_status'] ?? 'Payment Verification Pending'); ?></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             <?php else: ?>
